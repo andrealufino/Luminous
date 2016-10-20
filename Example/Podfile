@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Luminous_Example' do
+  pod 'Luminous', :path => '../'
+
+  target 'Luminous_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
