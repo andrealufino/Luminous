@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of Luminous.'
+  s.summary          = 'This is a porting of ALSystemUtilities. We take care of system stuff.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This library is a porting of ALSystemUtilities written in Swift 3 and compatible with > iOS 8. We provide better methods to manage all the things managed by ALSystemUtilities and even more. 
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/Luminous'
+  s.homepage         = 'https://github.com/andrealufino/Luminous'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Andrea Mario Lufino' => 'andrea.lufino@21ilab.com' }

@@ -1,0 +1,6 @@
+framework module Luminous {
+  umbrella header "Luminous-umbrella.h"
+
+  export *
+  module * { export * }
+}

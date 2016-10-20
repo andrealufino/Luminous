@@ -1,0 +1,16 @@
+PODS:
+  - Luminous (0.1.0)
+
+DEPENDENCIES:
+  - Luminous (from `../`)
+
+EXTERNAL SOURCES:
+  Luminous:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Luminous: e5bc654659f28351e9586dbdc1b35aeb68105138
+
+PODFILE CHECKSUM: 10d20f14d3c4601a27093567bf6516568b28d330
+
+COCOAPODS: 1.0.1

@@ -1,0 +1,22 @@
+{
+  "name": "Luminous",
+  "version": "0.1.0",
+  "summary": "A short description of Luminous.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/Luminous",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Andrea Mario Lufino": "andrea.lufino@21ilab.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/Luminous.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Luminous/Classes/**/*"
+}
