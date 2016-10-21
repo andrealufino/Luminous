@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		02E61BEBD51CE958CE5ECCA26457A1D0 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07492F4816132901259D7C4A896ACED /* ReplaceMe.swift */; };
 		1296478B728D77CC8213188FF7BD36AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		654412461DB95F6E008EF762 /* Luminous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654412451DB95F6E008EF762 /* Luminous.swift */; };
+		6544124A1DB96240008EF762 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654412491DB96240008EF762 /* Reachability.swift */; };
 		9A63F4D732A19A11D3E1D5F159F73254 /* Pods-Luminous_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 033B1C67ACDB583F703F75EB60BF9BA6 /* Pods-Luminous_Tests-dummy.m */; };
 		9D39C8DD8A01058E90F24FEAF11A25DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		A00DC8FDC2F658F30BB0E788077BFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
@@ -43,6 +45,8 @@
 		3F92D3B8D680123953D57D7DE892DCDB /* Luminous.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Luminous.xcconfig; sourceTree = "<group>"; };
 		428CB8B0F93AC6C6F999FB8EED905442 /* Pods-Luminous_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Luminous_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		44B7102A030B385E72810C93AE23AAB6 /* Luminous.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Luminous.modulemap; sourceTree = "<group>"; };
+		654412451DB95F6E008EF762 /* Luminous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Luminous.swift; sourceTree = "<group>"; };
+		654412491DB96240008EF762 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		71DF2D2DDA08FA3B7EA3F349B9B378F5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76A3BBFC0561B7E5C8569EB42F22C187 /* Pods-Luminous_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Luminous_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B54C5B80D78B01E942D0B4E3A07D161 /* Luminous-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Luminous-umbrella.h"; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				B07492F4816132901259D7C4A896ACED /* ReplaceMe.swift */,
+				654412491DB96240008EF762 /* Reachability.swift */,
+				654412451DB95F6E008EF762 /* Luminous.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -354,6 +360,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8A4054057ABE006AD52F11624F1E3F6 /* Luminous-dummy.m in Sources */,
+				654412461DB95F6E008EF762 /* Luminous.swift in Sources */,
+				6544124A1DB96240008EF762 /* Reachability.swift in Sources */,
 				02E61BEBD51CE958CE5ECCA26457A1D0 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
