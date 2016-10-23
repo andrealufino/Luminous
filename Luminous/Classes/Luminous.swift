@@ -738,6 +738,7 @@ extension Luminous {
         
         /// Get the server base URL based on the current app configuration
         ///
+        /// - note:    This method throws `fatalError("message")` if something is not correctly set up
         /// - returns: The correct server url based on the current app configuration
         public static func serverBaseURLBasedOnCurrentConfiguration () -> String {
             
@@ -748,26 +749,26 @@ extension Luminous {
                     if let baseURL = AppConfiguration.serverBaseURLTeam {
                         return baseURL
                     }
-                    fatalError("You didn't set the team server url!")
+                    fatalError("Luminous - AppConfiguration - You didn't set the team server url!")
                 case LMAppConfiguration.development:
                     if let baseURL = AppConfiguration.serverBaseURLDevelopment {
                         return baseURL
                     }
-                    fatalError("You didn't set the development server url!")
+                    fatalError("Luminous - AppConfiguration - You didn't set the development server url!")
                 case LMAppConfiguration.stage:
                     if let baseURL = AppConfiguration.serverBaseURLStage {
                         return baseURL
                     }
-                    fatalError("You didn't set the stage server url!")
+                    fatalError("Luminous - AppConfiguration - You didn't set the stage server url!")
                 case LMAppConfiguration.production:
                     if let baseURL = AppConfiguration.serverBaseURLProduction {
                         return baseURL
                     }
-                    fatalError("You didn't set the production server url!")
+                    fatalError("Luminous - AppConfiguration - You didn't set the production server url!")
                 }
             }
             
-            fatalError("You didn't set the configuration server url!")
+            fatalError("Luminous - AppConfiguration - You didn't set the configuration server url!")
         }
     }
 }

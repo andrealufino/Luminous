@@ -22,7 +22,7 @@ pod "Luminous"
 
 ## Author
 
-Andrea Mario Lufino, andrea.lufino@21ilab.com
+Andrea Mario Lufino, andrea.lufino@me.com
 
 ## License
 

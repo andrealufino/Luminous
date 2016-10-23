@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-This library is a porting of ALSystemUtilities written in Swift 3 and compatible with > iOS 8. We provide better methods to manage all the things managed by ALSystemUtilities and even more. 
+This library is the evolution of ALSystemUtilities framework. It is written in Swift 3 and compatible with > iOS 8. We provide better methods to manage all the things managed by ALSystemUtilities and even more.
                        DESC
 
   s.homepage         = 'https://github.com/andrealufino/Luminous'
@@ -37,6 +37,6 @@ This library is a porting of ALSystemUtilities written in Swift 3 and compatible
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit', 'SystemConfiguration.CaptiveNetwork', 'CoreTelephony', 'AVFoundation', 'ExternalAccessory'
   s.dependency 'Deviice'
 end
