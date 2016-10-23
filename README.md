@@ -17,12 +17,12 @@ Xcode 8
 
 ## What is Luminous?
 
-Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained. I got ideas from that one and I write everything from scratch in Swift 3.
+Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained. I got ideas from that one and I wrote everything from scratch in Swift 3.
 
 Luminous is a big library that I like to consider an "Helper Library". It provides a lot of information about the system and has some features that can speed up significantly the development process.
 
 It is composed by 3 parts :
-- system information (Luminous.System.<substruct>)
+- system information (`Luminous.System.<substruct>`)
 - utils (some handy method like the email check)
 - custom app configuration
 
@@ -120,6 +120,10 @@ And these methods :
 - `serverBaseURLBasedOnCurrentConfiguration` to get the right server url based on the configuration
 
 You can extend this struct to add your own properties and methods. For example, I use to extend this adding a substruct called `SegueIdentifiers` or `CellIdentifiers` where I save all the respective ids. This allows to keep everything in order and have a well readable code. Access an identifier using `Luminous.AppConfiguration.SegueIdentifiers.productDetails` is a lot better than anything else.
+
+## Why Luminous?
+
+I'm sure you're asking yourself "Why this library is called Luminous?". Well, stop think about it. The reason is simple : I like the word "Luminous", it gives me a unique feeling of something that is bright and awesome! So, I chose to call this lib in that way! But you can think that "Luminous is because this library will light up your way of development speeding up it and giving you more time for yourself", this is more philosophical.
 
 ## Installation
 
