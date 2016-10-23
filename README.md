@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/Luminous.svg?style=flat)](http://cocoapods.org/pods/Luminous)
 [![Platform](https://img.shields.io/cocoapods/p/Luminous.svg?style=flat)](http://cocoapods.org/pods/Luminous)
 
+![Logo](./Example/Deviice/Luminous.png)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -14,6 +16,19 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 iOS 8+
 Swift 3
 Xcode 8
+
+## Installation
+
+Luminous is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "Luminous"
+```
+
+## Dependencies
+
+Luminous has only 1 dependency : [Deviice](https://github.com/andrealufino/Deviice) which is my other library useful to know on which device your app is running on, plus some nice information.
 
 ## What is Luminous?
 
@@ -124,15 +139,6 @@ You can extend this struct to add your own properties and methods. For example, 
 ## Why Luminous?
 
 I'm sure you're asking yourself "Why this library is called Luminous?". Well, stop think about it. The reason is simple : I like the word "Luminous", it gives me a unique feeling of something that is bright and awesome! So, I chose to call this lib in that way! But you can think that "Luminous is because this library will light up your way of development speeding up it and giving you more time for yourself", this is more philosophical.
-
-## Installation
-
-Luminous is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "Luminous"
-```
 
 ## Author
 
