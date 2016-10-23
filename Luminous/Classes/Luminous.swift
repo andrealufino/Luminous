@@ -13,8 +13,11 @@ import AVFoundation
 import Deviice
 import ExternalAccessory
 
+// MARK: Luminous
 public struct Luminous {
     
+    // MARK: System
+    /// All the information about the system
     public struct System {
         
         // MARK: Network
@@ -258,7 +261,7 @@ public struct Luminous {
             /// Number of processors
             ///
             /// - returns: The number of processors
-            public static func processorNumber () -> Int {
+            public static func processorsNumber () -> Int {
                 
                 return ProcessInfo().processorCount
             }
@@ -266,7 +269,7 @@ public struct Luminous {
             /// Number of active processors
             ///
             /// - returns: The number of active processors
-            public static func activeProcessorNumber () -> Int {
+            public static func activeProcessorsNumber () -> Int {
                 
                 return ProcessInfo().activeProcessorCount
             }
@@ -418,10 +421,10 @@ public struct Luminous {
             /// Accessory information
             public struct Accessory {
                 
-                /// The number of attached accessories
+                /// The number of connected accessories
                 ///
-                /// - returns: The number of attached accessories (Int)
-                public static func number () -> Int {
+                /// - returns: The number of connected accessories (Int)
+                public static func count () -> Int {
                     
                     return EAAccessoryManager.shared().connectedAccessories.count
                 }
@@ -620,13 +623,14 @@ public struct Luminous {
             }
         }
     }
-}
-
-
-// MARK: Extension for Utils
-extension Luminous {
     
-    /// Some utilities structs
+    
+    
+    
+    
+    
+    // MARK: Utils
+    /// This struct contains some functions that can be useful during the development. 
     public struct Utils {
         
         /// Check if the passed email address is valid
@@ -663,7 +667,10 @@ extension Luminous {
         }
     }
     
-    /// This struct requires a discussion. It's not intended to have an instance, but offers an interface to save and retrieve some common vars used in every projects. The `set` method can be used to init all the properties in once. You can even set all the properties separately and keep some of them nil if you don't need them. Among the things you can save there are colors (to create a palette for example) and server url based on development, stage or production.
+    
+    
+    // MARK: AppConfiguration
+    /// This struct requires a discussion. It's not intended to be instantiated, but offers an interface to save and retrieve some common vars used in every projects. The `set` method can be used to init all the properties in once. You can even set all the properties separately and keep some of them nil if you don't need them. Among the things you can save there are colors (to create a palette for example) and server url based on development, stage or production.
     public struct AppConfiguration {
         
         /// Enumeration representing the different stage of the development
