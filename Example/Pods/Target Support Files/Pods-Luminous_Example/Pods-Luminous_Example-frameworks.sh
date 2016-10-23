@@ -84,8 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Deviice/Deviice.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Luminous/Luminous.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Deviice/Deviice.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Luminous/Luminous.framework"
 fi

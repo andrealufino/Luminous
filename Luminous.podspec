@@ -38,5 +38,5 @@ This library is a porting of ALSystemUtilities written in Swift 3 and compatible
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Deviice'
 end
