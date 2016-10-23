@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Luminous.svg?style=flat)](http://cocoapods.org/pods/Luminous)
 [![Platform](https://img.shields.io/cocoapods/p/Luminous.svg?style=flat)](http://cocoapods.org/pods/Luminous)
 
-![Logo](./Example/Deviice/Luminous.png)
+![Logo](./Example/Luminous/Luminous.png)
 
 ## Example
 
