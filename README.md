@@ -32,7 +32,7 @@ Luminous has only 1 dependency : [Deviice](https://github.com/andrealufino/Devii
 
 ## What is Luminous?
 
-Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained. I got ideas from that one and I wrote everything from scratch in Swift 3.
+Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained (it still is my best library on github). I got ideas from that one and I wrote everything from scratch in Swift 3 adding some new feature and designing it in a different way thanks to the differences between Objective-C and Swift.
 
 Luminous is a big library that I like to consider an "Helper Library". It provides a lot of information about the system and has some features that can speed up significantly the development process.
 
