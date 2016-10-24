@@ -13,6 +13,47 @@ import AVFoundation
 import Deviice
 import ExternalAccessory
 
+// MARK: Enums
+
+/// The size scale to decide how you want to obtain size information
+///
+/// - bytes:     In bytes
+/// - kilobytes: In kilobytes
+/// - megabytes: In megabytes
+/// - gigabytes: In gigabytes
+public enum LMSizeScale {
+    case bytes
+    case kilobytes
+    case megabytes
+    case gigabytes
+}
+
+/// The battery state
+///
+/// - unknown:   State unknown
+/// - unplugged: Battery is not plugged in
+/// - charging:  Battery is charging
+/// - full:      Battery is full charged
+public enum LMBatteryState: Int {
+    case unknown
+    case unplugged
+    case charging
+    case full
+}
+
+/// Enumeration representing the different stage of the development
+///
+/// - team:        The team configuration is used only by the dev team and is not shared neither with the project managers or accounts
+/// - development: The development configuration, usually used during the dev phase
+/// - stage:       The stage configuration, usually used during the first deliver to the client
+/// - production:  The production configuration, usually used when the product has to be finally delivered to the client
+public enum LMAppConfiguration {
+    case team
+    case development
+    case stage
+    case production
+}
+
 // MARK: Luminous
 public struct Luminous {
     
@@ -108,36 +149,23 @@ public struct Luminous {
             /// - returns: The current country as String
             public static func currentCountry () -> String {
                 
-                return NSLocale().localeIdentifier
-            }
-            
-            /// The current measurement system
-            ///
-            /// - returns: The current measurement system as String
-            public static func currentMeasurementSystem () -> String {
-                
-                return NSLocale().object(forKey: NSLocale.Key.measurementSystem) as! String
+                return NSLocale.current.identifier
             }
             
             /// The current currency
             ///
             /// - returns: The current currency as String
-            public static func currentCurrency () -> String {
+            public static func currentCurrency () -> String? {
                 
-                return NSLocale().object(forKey: NSLocale.Key.currencyCode) as! String
+                return NSLocale.current.currencyCode
             }
             
             /// The current currency symbol
             ///
             /// - returns: The current currency symbol as String
-            public static func currentCurrencySymbol () -> String {
+            public static func currentCurrencySymbol () -> String? {
                 
-                if #available(iOS 10.0, *) {
-                    return NSLocale().currencySymbol
-                } else {
-                    // Fallback on earlier versions
-                    return NSLocale().object(forKey: NSLocale.Key.currencySymbol) as! String
-                }
+                return NSLocale.current.currencySymbol
             }
             
             /// Check if the system is using the metric system
@@ -145,25 +173,15 @@ public struct Luminous {
             /// - returns: true if it does, false if it doesn't
             public static func usesMetricSystem () -> Bool {
                 
-                if #available(iOS 10.0, *) {
-                    return NSLocale().usesMetricSystem
-                } else {
-                    // Fallback on earlier versions
-                    return NSLocale().object(forKey: NSLocale.Key.usesMetricSystem) as! Bool
-                }
+                return NSLocale.current.usesMetricSystem
             }
             
             /// The decimal separator
             ///
             /// - returns: The decimal separator as String
-            public static func decimalSeparator () -> String {
+            public static func decimalSeparator () -> String? {
                 
-                if #available(iOS 10.0, *) {
-                    return NSLocale().decimalSeparator
-                } else {
-                    // Fallback on earlier versions
-                    return NSLocale().object(forKey: NSLocale.Key.decimalSeparator) as! String
-                }
+                return NSLocale.current.decimalSeparator
             }
         }
         
@@ -176,7 +194,7 @@ public struct Luminous {
             /// The name of the carrier
             ///
             /// - returns: The name of the carrier or nil
-            public static func carrierName () -> String? {
+            public static func name () -> String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -189,7 +207,7 @@ public struct Luminous {
             /// The carrier ISO code
             ///
             /// - returns: The carrier ISO code or nil
-            public static func carrierISOCountryCode () -> String? {
+            public static func ISOCountryCode () -> String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -202,7 +220,7 @@ public struct Luminous {
             /// The carrier mobile country code
             ///
             /// - returns: The carrier mobile country code or nil
-            public static func carrierMobileCountryCode () -> String? {
+            public static func mobileCountryCode () -> String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -215,7 +233,7 @@ public struct Luminous {
             /// The carrier network country code
             ///
             /// - returns: The carrier network country code or nil
-            public static func carrierNetworkCountryCode () -> String? {
+            public static func networkCountryCode () -> String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -228,7 +246,7 @@ public struct Luminous {
             /// Check if the carrier allows VOIP
             ///
             /// - returns: true if it does, false if it doesn't
-            public static func carrierAllowsVOIP () -> Bool? {
+            public static func allowsVOIP () -> Bool? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -244,19 +262,6 @@ public struct Luminous {
         // MARK: Hardware
         /// Hardware information
         public struct Hardware {
-            
-            /// The size scale to decide how you want to obtain size information
-            ///
-            /// - bytes:     In bytes
-            /// - kilobytes: In kilobytes
-            /// - megabytes: In megabytes
-            /// - gigabytes: In gigabytes
-            public enum LMSizeScale {
-                case bytes
-                case kilobytes
-                case megabytes
-                case gigabytes
-            }
             
             /// Number of processors
             ///
@@ -277,7 +282,7 @@ public struct Luminous {
             /// Physical memory of the device
             ///
             /// - returns: The physical memory of the device in megabytes
-            public static func physicalMemory (_ sizeScale: LMSizeScale) -> Float {
+            public static func physicalMemory (withSizeScale sizeScale: LMSizeScale) -> Float {
                 
                 let physicalMemory = ProcessInfo().physicalMemory
                 
@@ -328,7 +333,7 @@ public struct Luminous {
                 /// - returns: The current brightness
                 public static func brightness () -> Float {
                     
-                    return UIScreen.main.brightness as! Float
+                    return Float(UIScreen.main.brightness)
                 }
                 
                 /// Check if the screen is being mirrored
@@ -356,7 +361,7 @@ public struct Luminous {
                 /// - returns: The scale of the physical screen
                 public static func nativeScale () -> Float {
                     
-                    return UIScreen.main.nativeScale as! Float
+                    return Float(UIScreen.main.nativeScale)
                 }
                 
                 /// The bounds of the current main screen
@@ -372,7 +377,7 @@ public struct Luminous {
                 /// - returns: The scale of the current main screen
                 public static func scale () -> Float {
                     
-                    return UIScreen.main.scale as! Float
+                    return Float(UIScreen.main.scale)
                 }
                 
                 /// The snapshot of the current view
@@ -534,7 +539,7 @@ public struct Luminous {
             /// The used disk space in bytes
             ///
             /// - returns: The used disk space in bytes. Returns 0 if something went wrong
-            public static func usedDiskSpaceInBytes () -> Int64 {
+            public static func usedSpaceInBytes () -> Int64 {
                 let usedSpace = totalSpaceInBytes() - freeSpaceInBytes()
                 return usedSpace
             }
@@ -552,19 +557,6 @@ public struct Luminous {
                     
                     return dev
                 }
-            }
-            
-            /// The battery state
-            ///
-            /// - unknown:   State unknown
-            /// - unplugged: Battery is not plugged in
-            /// - charging:  Battery is charging
-            /// - full:      Battery is full charged
-            public enum LMBatteryState: Int {
-                case unknown
-                case unplugged
-                case charging
-                case full
             }
             
             /// The current level of the battery
@@ -672,19 +664,6 @@ public struct Luminous {
     // MARK: AppConfiguration
     /// This struct requires a discussion. It's not intended to be instantiated, but offers an interface to save and retrieve some common vars used in every projects. The `set` method can be used to init all the properties in once. You can even set all the properties separately and keep some of them nil if you don't need them. Among the things you can save there are colors (to create a palette for example) and server url based on development, stage or production.
     public struct AppConfiguration {
-        
-        /// Enumeration representing the different stage of the development
-        ///
-        /// - team:        The team configuration is used only by the dev team and is not shared neither with the project managers or accounts
-        /// - development: The development configuration, usually used during the dev phase
-        /// - stage:       The stage configuration, usually used during the first deliver to the client
-        /// - production:  The production configuration, usually used when the product has to be finally delivered to the client
-        public enum LMAppConfiguration {
-            case team
-            case development
-            case stage
-            case production
-        }
         
         /// The main color of the palette
         public static var mainColor: UIColor?

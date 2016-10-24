@@ -57,7 +57,6 @@ There are 10 different substructs here from which you can get information :
     - `currentTimeZone`
     - `currentTimeZoneName`
     - `currentCountry`
-    - `currentMeasurementSystem`
     - `currentCurrency`
     - `currentCurrencySymbol`
     - `usesMetricSystem`
