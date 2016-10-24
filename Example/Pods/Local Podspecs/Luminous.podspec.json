@@ -1,9 +1,9 @@
 {
   "name": "Luminous",
   "version": "0.1.0",
-  "summary": "A short description of Luminous.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/Luminous",
+  "summary": "This is a porting of ALSystemUtilities. We take care of system stuff.",
+  "description": "This library is a porting of ALSystemUtilities written in Swift 3 and compatible with > iOS 8. We provide better methods to manage all the things managed by ALSystemUtilities and even more.",
+  "homepage": "https://github.com/andrealufino/Luminous",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "Luminous/Classes/**/*"
+  "source_files": "Luminous/Classes/**/*",
+  "dependencies": {
+    "Deviice": [
+
+    ]
+  }
 }
