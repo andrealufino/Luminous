@@ -139,6 +139,10 @@ You can extend this struct to add your own properties and methods. For example, 
 
 I'm sure you're asking yourself "Why this library is called Luminous?". Well, stop think about it. The reason is simple : I like the word "Luminous", it gives me a unique feeling of something that is bright and awesome! So, I chose to call this lib in that way! But you can think that "Luminous is because this library will light up your way of development speeding up it and giving you more time for yourself", this is more philosophical.
 
+## Help
+
+Any suggestion would be really appreciated. The library is designed using structs and static functions, but I'm still not sure of this choice. I'm struggling if the best is to use static functions or static vars, so this is the first point you can help me with.
+
 ## Author
 
 Andrea Mario Lufino, andrea.lufino@me.com
