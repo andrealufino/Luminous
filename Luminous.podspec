@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '0.40.20'
+  s.version          = '0.40.30'
   s.summary          = 'Everything you need to know about your system!'
 
 # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ This library is the evolution of ALSystemUtilities framework. It is written in S
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Andrea Mario Lufino' => 'andrea.lufino@21ilab.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/Luminous.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/andrealufino/Luminous.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -37,6 +37,6 @@ This library is the evolution of ALSystemUtilities framework. It is written in S
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'SystemConfiguration.CaptiveNetwork', 'CoreTelephony', 'AVFoundation', 'ExternalAccessory'
+  s.frameworks = 'UIKit', 'SystemConfiguration', 'CoreTelephony', 'AVFoundation', 'ExternalAccessory'
   s.dependency 'Deviice'
 end

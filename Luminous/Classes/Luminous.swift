@@ -564,7 +564,7 @@ public struct Luminous {
             /// - returns: The current level of the battery
             public static func level () -> Float? {
                 
-                var batteryCharge = device.batteryLevel
+                let batteryCharge = device.batteryLevel
                 if batteryCharge > 0 {
                     return batteryCharge * 100
                 } else {
