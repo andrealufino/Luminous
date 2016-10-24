@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '0.1.0'
-  s.summary          = 'This is a porting of ALSystemUtilities. We take care of system stuff.'
+  s.version          = '0.40.20'
+  s.summary          = 'Everything you need to know about your system!'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
