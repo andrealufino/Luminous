@@ -13,18 +13,28 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-iOS 8+
-Swift 3
-Xcode 8
+- iOS 8+
+- Swift 3
+- Xcode 8
 
 ## Installation
+
+### CocoaPods
 
 Luminous is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
+platform :ios, '8.0'
+use_frameworks!
 pod "Luminous"
 ```
+
+Then use `import Luminous` wherever you want to use the library.
+
+### Manually
+
+Download the project and drag the `Luminous.swift` and `Reachability.swift` files into your project. The library depends from the [Deviice](https://github.com/andrealufino/Deviice) framework. Download it and do the same with it (dragging `Deviice.swift`).
 
 ## Dependencies
 

@@ -341,7 +341,7 @@ public struct Luminous {
                 /// - returns: true if it is, false if it's not
                 public static func isScreenMirrored () -> Bool {
                     
-                    if let mirrored = UIScreen.main.mirrored {
+                    if let _ = UIScreen.main.mirrored {
                         return true
                     }
                     
@@ -575,7 +575,7 @@ public struct Luminous {
             /// The current battery state of the device
             ///
             /// - returns: The current battery state of the device
-            public static func state () -> LMBatteryState? {
+            public static func state () -> LMBatteryState {
                 
                 switch device.batteryState {
                 case .unknown:
@@ -586,8 +586,6 @@ public struct Luminous {
                     return LMBatteryState.charging
                 case .full:
                     return LMBatteryState.full
-                default:
-                    return nil
                 }
             }
         }
