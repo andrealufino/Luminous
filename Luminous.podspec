@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '0.40.30'
+  s.version          = '0.40.40'
   s.summary          = 'Everything you need to know about your system!'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ This library is the evolution of ALSystemUtilities framework. It is written in S
   s.homepage         = 'https://github.com/andrealufino/Luminous'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Andrea Mario Lufino' => 'andrea.lufino@21ilab.com' }
+  s.author           = { 'Andrea Mario Lufino' => 'andrea.lufino@me.com' }
   s.source           = { :git => 'https://github.com/andrealufino/Luminous.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
