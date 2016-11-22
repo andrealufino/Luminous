@@ -12,6 +12,7 @@ import CoreTelephony
 import AVFoundation
 import Deviice
 import ExternalAccessory
+import CoreMotion
 
 // MARK: Enums
 
@@ -66,10 +67,7 @@ public struct Luminous {
         public struct Network {
             
             /// Check if the device is connected to the WiFi network
-            ///
-            /// - returns: true if it is, false if it isn't
-            public static func isConnectedViaWiFi () -> Bool {
-                
+            public static var isConnectedViaWiFi: Bool {
                 let reachability = Reachability()!
                 
                 if reachability.isReachableViaWiFi {
@@ -80,17 +78,13 @@ public struct Luminous {
             }
             
             /// Check if the device is connected to the cellular network
-            ///
-            /// - returns: true if it is, false if it isn't
-            public static func isConnectedViaCellular () -> Bool {
+            public static var isConnectedViaCellular: Bool {
                 
-                return !isConnectedViaWiFi()
+                return !isConnectedViaWiFi
             }
             
-            /// Get the network SSID (doesn't work in the Simulator)
-            ///
-            /// - returns: The SSID or the empty string ("")
-            public static func SSID () -> String{
+            /// Get the network SSID (doesn't work in the Simulator). Empty string if not available
+            public static var SSID: String {
                 
                 // Doesn't work in the Simulator
                 var currentSSID = ""
@@ -121,65 +115,49 @@ public struct Luminous {
         public struct Locale {
             
             /// The current language of the system
-            ///
-            /// - returns: The current language of the system as String
-            public static func currentLanguage () -> String {
+            public static var currentLanguage: String {
                 
                 return NSLocale.preferredLanguages[0]
             }
             
             /// The current Time Zone as TimeZone object
-            ///
-            /// - returns: TimeZone object
-            public static func currentTimeZone () -> TimeZone {
+            public static var currentTimeZone: TimeZone {
                 
                 return TimeZone.current
             }
             
             /// The current Time Zone identifier
-            ///
-            /// - returns: The current Time Zone identifier as String
-            public static func currentTimeZoneName () -> String {
+            public static var currentTimeZoneName: String {
                 
                 return TimeZone.current.identifier
             }
             
             /// The current country
-            ///
-            /// - returns: The current country as String
-            public static func currentCountry () -> String {
+            public static var currentCountry: String {
                 
                 return NSLocale.current.identifier
             }
             
             /// The current currency
-            ///
-            /// - returns: The current currency as String
-            public static func currentCurrency () -> String? {
+            public static var currentCurrency: String? {
                 
                 return NSLocale.current.currencyCode
             }
             
             /// The current currency symbol
-            ///
-            /// - returns: The current currency symbol as String
-            public static func currentCurrencySymbol () -> String? {
+            public static var currentCurrencySymbol: String? {
                 
                 return NSLocale.current.currencySymbol
             }
             
             /// Check if the system is using the metric system
-            ///
-            /// - returns: true if it does, false if it doesn't
-            public static func usesMetricSystem () -> Bool {
+            public static var usesMetricSystem: Bool {
                 
                 return NSLocale.current.usesMetricSystem
             }
             
             /// The decimal separator
-            ///
-            /// - returns: The decimal separator as String
-            public static func decimalSeparator () -> String? {
+            public static var decimalSeparator: String? {
                 
                 return NSLocale.current.decimalSeparator
             }
@@ -191,10 +169,8 @@ public struct Luminous {
         /// The Carrier information
         public struct Carrier {
             
-            /// The name of the carrier
-            ///
-            /// - returns: The name of the carrier or nil
-            public static func name () -> String? {
+            /// The name of the carrier or nil if not available
+            public static var name: String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -204,10 +180,8 @@ public struct Luminous {
                 return nil
             }
             
-            /// The carrier ISO code
-            ///
-            /// - returns: The carrier ISO code or nil
-            public static func ISOCountryCode () -> String? {
+            /// The carrier ISO code or nil if not available
+            public static var ISOCountryCode: String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -217,10 +191,8 @@ public struct Luminous {
                 return nil
             }
             
-            /// The carrier mobile country code
-            ///
-            /// - returns: The carrier mobile country code or nil
-            public static func mobileCountryCode () -> String? {
+            /// The carrier mobile country code or nil if not available
+            public static var mobileCountryCode: String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -230,10 +202,8 @@ public struct Luminous {
                 return nil
             }
             
-            /// The carrier network country code
-            ///
-            /// - returns: The carrier network country code or nil
-            public static func networkCountryCode () -> String? {
+            /// The carrier network country code or nil if not available
+            public static var networkCountryCode: String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -244,9 +214,7 @@ public struct Luminous {
             }
             
             /// Check if the carrier allows VOIP
-            ///
-            /// - returns: true if it does, false if it doesn't
-            public static func allowsVOIP () -> Bool? {
+            public static var allowsVOIP: Bool? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {
@@ -264,24 +232,18 @@ public struct Luminous {
         public struct Hardware {
             
             /// Number of processors
-            ///
-            /// - returns: The number of processors
-            public static func processorsNumber () -> Int {
+            public static var processorsNumber: Int {
                 
                 return ProcessInfo().processorCount
             }
             
             /// Number of active processors
-            ///
-            /// - returns: The number of active processors
-            public static func activeProcessorsNumber () -> Int {
+            public static var activeProcessorsNumber: Int {
                 
                 return ProcessInfo().activeProcessorCount
             }
             
-            /// Physical memory of the device
-            ///
-            /// - returns: The physical memory of the device in megabytes
+            /// Physical memory of the device in megabytes
             public static func physicalMemory (withSizeScale sizeScale: LMSizeScale) -> Float {
                 
                 let physicalMemory = ProcessInfo().physicalMemory
@@ -299,25 +261,19 @@ public struct Luminous {
             }
             
             /// The name of the system
-            ///
-            /// - returns: The name of the system
-            public static func systemName () -> String {
+            public static var systemName: String {
                 
                 return UIDevice().systemName
             }
             
             /// The version of the system
-            ///
-            /// - returns: The version of the system
-            public static func systemVersion () -> String {
+            public static var systemVersion: String {
                 
                 return UIDevice().systemVersion
             }
             
-            /// The current boot time
-            ///
-            /// - returns: The current boot time expressed in seconds
-            public static func bootTime () -> TimeInterval {
+            /// The current boot time expressed in seconds
+            public static var bootTime: TimeInterval {
                 
                 return ProcessInfo().systemUptime
             }
@@ -329,17 +285,13 @@ public struct Luminous {
             public struct Screen {
                 
                 /// The current brightness
-                ///
-                /// - returns: The current brightness
-                public static func brightness () -> Float {
+                public static var brightness: Float {
                     
                     return Float(UIScreen.main.brightness)
                 }
                 
                 /// Check if the screen is being mirrored
-                ///
-                /// - returns: true if it is, false if it's not
-                public static func isScreenMirrored () -> Bool {
+                public static var isScreenMirrored: Bool {
                     
                     if let _ = UIScreen.main.mirrored {
                         return true
@@ -349,41 +301,31 @@ public struct Luminous {
                 }
                 
                 /// The bounding rectange of the physical screen measured in pixels
-                ///
-                /// - returns: The bounding rectange of the physical screen measured in pixels
-                public static func nativeBounds () -> CGRect {
+                public static var nativeBounds: CGRect {
                     
                     return UIScreen.main.nativeBounds
                 }
                 
                 /// The scale of the physical screen
-                ///
-                /// - returns: The scale of the physical screen
-                public static func nativeScale () -> Float {
+                public static var nativeScale: Float {
                     
                     return Float(UIScreen.main.nativeScale)
                 }
                 
                 /// The bounds of the current main screen
-                ///
-                /// - returns: The bounds of the screen
-                public static func bounds () -> CGRect {
+                public static var bounds: CGRect {
                     
                     return UIScreen.main.bounds
                 }
                 
                 /// The scale of the current main screen
-                ///
-                /// - returns: The scale of the current main screen
-                public static func scale () -> Float {
+                public static var scale: Float {
                     
                     return Float(UIScreen.main.scale)
                 }
                 
-                /// The snapshot of the current view
-                ///
-                /// - returns: The snapshot of the current view after all the updates are applied
-                public static func snapshotOfCurrentView () -> UIView {
+                /// The snapshot of the current view after all the updates are applied
+                public static var snapshotOfCurrentView: UIView {
                     
                     return UIScreen.main.snapshotView(afterScreenUpdates: true)
                 }
@@ -395,26 +337,20 @@ public struct Luminous {
             /// Device information
             public struct Device {
                 
-                /// The current device
-                ///
-                /// - returns: The current device as Deviice object (see [Deviice](https://github.com/andrealufino/Deviice) library)
-                public static func current () -> Deviice {
+                /// The current device as Deviice object (see [Deviice](https://github.com/andrealufino/Deviice) library)
+                public static var current: Deviice {
                     
                     return Deviice.currentDevice()
                 }
                 
                 /// The identifier for vendor of the device
-                ///
-                /// - returns: The UUID string representing the identifier for vendor of the device
-                public static func identifierForVendor () -> String? {
+                public static var identifierForVendor: String? {
                     
                     return UIDevice.current.identifierForVendor?.uuidString
                 }
                 
-                /// The current device orientation
-                ///
-                /// - returns: The current device orientation as UIDeviceOrientation
-                public static func orientation () -> UIDeviceOrientation {
+                /// The current device orientation as UIDeviceOrientation
+                public static var orientation: UIDeviceOrientation {
                     
                     return UIDevice.current.orientation
                 }
@@ -427,17 +363,13 @@ public struct Luminous {
             public struct Accessory {
                 
                 /// The number of connected accessories
-                ///
-                /// - returns: The number of connected accessories (Int)
-                public static func count () -> Int {
+                public static var count: Int {
                     
                     return EAAccessoryManager.shared().connectedAccessories.count
                 }
                 
-                /// The names of the attacched accessories
-                ///
-                /// - returns: An array with the names of the attached accessories. If no accessory is attached the array will be empty, but not nil
-                public static func connectedAccessoriesNames () -> [String] {
+                /// The names of the attacched accessories. If no accessory is attached the array will be empty, but not nil
+                public static var connectedAccessoriesNames: [String] {
                     
                     var theNames: [String] = []
                     
@@ -449,18 +381,14 @@ public struct Luminous {
                     return theNames
                 }
                 
-                /// The accessories connected and available to use for the app
-                ///
-                /// - returns: An array of EAAccessory connected and available to use for the app
-                public static func connectedAccessories () -> [EAAccessory] {
+                /// The accessories connected and available to use for the app as EAAccessory objects
+                public static var connectedAccessories: [EAAccessory] {
                     
                     return EAAccessoryManager.shared().connectedAccessories
                 }
                 
                 /// Check if headphones are plugged in
-                ///
-                /// - returns: true if they are, false if they aren't
-                public static func isHeadsetPluggedIn () -> Bool {
+                public static var isHeadsetPluggedIn: Bool {
                     // !!!: Thanks to Antonio E., this code is coming from this SO answer : http://stackoverflow.com/a/21382748/588967 . I've only translated it in Swift
                     let route = AVAudioSession.sharedInstance().currentRoute
                     
@@ -470,6 +398,36 @@ public struct Luminous {
                         }
                     }
                     return false
+                }
+            }
+            
+            
+            // MARK: Sensors
+            /// Get info about the sensors
+            public struct Sensors {
+                
+                /// Check if the accelerometer is available
+                public static var isAccelerometerAvailable: Bool {
+                    
+                    return CMMotionManager.init().isAccelerometerAvailable
+                }
+                
+                /// Check if gyroscope is available
+                public static var isGyroAvailable: Bool {
+                    
+                    return CMMotionManager.init().isGyroAvailable
+                }
+                
+                /// Check if magnetometer is available
+                public static var isMagnetometerAvailable: Bool {
+                    
+                    return CMMotionManager.init().isMagnetometerAvailable
+                }
+                
+                /// Check if device motion is available
+                public static var isDeviceMotionAvailable: Bool {
+                    
+                    return CMMotionManager.init().isDeviceMotionAvailable
                 }
             }
         }
@@ -489,31 +447,23 @@ public struct Luminous {
                 return formatter.string(fromByteCount: bytes) as String
             }
             
-            /// The total disk space in string format
-            ///
-            /// - returns: The total disk space in string format (in megabytes)
-            public static func totalSpace () -> String {
-                return ByteCountFormatter.string(fromByteCount: totalSpaceInBytes(), countStyle: ByteCountFormatter.CountStyle.binary)
+            /// The total disk space in string format (megabytes)
+            public static var totalSpace: String {
+                return ByteCountFormatter.string(fromByteCount: totalSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
             }
             
-            /// The free disk space in string format
-            ///
-            /// - returns: The free disk space in string format (in megabytes)
-            public static func freeSpace () -> String {
-                return ByteCountFormatter.string(fromByteCount: freeSpaceInBytes(), countStyle: ByteCountFormatter.CountStyle.binary)
+            /// The free disk space in string format (megabytes)
+            public static var freeSpace: String {
+                return ByteCountFormatter.string(fromByteCount: freeSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
             }
             
-            /// The used disk space in string format
-            ///
-            /// - returns: The used disk space in string format (in megabytes)
-            public static func usedSpace () -> String {
-                return ByteCountFormatter.string(fromByteCount: freeSpaceInBytes(), countStyle: ByteCountFormatter.CountStyle.binary)
+            /// The used disk space in string format (megabytes)
+            public static var usedSpace: String {
+                return ByteCountFormatter.string(fromByteCount: freeSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
             }
             
-            /// The total disk space in bytes
-            ///
-            /// - returns: The total disk space in bytes. Returns 0 if something went wrong
-            public static func totalSpaceInBytes () -> Int64 {
+            /// The total disk space in bytes. 0 if something went wrong
+            public static var totalSpaceInBytes: Int64 {
                 do {
                     let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
                     let space = (systemAttributes[FileAttributeKey.systemSize] as? NSNumber)?.int64Value
@@ -523,10 +473,8 @@ public struct Luminous {
                 }
             }
             
-            /// The free disk space in bytes
-            ///
-            /// - returns: The free disk space in bytes. Returns 0 if something went wrong
-            public static func freeSpaceInBytes () -> Int64 {
+            /// The free disk space in bytes. 0 if something went wrong
+            public static var freeSpaceInBytes: Int64 {
                 do {
                     let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
                     let freeSpace = (systemAttributes[FileAttributeKey.systemFreeSize] as? NSNumber)?.int64Value
@@ -536,11 +484,9 @@ public struct Luminous {
                 }
             }
             
-            /// The used disk space in bytes
-            ///
-            /// - returns: The used disk space in bytes. Returns 0 if something went wrong
-            public static func usedSpaceInBytes () -> Int64 {
-                let usedSpace = totalSpaceInBytes() - freeSpaceInBytes()
+            /// The used disk space in bytes. 0 if something went wrong
+            public static var usedSpaceInBytes: Int64 {
+                let usedSpace = totalSpaceInBytes - freeSpaceInBytes
                 return usedSpace
             }
         }
@@ -560,9 +506,7 @@ public struct Luminous {
             }
             
             /// The current level of the battery
-            ///
-            /// - returns: The current level of the battery
-            public static func level () -> Float? {
+            public static var level: Float? {
                 
                 let batteryCharge = device.batteryLevel
                 if batteryCharge > 0 {
@@ -573,9 +517,7 @@ public struct Luminous {
             }
             
             /// The current battery state of the device
-            ///
-            /// - returns: The current battery state of the device
-            public static func state () -> LMBatteryState {
+            public static var state: LMBatteryState {
                 
                 switch device.batteryState {
                 case .unknown:
@@ -597,17 +539,13 @@ public struct Luminous {
         public struct Application {
             
             /// The current app version
-            ///
-            /// - returns: The current app version
-            public static func version () -> String {
+            public static var version: String {
                 
                 return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
             }
             
-            /// The current content of the clipboard
-            ///
-            /// - returns: The current content of the clipboard as string (only string)
-            public static func clipboardString () -> String? {
+            /// The current content of the clipboard (only string)
+            public static var clipboardString: String? {
                 
                 return UIPasteboard.general.string
             }

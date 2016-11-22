@@ -57,7 +57,7 @@ Here we explain every one of these parts.
 
 Here I provide tons of information about the system and you can access them using the notation `Luminous.System.<substruct>`.
 
-There are 10 different substructs here from which you can get information :
+There are 11 different substructs here from which you can get information :
 - `Network`
     - `isConnectedViaWiFi`
     - `isConnectedViaCellular`
@@ -96,10 +96,15 @@ There are 10 different substructs here from which you can get information :
         - `current` (returns a [Deviice](https://github.com/andrealufino/Deviice) object)
         - `identifierForVendor`
         - `orientation`
-- `Accessory`
-    - `count`
-    - `connectedAccessoriesNames`
-    - `connectedAccessories`
+    - `Accessory`
+        - `count`
+        - `connectedAccessoriesNames`
+        - `connectedAccessories`
+    - `Sensors`
+        - `isAccelerometerAvailable`
+        - `isGyroAvailable`
+        - `isMagnetometerAvailable`
+        - `isDeviceMotionAvailable`
 - `Disk`
     - `totalSpace`
     - `freeSpace`
