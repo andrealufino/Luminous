@@ -67,7 +67,7 @@ public struct Luminous {
         public struct Network {
             
             /// Check if the device is connected to the WiFi network
-            public static var isConnectedToWiFi: Bool {
+            public static var isConnectedViaWiFi: Bool {
                 let reachability = Reachability()!
                 
                 if reachability.isReachableViaWiFi {
@@ -80,7 +80,7 @@ public struct Luminous {
             /// Check if the device is connected to the cellular network
             public static var isConnectedViaCellular: Bool {
                 
-                return !isConnectedToWiFi
+                return !isConnectedViaWiFi
             }
             
             /// Get the network SSID (doesn't work in the Simulator). Empty string if not available
