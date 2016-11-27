@@ -84,6 +84,7 @@ There are 11 different substructs here from which you can get information :
     - `systemName`
     - `systemVersion`
     - `bootTime`
+    - `isLowPowerModeEnabled`
     - `Screen`
         - `brightness`
         - `isScreenMirrored`

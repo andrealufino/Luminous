@@ -278,6 +278,13 @@ public struct Luminous {
                 return ProcessInfo().systemUptime
             }
             
+            @available(iOS 9.0,*)
+            /// Check if the low power mode is currently enabled (iOS 9 and above)
+            public static var isLowPowerModeEnabled: Bool {
+                
+                return ProcessInfo().isLowPowerModeEnabled
+            }
+            
             
             
             // MARK: Screen
