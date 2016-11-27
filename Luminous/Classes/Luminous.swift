@@ -496,6 +496,24 @@ public struct Luminous {
                 let usedSpace = totalSpaceInBytes - freeSpaceInBytes
                 return usedSpace
             }
+            
+            /// The free disk space in percentage
+            public static var freeSpaceInPercentage: Float {
+                
+                let freeSpace = Float(freeSpaceInBytes)
+                let totalSpace = Float(totalSpaceInBytes)
+                
+                return (freeSpace * 100) / totalSpace
+            }
+            
+            /// The used disk space in percentage
+            public static var usedSpaceInPercentage: Float {
+                
+                let usedSpace = Float(usedSpaceInBytes)
+                let totalSpace = Float(totalSpaceInBytes)
+                
+                return (usedSpace * 100) / totalSpace
+            }
         }
         
         

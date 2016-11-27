@@ -1,6 +1,6 @@
 PODS:
   - Deviice (0.40.20)
-  - Luminous (0.1.0):
+  - Luminous (0.50.00):
     - Deviice
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Deviice: 6b34a8118687c5021a3431f616bb9092f052d0df
-  Luminous: 7dcc27538e0d78392f3ef546ff16dc6b8a4b66bd
+  Luminous: e4e267d62571f0fd1a8c72ce5a36d99fc013a893
 
 PODFILE CHECKSUM: 10d20f14d3c4601a27093567bf6516568b28d330
 

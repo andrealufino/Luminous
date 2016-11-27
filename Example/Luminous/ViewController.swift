@@ -47,6 +47,9 @@ class ViewController: UIViewController {
         print("processorsNumber: \(Luminous.System.Hardware.processorsNumber)")
         print("systemName: \(Luminous.System.Hardware.systemName)")
         print("systemVersion: \(Luminous.System.Hardware.systemVersion)")
+        if #available(iOS 9.0, *) {
+            print("isLowPowerModeEnabled: \(Luminous.System.Hardware.isLowPowerModeEnabled)")
+        }
         
         // MARK: Hardware - Screen
         print("------------\nScreen\n------------")
@@ -86,6 +89,8 @@ class ViewController: UIViewController {
         print("totalSpaceInBytes: \(Luminous.System.Disk.totalSpaceInBytes)")
         print("usedSpace: \(Luminous.System.Disk.usedSpace)")
         print("usedSpaceInBytes: \(Luminous.System.Disk.usedSpaceInBytes)")
+        print("freeSpaceInPercentage: \(Luminous.System.Disk.freeSpaceInPercentage)%")
+        print("usedSpaceInPercentage: \(Luminous.System.Disk.usedSpaceInPercentage)%")
         
         // MARK: Battery
         print("------------\nBattery\n------------")
