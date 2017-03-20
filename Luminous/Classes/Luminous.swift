@@ -83,6 +83,11 @@ public struct Luminous {
                 return !isConnectedViaWiFi
             }
             
+            public static var isInternetAvailable: Bool {
+                
+                return Reachability()!.isReachable
+            }
+            
             /// Get the network SSID (doesn't work in the Simulator). Empty string if not available
             public static var SSID: String {
                 
@@ -276,6 +281,13 @@ public struct Luminous {
             public static var bootTime: TimeInterval {
                 
                 return ProcessInfo().systemUptime
+            }
+            
+            @available(iOS 9.0,*)
+            /// Check if the low power mode is currently enabled (iOS 9 and above)
+            public static var isLowPowerModeEnabled: Bool {
+                
+                return ProcessInfo().isLowPowerModeEnabled
             }
             
             
@@ -488,6 +500,24 @@ public struct Luminous {
             public static var usedSpaceInBytes: Int64 {
                 let usedSpace = totalSpaceInBytes - freeSpaceInBytes
                 return usedSpace
+            }
+            
+            /// The free disk space in percentage
+            public static var freeSpaceInPercentage: Float {
+                
+                let freeSpace = Float(freeSpaceInBytes)
+                let totalSpace = Float(totalSpaceInBytes)
+                
+                return (freeSpace * 100) / totalSpace
+            }
+            
+            /// The used disk space in percentage
+            public static var usedSpaceInPercentage: Float {
+                
+                let usedSpace = Float(usedSpaceInBytes)
+                let totalSpace = Float(totalSpaceInBytes)
+                
+                return (usedSpace * 100) / totalSpace
             }
         }
         
