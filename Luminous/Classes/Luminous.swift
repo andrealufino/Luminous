@@ -83,6 +83,11 @@ public struct Luminous {
                 return !isConnectedViaWiFi
             }
             
+            public static var isInternetAvailable: Bool {
+                
+                return Reachability()!.isReachable
+            }
+            
             /// Get the network SSID (doesn't work in the Simulator). Empty string if not available
             public static var SSID: String {
                 
