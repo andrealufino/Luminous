@@ -24,21 +24,21 @@ class ViewController: UIViewController {
         // MARK: Locale
         print("------------\nLocale\n------------")
         print("currentCountry: \(Luminous.System.Locale.currentCountry)")
-        print("currentCurrency: \(Luminous.System.Locale.currentCurrency)")
-        print("currentCurrencySymbol: \(Luminous.System.Locale.currentCurrencySymbol)")
+        print("currentCurrency: \(Luminous.System.Locale.currentCurrency ?? "-")")
+        print("currentCurrencySymbol: \(Luminous.System.Locale.currentCurrencySymbol ?? "-")")
         print("currentLanguage: \(Luminous.System.Locale.currentLanguage)")
         print("currentTimeZone: \(Luminous.System.Locale.currentTimeZone)")
         print("currentTimeZoneName: \(Luminous.System.Locale.currentTimeZoneName)")
-        print("decimalSeparator: \(Luminous.System.Locale.decimalSeparator)")
+        print("decimalSeparator: \(Luminous.System.Locale.decimalSeparator ?? "-")")
         print("usesMetricSystem: \(Luminous.System.Locale.usesMetricSystem)")
         
         // MARK: Carrier
         print("------------\nCarrier\n------------")
-        print("allowsVOIP: \(Luminous.System.Carrier.allowsVOIP)")
-        print("ISOCountryCode: \(Luminous.System.Carrier.ISOCountryCode)")
-        print("mobileCountryCode: \(Luminous.System.Carrier.mobileCountryCode)")
-        print("name: \(Luminous.System.Carrier.name)")
-        print("networkCountryCode: \(Luminous.System.Carrier.networkCountryCode)")
+        print("allowsVOIP: \(Luminous.System.Carrier.allowsVOIP ?? false)")
+        print("ISOCountryCode: \(Luminous.System.Carrier.ISOCountryCode ?? "-")")
+        print("mobileCountryCode: \(Luminous.System.Carrier.mobileCountryCode ?? "-")")
+        print("name: \(Luminous.System.Carrier.name ?? "-")")
+        print("networkCountryCode: \(Luminous.System.Carrier.mobileNetworkCode ?? "-")")
         
         // MARK: Hardware
         print("------------\nHardware\n------------")
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         // MARK: Hardware - Device
         print("------------\nDevice\n------------")
         print("current: \(Luminous.System.Hardware.Device.current)")
-        print("identifierForVendor: \(Luminous.System.Hardware.Device.identifierForVendor)")
+        print("identifierForVendor: \(Luminous.System.Hardware.Device.identifierForVendor ?? "-")")
         print("orientation: \(Luminous.System.Hardware.Device.orientation)")
         
         // MARK: Hardware - Accessory
@@ -94,12 +94,12 @@ class ViewController: UIViewController {
         
         // MARK: Battery
         print("------------\nBattery\n------------")
-        print("level: \(Luminous.System.Battery.level)")
+        print("level: \(Luminous.System.Battery.level ?? -1)")
         print("state: \(Luminous.System.Battery.state)")
         
         // MARK: Application
         print("------------\nApplication\n------------")
-        print("clipboardString: \(Luminous.System.Application.clipboardString)")
+        print("clipboardString: \(Luminous.System.Application.clipboardString ?? "-")")
         print("version: \(Luminous.System.Application.version)")
         
         
