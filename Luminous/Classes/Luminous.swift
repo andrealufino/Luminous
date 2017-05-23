@@ -208,7 +208,19 @@ public struct Luminous {
             }
             
             /// The carrier network country code or nil if not available
+            @available(*, deprecated, message: "Use mobileNetworkCode instead")
             public static var networkCountryCode: String? {
+                
+                let netInfo = CTTelephonyNetworkInfo()
+                if let carrier = netInfo.subscriberCellularProvider {
+                    return carrier.mobileNetworkCode
+                }
+                
+                return nil
+            }
+            
+            /// The carrier network country code or nil if not available
+            public static var mobileNetworkCode: String? {
                 
                 let netInfo = CTTelephonyNetworkInfo()
                 if let carrier = netInfo.subscriberCellularProvider {

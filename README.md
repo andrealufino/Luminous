@@ -72,11 +72,12 @@ There are 11 different substructs here from which you can get information :
     - `usesMetricSystem`
     - `decimalSeparator`
 - `Carrier`
-    - `carrierName`
-    - `carrierISOCountryCode`
-    - `carrierMobileCountryCode`
-    - `carrierNetworkCountryCode`
-    - `carrierAllowsVOIP`
+    - `name`
+    - `ISOCountryCode`
+    - `mobileCountryCode`
+    - `networkCountryCode` (deprecated)
+    - `mobileNetworkCode` (to use instead of `networkCountryCode`)
+    - `allowsVOIP`
 - `Hardware`
     - `processorsNumber`
     - `activeProcessorsNumber`
