@@ -583,6 +583,18 @@ public struct Luminous {
                 return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
             }
             
+            /// The build number
+            public static var build: String {
+                
+                return Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+            }
+            
+            /// The complete app version with build number (i.e. : "2.1.3 (343)")
+            public static var completeAppVersion: String {
+                
+                return "\(Application.version) (\(Application.build))"
+            }
+            
             /// The current content of the clipboard (only string)
             public static var clipboardString: String? {
                 
