@@ -49,7 +49,7 @@ Luminous is a big library that I like to consider an "Helper Library". It provid
 ~~It is composed by 3 parts :
 - system information (`Luminous.System.<substruct>`)
 - utils (some handy method like the email check)
-- custom app configuration ~~
+- custom app configuration~~
 
 Luminous is no more composed by 3 parts as I think that a library has to serve one and one only purpose. I removed the Utils and AppConfiguration structs. I'm sorry for any kind of inconvenience this could cause to everyone is using it, but I think that it's the right choice.
 
