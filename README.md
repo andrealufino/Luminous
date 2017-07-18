@@ -46,10 +46,10 @@ Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSys
 
 Luminous is a big library that I like to consider an "Helper Library". It provides a lot of information about the system and has some features that can speed up significantly the development process.
 
-~~It is composed by 3 parts :
-- system information (`Luminous.System.<substruct>`)
-- utils (some handy method like the email check)
-- custom app configuration~~
+~~It is composed by 3 parts :~~
+~~- system information (`Luminous.System.<substruct>`)~~
+~~- utils (some handy method like the email check)~~
+~~- custom app configuration~~
 
 Luminous is no more composed by 3 parts as I think that a library has to serve one and one only purpose. I removed the Utils and AppConfiguration structs. I'm sorry for any kind of inconvenience this could cause to everyone is using it, but I think that it's the right choice.
 
