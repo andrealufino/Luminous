@@ -6,15 +6,17 @@
 //
 //
 
+import AVFoundation
+import CoreMotion
+import CoreTelephony
+import ExternalAccessory
 import Foundation
 import SystemConfiguration.CaptiveNetwork
-import CoreTelephony
-import AVFoundation
-import Deviice
-import ExternalAccessory
-import CoreMotion
 
-// MARK: Enums
+import Deviice
+
+
+// MARK: Types
 
 /// The size scale to decide how you want to obtain size information
 ///
@@ -42,27 +44,20 @@ public enum LMBatteryState: Int {
     case full
 }
 
-/// Enumeration representing the different stage of the development
-///
-/// - team:        The team configuration is used only by the dev team and is not shared neither with the project managers or accounts
-/// - development: The development configuration, usually used during the dev phase
-/// - stage:       The stage configuration, usually used during the first deliver to the client
-/// - production:  The production configuration, usually used when the product has to be finally delivered to the client
-public enum LMAppConfiguration {
-    case team
-    case development
-    case stage
-    case production
-}
 
 // MARK: Luminous
+
 public struct Luminous {
     
+    
     // MARK: System
+    
     /// All the information about the system
     public struct System {
         
+        
         // MARK: Network
+        
         /// Network information
         public struct Network {
             
@@ -114,8 +109,8 @@ public struct Luminous {
         }
         
         
-        
         // MARK: Locale
+        
         /// Locale information
         public struct Locale {
             
@@ -169,8 +164,8 @@ public struct Luminous {
         }
         
         
-        
         // MARK: Carrier
+        
         /// The Carrier information
         public struct Carrier {
             
@@ -243,8 +238,8 @@ public struct Luminous {
         }
         
         
-        
         // MARK: Hardware
+        
         /// Hardware information
         public struct Hardware {
             
@@ -303,8 +298,8 @@ public struct Luminous {
             }
             
             
-            
             // MARK: Screen
+            
             /// Screen information
             public struct Screen {
                 
@@ -356,8 +351,8 @@ public struct Luminous {
             }
             
             
-            
             // MARK: Device
+            
             /// Device information
             public struct Device {
                 
@@ -381,8 +376,8 @@ public struct Luminous {
             }
             
             
-            
             // MARK: Accessory
+            
             /// Accessory information
             public struct Accessory {
                 
@@ -427,6 +422,7 @@ public struct Luminous {
             
             
             // MARK: Sensors
+            
             /// Get info about the sensors
             public struct Sensors {
                 
@@ -457,8 +453,8 @@ public struct Luminous {
         }
         
         
-        
         // MARK: Disk
+        
         /// Disk information
         public struct Disk {
             
@@ -534,8 +530,9 @@ public struct Luminous {
         }
         
         
-        
         // MARK: Battery
+        
+        /// Battery information
         public struct Battery {
             
             private static var device: UIDevice {
@@ -575,8 +572,8 @@ public struct Luminous {
         }
         
         
-        
         // MARK: Application
+        
         /// Application information
         public struct Application {
             
@@ -591,148 +588,6 @@ public struct Luminous {
                 
                 return UIPasteboard.general.string
             }
-        }
-    }
-    
-    
-    
-    
-    
-    
-    // MARK: Utils
-    /// This struct contains some functions that can be useful during the development. 
-    public struct Utils {
-        
-        /// Check if the passed email address is valid
-        ///
-        /// - parameter emailAddress: The email address to validate
-        ///
-        /// - returns: true if is valid, false if it's not
-        public static func isEmailAddressValid(_ emailAddress: String) -> Bool {
-            // println("validate calendar: \(testStr)")
-            let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            
-            return emailTest.evaluate(with: emailAddress)
-        }
-        
-        /// Save an object into the `UserDefaults`
-        ///
-        /// - parameter object: The object to save
-        /// - parameter key:    The key associated to this object
-        ///
-        /// - returns: true if the object has been saved, false if it has not been saved
-        public static func saveObjectInUserDefaults(_ object: Any, forKey key: String) -> Bool {
-            
-            UserDefaults.standard.set(object, forKey: key)
-            return UserDefaults.standard.synchronize()
-        }
-        
-        /// Create a unique UUID string
-        ///
-        /// - returns: A unique UUID string
-        public static func uniqueUUID () -> String {
-            
-            return UUID().uuidString
-        }
-    }
-    
-    
-    
-    // MARK: AppConfiguration
-    /// This struct requires a discussion. It's not intended to be instantiated, but offers an interface to save and retrieve some common vars used in every projects. The `set` method can be used to init all the properties in once. You can even set all the properties separately and keep some of them nil if you don't need them. Among the things you can save there are colors (to create a palette for example) and server url based on development, stage or production.
-    public struct AppConfiguration {
-        
-        /// The main color of the palette
-        public static var mainColor: UIColor?
-        /// The second color of the palette
-        public static var secondColor: UIColor?
-        /// The third color of the palette
-        public static var thirdColor: UIColor?
-        /// The fourth color of the palette
-        public static var fourthColor: UIColor?
-        /// The fifth color of the palette
-        public static var fifthColor: UIColor?
-        
-        /// The current configuration of the app
-        public static var currentConfiguration: LMAppConfiguration?
-        
-        /// The server base url for the team configuration
-        public static var serverBaseURLTeam: String?
-        /// The server base url for the development configuration
-        public static var serverBaseURLDevelopment: String?
-        /// The server base url for the stage configuration
-        public static var serverBaseURLStage: String?
-        /// The server base url for the production configuration
-        public static var serverBaseURLProduction: String?
-        
-        /// Set all the main properties in once
-        ///
-        /// - parameter mainColor:                The main color
-        /// - parameter secondColor:              The second color
-        /// - parameter thirdColor:               The third color
-        /// - parameter fourthColor:              The fourth color
-        /// - parameter fifthColor:               The fifth color
-        /// - parameter serverBaseURLTeam:        The team (Cloud9 for example) server url
-        /// - parameter serverBaseURLDevelopment: The development server url
-        /// - parameter serverBaseURLStage:       The stage server url
-        /// - parameter serverBaseURLProduction:  The production server url
-        public static func set(
-            withMainColor mainColor: UIColor?,
-            secondColor: UIColor?,
-            thirdColor: UIColor?,
-            fourthColor: UIColor?,
-            fifthColor: UIColor?,
-            serverBaseURLTeam: String?,
-            serverBaseURLDevelopment: String?,
-            serverBaseURLStage: String?,
-            serverBaseURLProduction: String?) {
-            
-            AppConfiguration.mainColor = mainColor
-            AppConfiguration.secondColor = secondColor
-            AppConfiguration.thirdColor = thirdColor
-            AppConfiguration.fourthColor = fourthColor
-            AppConfiguration.fifthColor = fifthColor
-            
-            AppConfiguration.serverBaseURLTeam = serverBaseURLTeam
-            AppConfiguration.serverBaseURLDevelopment = serverBaseURLDevelopment
-            AppConfiguration.serverBaseURLStage = serverBaseURLStage
-            AppConfiguration.serverBaseURLProduction = serverBaseURLProduction
-        }
-        
-        /// Get the server base URL based on the current app configuration
-        ///
-        /// - note:    This method throws `fatalError("message")` if something is not correctly set up
-        /// - returns: The correct server url based on the current app configuration
-        public static func serverBaseURLBasedOnCurrentConfiguration () -> String {
-            
-            if let config: LMAppConfiguration = AppConfiguration.currentConfiguration {
-                
-                switch config {
-                case LMAppConfiguration.team:
-                    if let baseURL = AppConfiguration.serverBaseURLTeam {
-                        return baseURL
-                    }
-                    fatalError("Luminous - AppConfiguration - You didn't set the team server url!")
-                case LMAppConfiguration.development:
-                    if let baseURL = AppConfiguration.serverBaseURLDevelopment {
-                        return baseURL
-                    }
-                    fatalError("Luminous - AppConfiguration - You didn't set the development server url!")
-                case LMAppConfiguration.stage:
-                    if let baseURL = AppConfiguration.serverBaseURLStage {
-                        return baseURL
-                    }
-                    fatalError("Luminous - AppConfiguration - You didn't set the stage server url!")
-                case LMAppConfiguration.production:
-                    if let baseURL = AppConfiguration.serverBaseURLProduction {
-                        return baseURL
-                    }
-                    fatalError("Luminous - AppConfiguration - You didn't set the production server url!")
-                }
-            }
-            
-            fatalError("Luminous - AppConfiguration - You didn't set the configuration server url!")
         }
     }
 }
