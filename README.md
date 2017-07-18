@@ -46,12 +46,12 @@ Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSys
 
 Luminous is a big library that I like to consider an "Helper Library". It provides a lot of information about the system and has some features that can speed up significantly the development process.
 
-It is composed by 3 parts :
+~~It is composed by 3 parts :
 - system information (`Luminous.System.<substruct>`)
 - utils (some handy method like the email check)
-- custom app configuration
+- custom app configuration ~~
 
-Here we explain every one of these parts.
+Luminous is no more composed by 3 parts as I think that a library has to serve one and one only purpose. I removed the Utils and AppConfiguration structs. I'm sorry for any kind of inconvenience this could cause to everyone is using it, but I think that it's the right choice.
 
 ### System information
 
@@ -121,38 +121,9 @@ There are 11 different substructs here from which you can get information :
     - `state`
 - `Application`
     - `version`
+    - `build`
+    - `completeAppVersion`
     - `clipboardString`
-
-### Utils
-
-These part contains some handy methods useful during the development. Currently, we have only 3 methods here :
-- email check
-- save object in user defaults
-- generate a unique uuid
-
-### App Configuration
-
-This is the most interesting part. There is an AppConfiguration struct which is not meant to be instantiated, but has an interface that can be used to save some useful information that can be reused frequently during the development.
-
-You can access this information calling `Luminous.AppConfiguration.<property or function>`.
-
-The `AppConfiguration` struct has these static properties :
-- `mainColor`
-- `secondColor`
-- `thirdColor`
-- `fourthColor`
-- `fifthColor`
-- `currentConfiguration` which is of type `LMAppConfiguration` (enum)
-- `serverBaseURLTeam`
-- `serverBaseURLDevelopment`
-- `serverBaseURLStage`
-- `serverBaseURLProduction`
-
-And these methods :
-- `set` to set all the properties in once
-- `serverBaseURLBasedOnCurrentConfiguration` to get the right server url based on the configuration
-
-You can extend this struct to add your own properties and methods. For example, I use to extend this adding a substruct called `SegueIdentifiers` or `CellIdentifiers` where I save all the respective ids. This allows to keep everything in order and have a well readable code. Access an identifier using `Luminous.AppConfiguration.SegueIdentifiers.productDetails` is a lot better than anything else.
 
 ## Why Luminous?
 

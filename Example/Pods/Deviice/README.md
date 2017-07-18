@@ -9,7 +9,7 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-<pre><code>let device = Deviice.currentDevice()
+<pre><code>let device = Deviice.current
 </code></pre>
 device is a Deviice struct and has some properties:
  
@@ -23,7 +23,7 @@ device.completeDeviceName
 
 ## Requirements
  
- This lib works on iOS 8 or higher.
+This library works on iOS 8 or higher.
 
 ## Installation
 

@@ -15,13 +15,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         // MARK: Network
+        
         print("------------\nNetwork\n------------")
         print("isConnectedViaCellular: \(Luminous.System.Network.isConnectedViaCellular)")
         print("isConnectedViaWiFi: \(Luminous.System.Network.isConnectedViaWiFi)")
         print("SSID: \(Luminous.System.Network.SSID)")
         
+        
         // MARK: Locale
+        
         print("------------\nLocale\n------------")
         print("currentCountry: \(Luminous.System.Locale.currentCountry)")
         print("currentCurrency: \(Luminous.System.Locale.currentCurrency ?? "-")")
@@ -32,7 +36,9 @@ class ViewController: UIViewController {
         print("decimalSeparator: \(Luminous.System.Locale.decimalSeparator ?? "-")")
         print("usesMetricSystem: \(Luminous.System.Locale.usesMetricSystem)")
         
+        
         // MARK: Carrier
+        
         print("------------\nCarrier\n------------")
         print("allowsVOIP: \(Luminous.System.Carrier.allowsVOIP ?? false)")
         print("ISOCountryCode: \(Luminous.System.Carrier.ISOCountryCode ?? "-")")
@@ -40,7 +46,9 @@ class ViewController: UIViewController {
         print("name: \(Luminous.System.Carrier.name ?? "-")")
         print("networkCountryCode: \(Luminous.System.Carrier.mobileNetworkCode ?? "-")")
         
+        
         // MARK: Hardware
+        
         print("------------\nHardware\n------------")
         print("bootTime: \(Luminous.System.Hardware.bootTime)")
         print("bootTime: \(Luminous.System.Hardware.physicalMemory(withSizeScale: .megabytes))")
@@ -51,7 +59,9 @@ class ViewController: UIViewController {
             print("isLowPowerModeEnabled: \(Luminous.System.Hardware.isLowPowerModeEnabled)")
         }
         
+        
         // MARK: Hardware - Screen
+        
         print("------------\nScreen\n------------")
         print("bounds: \(Luminous.System.Hardware.Screen.bounds)")
         print("brightness: \(Luminous.System.Hardware.Screen.brightness)")
@@ -61,27 +71,35 @@ class ViewController: UIViewController {
         print("bounds: \(Luminous.System.Hardware.Screen.scale)")
 //        print("snapshotOfCurrentView: \(Luminous.System.Hardware.Screen.snapshotOfCurrentView())")
         
+        
         // MARK: Hardware - Device
+        
         print("------------\nDevice\n------------")
         print("current: \(Luminous.System.Hardware.Device.current)")
         print("identifierForVendor: \(Luminous.System.Hardware.Device.identifierForVendor ?? "-")")
         print("orientation: \(Luminous.System.Hardware.Device.orientation)")
         
+        
         // MARK: Hardware - Accessory
+        
         print("------------\nAccessory\n------------")
         print("connectedAccessories: \(Luminous.System.Hardware.Accessory.connectedAccessories)")
         print("connectedAccessoriesNames: \(Luminous.System.Hardware.Accessory.connectedAccessoriesNames)")
         print("count: \(Luminous.System.Hardware.Accessory.count)")
         print("isHeadsetPluggedIn: \(Luminous.System.Hardware.Accessory.isHeadsetPluggedIn)")
         
+        
         // MARK: Hardware - Sensors
+        
         print("------------\nSensors\n------------")
         print("isAccelerometerAvailable : \(Luminous.System.Hardware.Sensors.isAccelerometerAvailable)")
         print("isGyroAvailable : \(Luminous.System.Hardware.Sensors.isGyroAvailable)")
         print("isMagnetometerAvailable : \(Luminous.System.Hardware.Sensors.isMagnetometerAvailable)")
         print("isDeviceMotionAvailable : \(Luminous.System.Hardware.Sensors.isDeviceMotionAvailable)")
         
+        
         // MARK: Disk
+        
         print("------------\nDisk\n------------")
         print("freeSpace: \(Luminous.System.Disk.freeSpace)")
         print("freeSpaceInBytes: \(Luminous.System.Disk.freeSpaceInBytes)")
@@ -92,32 +110,19 @@ class ViewController: UIViewController {
         print("freeSpaceInPercentage: \(Luminous.System.Disk.freeSpaceInPercentage)%")
         print("usedSpaceInPercentage: \(Luminous.System.Disk.usedSpaceInPercentage)%")
         
+        
         // MARK: Battery
+        
         print("------------\nBattery\n------------")
         print("level: \(Luminous.System.Battery.level ?? -1)")
         print("state: \(Luminous.System.Battery.state)")
         
+        
         // MARK: Application
+        
         print("------------\nApplication\n------------")
         print("clipboardString: \(Luminous.System.Application.clipboardString ?? "-")")
         print("version: \(Luminous.System.Application.version)")
-        
-        
-        
-        // MARK: Utils
-        print("------------\nUtils\n------------")
-        let emailAddress = "andrea.lufino@me.com"
-        print("isEmailValid (andrea.lufino@me.com): \(Luminous.Utils.isEmailAddressValid(emailAddress))")
-        print("saveObjectInUserDefaults: \(Luminous.Utils.saveObjectInUserDefaults("Hello", forKey: "hello"))")
-        print("uniqueUUID: \(Luminous.Utils.uniqueUUID())")
-        
-        // MARK: AppConfiguration
-        
-        Luminous.AppConfiguration.currentConfiguration = .development
-        Luminous.AppConfiguration.mainColor = UIColor.blue
-        Luminous.AppConfiguration.secondColor = UIColor.black
-        
-        // You can do the same with the server vars to use in everywhere you need in the app
     }
 
     override func didReceiveMemoryWarning() {
