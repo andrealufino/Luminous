@@ -359,7 +359,7 @@ public struct Luminous {
                 /// The current device as Deviice object (see [Deviice](https://github.com/andrealufino/Deviice) library)
                 public static var current: Deviice {
                     
-                    return Deviice.currentDevice()
+                    return Deviice.current
                 }
                 
                 /// The identifier for vendor of the device
