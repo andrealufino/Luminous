@@ -28,6 +28,9 @@ public enum DeviiceType: String {
     case iPhoneSE           = "iPhone SE"
     case iPhone7            = "iPhone 7"
     case iPhone7Plus        = "iPhone 7 Plus"
+    case iPhone8            = "iPhone 8"
+    case iPhone8Plus        = "iPhone 8 Plus"
+    case iPhoneX            = "iPhone X"
     case iPad2              = "iPad 2"
     case iPad3              = "iPad 3"
     case iPad4              = "iPad 4"
@@ -48,6 +51,7 @@ public enum DeviiceSize: String {
     case screen4Inches          = "4 inches"
     case screen4Dot7Inches      = "4,7 inches"
     case screen5Dot5Inches      = "5,5 inches"
+    case screen5Dot8Inches      = "5,8 inches"
     case screen7Dot9Inches      = "7,9 inches"
     case screen9Dot7Inches      = "9,7 inches"
     case screen12Dot9Inches     = "12,9 inches"
@@ -89,6 +93,8 @@ public struct Deviice {
     /// Private init
     ///
     /// - Parameter identifier: The identifier of the device
+    // Identifiers and model information at: https://www.theiphonewiki.com/wiki/Models
+    
     fileprivate init(identifier: String) {
         
         self.identifier = identifier
@@ -176,6 +182,24 @@ public struct Deviice {
         case "iPhone9,2", "iPhone9,4":
             self.type = .iPhone7Plus
             self.size = .screen5Dot5Inches
+            self.connectivity = .wiFi4G
+            break
+            
+        case "iPhone10,1", "iPhone10,4":
+            self.type = .iPhone8
+            self.size = .screen4Dot7Inches
+            self.connectivity = .wiFi4G
+            break
+            
+        case "iPhone10,2", "iPhone10,5":
+            self.type = .iPhone8Plus
+            self.size = .screen5Dot5Inches
+            self.connectivity = .wiFi4G
+            break
+            
+        case "iPhone10,3", "iPhone10,6":
+            self.type = .iPhoneX
+            self.size = .screen5Dot8Inches
             self.connectivity = .wiFi4G
             break
             
