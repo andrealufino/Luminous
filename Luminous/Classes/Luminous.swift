@@ -479,7 +479,7 @@ public struct Luminous {
             
             /// The used disk space in string format (megabytes)
             public static var usedSpace: String {
-                return ByteCountFormatter.string(fromByteCount: freeSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
+                return ByteCountFormatter.string(fromByteCount: usedSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.binary)
             }
             
             /// The total disk space in bytes. 0 if something went wrong
