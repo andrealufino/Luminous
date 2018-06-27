@@ -113,7 +113,7 @@ There are 11 different substructs here from which you can get information :
     - `usedSpace`
     - `totalSpaceInBytes`
     - `freeSpaceInBytes`
-    - `usedDiskSpaceInBytes`
+    - `usedSpaceInBytes`
     - `freeSpaceInPercentage`
     - `usedSpaceInPercentage`
 - `Battery`
