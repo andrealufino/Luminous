@@ -256,19 +256,19 @@ public struct Luminous {
             }
             
             /// Physical memory of the device in megabytes
-            public static func physicalMemory (withSizeScale sizeScale: LMSizeScale) -> Float {
+            public static func physicalMemory(withSizeScale sizeScale: LMSizeScale) -> Float {
                 
-                let physicalMemory = ProcessInfo().physicalMemory
+                let physicalMemory = Float(ProcessInfo().physicalMemory)
                 
                 switch sizeScale {
                 case .bytes:
-                    return Float(physicalMemory)
+                    return physicalMemory
                 case .kilobytes:
-                    return Float(physicalMemory * 1024)
+                    return physicalMemory / 1024
                 case .megabytes:
-                    return Float(physicalMemory * 1024 * 1024)
+                    return physicalMemory / 1024 / 1024
                 case .gigabytes:
-                    return Float(physicalMemory * 1024 * 1024 * 1024)
+                    return physicalMemory / 1024 / 1024 / 1024
                 }
             }
             
