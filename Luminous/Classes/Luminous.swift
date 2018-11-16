@@ -94,8 +94,8 @@ public struct Luminous {
                         let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
                         let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString)
                         if unsafeInterfaceData != nil {
-                            let interfaceData = unsafeInterfaceData! as Dictionary!
-                            for dictData in interfaceData! {
+                            let interfaceData = unsafeInterfaceData! as Dictionary
+                            for dictData in interfaceData {
                                 if dictData.key as! String == "SSID" {
                                     currentSSID = dictData.value as! String
                                 }
@@ -256,19 +256,19 @@ public struct Luminous {
             }
             
             /// Physical memory of the device in megabytes
-            public static func physicalMemory (withSizeScale sizeScale: LMSizeScale) -> Float {
+            public static func physicalMemory(withSizeScale sizeScale: LMSizeScale) -> Float {
                 
-                let physicalMemory = ProcessInfo().physicalMemory
+                let physicalMemory = Float(ProcessInfo().physicalMemory)
                 
                 switch sizeScale {
                 case .bytes:
-                    return Float(physicalMemory)
+                    return physicalMemory
                 case .kilobytes:
-                    return Float(physicalMemory * 1024)
+                    return physicalMemory / 1024
                 case .megabytes:
-                    return Float(physicalMemory * 1024 * 1024)
+                    return physicalMemory / 1024 / 1024
                 case .gigabytes:
-                    return Float(physicalMemory * 1024 * 1024 * 1024)
+                    return physicalMemory / 1024 / 1024 / 1024
                 }
             }
             
@@ -412,7 +412,7 @@ public struct Luminous {
                     let route = AVAudioSession.sharedInstance().currentRoute
                     
                     for desc in route.outputs {
-                        if desc.portType == AVAudioSessionPortHeadphones {
+                        if desc.portType == .headphones {
                             return true
                         }
                     }
@@ -603,30 +603,3 @@ public struct Luminous {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
