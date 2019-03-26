@@ -94,8 +94,8 @@ public struct Luminous {
                         let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
                         let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString)
                         if unsafeInterfaceData != nil {
-                            let interfaceData = unsafeInterfaceData! as Dictionary
-                            for dictData in interfaceData {
+                            let interfaceData = unsafeInterfaceData! as Dictionary?
+                            for dictData in interfaceData! {
                                 if dictData.key as! String == "SSID" {
                                     currentSSID = dictData.value as! String
                                 }
@@ -412,7 +412,7 @@ public struct Luminous {
                     let route = AVAudioSession.sharedInstance().currentRoute
                     
                     for desc in route.outputs {
-                        if desc.portType == .headphones {
+                        if desc.portType == AVAudioSession.Port.headphones {
                             return true
                         }
                     }
