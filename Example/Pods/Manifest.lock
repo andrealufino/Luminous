@@ -1,13 +1,13 @@
 PODS:
-  - Deviice (1.01)
-  - Luminous (1.0.2):
+  - Deviice (1.20)
+  - Luminous (1.11):
     - Deviice
 
 DEPENDENCIES:
   - Luminous (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Deviice
 
 EXTERNAL SOURCES:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Deviice: 3b909d7149547f07914c8599ce43093b0cea12fb
-  Luminous: 58e1aab9ed98b2eedad2db5dfd4b171d28b3e17e
+  Deviice: 04d4669725709743bb9f54119039f429681eabbb
+  Luminous: 04347ecf6dd49e4250c0294d3a545f15c4e9dd87
 
-PODFILE CHECKSUM: 10d20f14d3c4601a27093567bf6516568b28d330
+PODFILE CHECKSUM: 33a6a638d825998a3ec0450afaa7114e0144de11
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.8.3
