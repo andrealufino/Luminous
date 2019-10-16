@@ -36,7 +36,7 @@ pod "Deviice"
 
 ## Author
 
-Andrea Mario Lufino, andrea.lufino@me.com
+Andrea Mario Lufino, [andrealufino.me](https://andrealufino.me).
 
 ## License
 

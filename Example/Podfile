@@ -1,11 +1,16 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+inhibit_all_warnings!
+
+xcodeproj 'Luminous'
 use_frameworks!
 
 target 'Luminous_Example' do
   pod 'Luminous', :path => '../'
+end
 
-  target 'Luminous_Tests' do
-    inherit! :search_paths
 
-    
-  end
+target 'Luminous_Tests' do
+  pod 'Luminous', :path => '../'
 end

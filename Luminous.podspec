@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '1.10'
+  s.version          = '1.11'
   s.summary          = 'Everything you need to know about your system!'
 
 # This description is used to generate tags and improve search results.
@@ -29,8 +29,8 @@ This library is the evolution of ALSystemUtilities framework. It is written in S
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-
   s.source_files = 'Luminous/Classes/**/*'
+  s.swift_version = ["5.0"]
   
   # s.resource_bundles = {
   #   'Luminous' => ['Luminous/Assets/*.png']
