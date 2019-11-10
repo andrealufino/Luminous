@@ -35,6 +35,21 @@ Download the project and drag the `Luminous.swift` and `Reachability.swift` file
 
 Luminous has only 1 dependency : [Deviice](https://github.com/andrealufino/Deviice) which is my other library useful to know on which device your app is running on, plus some nice information.
 
+## Migration to version 2
+
+In version 2, I've changed some things and added others :
+
+### Changed
+
+- `LMBatteryState` has been renamed to `BatteryState`
+- `LMSizeScale` has been renamed to `SizeScale`
+
+### Added
+
+- `Audio` (thanks to [GregOriol](https://github.com/GregOriol))
+    - `currentAudioOutputVolume`
+    - `secondaryAudioShouldBeSilencedHint`
+
 ## What is Luminous?
 
 Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained (it still is my best library on github). I got ideas from that one and I wrote everything from scratch in Swift 3 adding some new feature and designing it in a different way thanks to the differences between Objective-C and Swift.
@@ -56,7 +71,7 @@ There are 11 different substructs here from which you can get information :
 - `Network`
     - `isConnectedViaWiFi`
     - `isConnectedViaCellular`
-    - `SSID`
+    - `SSID` (deprecated on iOS 13)
 - `Locale`
     - `currentLanguage`
     - `currentTimeZone`
@@ -70,8 +85,8 @@ There are 11 different substructs here from which you can get information :
     - `name`
     - `ISOCountryCode`
     - `mobileCountryCode`
-    - `networkCountryCode` (deprecated)
-    - `mobileNetworkCode` (to use instead of `networkCountryCode`)
+    - `networkCountryCode` (deprecated, use `mobileNetworkCode` instead)
+    - `mobileNetworkCode`
     - `allowsVOIP`
 - `Hardware`
     - `processorsNumber`
@@ -102,13 +117,16 @@ There are 11 different substructs here from which you can get information :
         - `isGyroAvailable`
         - `isMagnetometerAvailable`
         - `isDeviceMotionAvailable`
+- `Audio`
+    - `currentAudioOutputVolume`
+    - `secondaryAudioShouldBeSilencedHint`
 - `Disk`
     - `totalSpace`
     - `freeSpace`
     - `usedSpace`
     - `totalSpaceInBytes`
     - `freeSpaceInBytes`
-    - `usedDiskSpaceInBytes`
+    - `usedSpaceInBytes`
     - `freeSpaceInPercentage`
     - `usedSpaceInPercentage`
 - `Battery`

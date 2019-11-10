@@ -16,39 +16,38 @@ import SystemConfiguration.CaptiveNetwork
 import Deviice
 
 
-// MARK: Types
-
-/// The size scale to decide how you want to obtain size information
-///
-/// - bytes:     In bytes
-/// - kilobytes: In kilobytes
-/// - megabytes: In megabytes
-/// - gigabytes: In gigabytes
-public enum LMSizeScale {
-    case bytes
-    case kilobytes
-    case megabytes
-    case gigabytes
-}
-
-/// The battery state
-///
-/// - unknown:   State unknown
-/// - unplugged: Battery is not plugged in
-/// - charging:  Battery is charging
-/// - full:      Battery is full charged
-public enum LMBatteryState: Int {
-    case unknown
-    case unplugged
-    case charging
-    case full
-}
-
-
 // MARK: Luminous
 
 public struct Luminous {
     
+    
+    // MARK: Types
+    
+    /// The battery state
+    ///
+    /// - unknown:   State unknown
+    /// - unplugged: Battery is not plugged in
+    /// - charging:  Battery is charging
+    /// - full:      Battery is full charged
+    public enum BatteryState: Int {
+        case unknown
+        case unplugged
+        case charging
+        case full
+    }
+    
+    /// The size scale to decide how you want to obtain size information
+    ///
+    /// - bytes:     In bytes
+    /// - kilobytes: In kilobytes
+    /// - megabytes: In megabytes
+    /// - gigabytes: In gigabytes
+    public enum SizeScale {
+        case bytes
+        case kilobytes
+        case megabytes
+        case gigabytes
+    }
     
     // MARK: System
     
@@ -84,6 +83,7 @@ public struct Luminous {
             }
             
             /// Get the network SSID (doesn't work in the Simulator). Empty string if not available
+            @available(iOS, deprecated: 13.0, message: "It's no longer possible to get SSID info using CNCopySupportedInterfaces.")
             public static var SSID: String {
                 
                 // Doesn't work in the Simulator
@@ -256,7 +256,7 @@ public struct Luminous {
             }
             
             /// Physical memory of the device in megabytes
-            public static func physicalMemory(withSizeScale sizeScale: LMSizeScale) -> Float {
+            public static func physicalMemory(withSizeScale sizeScale: SizeScale) -> Float {
                 
                 let physicalMemory = Float(ProcessInfo().physicalMemory)
                 
@@ -453,6 +453,33 @@ public struct Luminous {
         }
         
         
+        // MARK: Audio
+        
+        struct Audio {
+            
+            /// A value in the range `0.0` to `1.0`, with `0.0` representing the minimum volume and `1.0` representing the maximum volume.
+            static var currentAudioOutputVolume: Double? {
+                
+                let audioSession = AVAudioSession.sharedInstance()
+                do {
+                    try audioSession.setActive(true)
+                    let volume = audioSession.outputVolume
+                    try audioSession.setActive(false)
+                    return Double(volume)
+                } catch {
+                    print("Luminous - Failed to activate audio session.")
+                    return nil
+                }
+            }
+            
+            /// The value is true when another application with a non-mixable audio session is playing audio.
+            static var secondaryAudioShouldBeSilencedHint: Bool {
+                
+                return AVAudioSession.sharedInstance().secondaryAudioShouldBeSilencedHint
+            }
+        }
+        
+        
         // MARK: Disk
         
         /// Disk information
@@ -556,17 +583,17 @@ public struct Luminous {
             }
             
             /// The current battery state of the device
-            public static var state: LMBatteryState {
+            public static var state: BatteryState {
                 
                 switch device.batteryState {
                 case .unknown:
-                    return LMBatteryState.unknown
+                    return BatteryState.unknown
                 case .unplugged:
-                    return LMBatteryState.unplugged
+                    return BatteryState.unplugged
                 case .charging:
-                    return LMBatteryState.charging
+                    return BatteryState.charging
                 case .full:
-                    return LMBatteryState.full
+                    return BatteryState.full
                 }
             }
         }
