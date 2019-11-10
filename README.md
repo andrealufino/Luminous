@@ -37,7 +37,7 @@ Luminous has only 1 dependency : [Deviice](https://github.com/andrealufino/Devii
 
 ## Migration to version 2
 
-In version 2, I've changed some things and added others :
+In version 2, I've changed some things and added others. An important change has been made to the structure of the library, useful for who wants to contribute to the project and to who wants to fork it. I created a specific file (`extension`) for every substruct. 
 
 ### Changed
 
