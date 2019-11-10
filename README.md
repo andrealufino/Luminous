@@ -35,6 +35,26 @@ Download the project and drag the `Luminous.swift` and `Reachability.swift` file
 
 Luminous has only 1 dependency : [Deviice](https://github.com/andrealufino/Deviice) which is my other library useful to know on which device your app is running on, plus some nice information.
 
+## Migration to version 2
+
+In version 2, I've changed some things and added others. An important change has been made to the structure of the library, useful for who wants to contribute to the project and to who wants to fork it. I created a specific file (`extension`) for every substruct. 
+
+### Changed
+
+- `LMBatteryState` has been renamed to `BatteryState`
+- `LMSizeScale` has been renamed to `MeasureUnit`
+- `Luminous.Carrier.allowsVOIP` has been renamed to `isVoipAllowed`
+- `Luminous.Hardware.physicalMemory(withScale: _)` now returns a `Double` and no more a `Float`
+- All the structs are now accessible using `Luminous.<substruct>` as I removed the `System` middleware struct since it became useless
+- `NSLocale` is no more used in the library. I switched to `Locale`
+- `Disk` substruct now has a new method to return the `totalSpace`, `freeSpace` and `usedSpace` that takes a `MeasureUnit` parameter as input. The old vars that returned `String` and percentage have been deprecated and will be removed in the next version
+
+### Added
+
+- `Audio` (thanks to [GregOriol](https://github.com/GregOriol))
+    - `currentAudioOutputVolume`
+    - `secondaryAudioShouldBeSilencedHint`
+
 ## What is Luminous?
 
 Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained (it still is my best library on github). I got ideas from that one and I wrote everything from scratch in Swift 3 adding some new feature and designing it in a different way thanks to the differences between Objective-C and Swift.
@@ -50,13 +70,13 @@ Luminous is no more composed by 3 parts as I think that a library has to serve o
 
 ### System information
 
-Here I provide tons of information about the system and you can access them using the notation `Luminous.System.<substruct>`.
+Here I provide tons of information about the system and you can access them using the notation `Luminous.<substruct>`.
 
 There are 11 different substructs here from which you can get information :
 - `Network`
     - `isConnectedViaWiFi`
     - `isConnectedViaCellular`
-    - `SSID`
+    - `SSID` (deprecated on iOS 13)
 - `Locale`
     - `currentLanguage`
     - `currentTimeZone`
@@ -70,8 +90,8 @@ There are 11 different substructs here from which you can get information :
     - `name`
     - `ISOCountryCode`
     - `mobileCountryCode`
-    - `networkCountryCode` (deprecated)
-    - `mobileNetworkCode` (to use instead of `networkCountryCode`)
+    - `networkCountryCode` (deprecated, use `mobileNetworkCode` instead)
+    - `mobileNetworkCode`
     - `allowsVOIP`
 - `Hardware`
     - `processorsNumber`
@@ -102,13 +122,16 @@ There are 11 different substructs here from which you can get information :
         - `isGyroAvailable`
         - `isMagnetometerAvailable`
         - `isDeviceMotionAvailable`
+- `Audio`
+    - `currentAudioOutputVolume`
+    - `secondaryAudioShouldBeSilencedHint`
 - `Disk`
     - `totalSpace`
     - `freeSpace`
     - `usedSpace`
     - `totalSpaceInBytes`
     - `freeSpaceInBytes`
-    - `usedDiskSpaceInBytes`
+    - `usedSpaceInBytes`
     - `freeSpaceInPercentage`
     - `usedSpaceInPercentage`
 - `Battery`
