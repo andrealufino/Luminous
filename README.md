@@ -42,11 +42,12 @@ In version 2, I've changed some things and added others. An important change has
 ### Changed
 
 - `LMBatteryState` has been renamed to `BatteryState`
-- `LMSizeScale` has been renamed to `SizeScale`
+- `LMSizeScale` has been renamed to `MeasureUnit`
 - `Luminous.Carrier.allowsVOIP` has been renamed to `isVoipAllowed`
 - `Luminous.Hardware.physicalMemory(withScale: _)` now returns a `Double` and no more a `Float`
 - All the structs are now accessible using `Luminous.<substruct>` as I removed the `System` middleware struct since it became useless
 - `NSLocale` is no more used in the library. I switched to `Locale`
+- `Disk` substruct now has a new method to return the `totalSpace`, `freeSpace` and `usedSpace` that takes a `MeasureUnit` parameter as input. The old vars that returned `String` and percentage have been deprecated and will be removed in the next version
 
 ### Added
 

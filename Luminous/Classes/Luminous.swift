@@ -42,10 +42,11 @@ public struct Luminous {
     /// - kilobytes: In kilobytes.
     /// - megabytes: In megabytes.
     /// - gigabytes: In gigabytes.
-    public enum SizeScale {
+    public enum MeasureUnit {
         case bytes
         case kilobytes
         case megabytes
         case gigabytes
+        case percentage
     }
 }

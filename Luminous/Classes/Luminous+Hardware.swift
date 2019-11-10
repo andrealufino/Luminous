@@ -35,7 +35,7 @@ extension Luminous {
         }
         
         /// Physical memory of the device in megabytes.
-        public static func physicalMemory(withSizeScale sizeScale: SizeScale) -> Double {
+        public static func physicalMemory(with sizeScale: MeasureUnit = .gigabytes) -> Double {
             
             let physicalMemory = Float(ProcessInfo().physicalMemory)
             
@@ -48,6 +48,8 @@ extension Luminous {
                 return Double(physicalMemory / 1024 / 1024)
             case .gigabytes:
                 return Double(physicalMemory / 1024 / 1024 / 1024)
+            case .percentage:
+                return 100.0
             }
         }
         

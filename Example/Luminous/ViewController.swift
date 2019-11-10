@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         // MARK: Carrier
         
         print("------------\nCarrier\n------------")
-        print("allowsVOIP: \(Luminous.Carrier.allowsVOIP ?? false)")
+        print("allowsVOIP: \(Luminous.Carrier.isVoipAllowed ?? false)")
         print("ISOCountryCode: \(Luminous.Carrier.ISOCountryCode ?? "-")")
         print("mobileCountryCode: \(Luminous.Carrier.mobileCountryCode ?? "-")")
         print("name: \(Luminous.Carrier.name ?? "-")")
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         
         print("------------\nHardware\n------------")
         print("bootTime: \(Luminous.Hardware.bootTime)")
-        print("bootTime: \(Luminous.Hardware.physicalMemory(withSizeScale: .megabytes))")
+        print("bootTime: \(Luminous.Hardware.physicalMemory(with: Luminous.MeasureUnit.megabytes))")
         print("processorsNumber: \(Luminous.Hardware.processorsNumber)")
         print("systemName: \(Luminous.Hardware.systemName)")
         print("systemVersion: \(Luminous.Hardware.systemVersion)")
