@@ -43,6 +43,10 @@ In version 2, I've changed some things and added others :
 
 - `LMBatteryState` has been renamed to `BatteryState`
 - `LMSizeScale` has been renamed to `SizeScale`
+- `Luminous.Carrier.allowsVOIP` has been renamed to `isVoipAllowed`
+- `Luminous.Hardware.physicalMemory(withScale: _)` now returns a `Double` and no more a `Float`
+- All the structs are now accessible using `Luminous.<substruct>` as I removed the `System` middleware struct since it became useless
+- `NSLocale` is no more used in the library. I switched to `Locale`
 
 ### Added
 
@@ -65,7 +69,7 @@ Luminous is no more composed by 3 parts as I think that a library has to serve o
 
 ### System information
 
-Here I provide tons of information about the system and you can access them using the notation `Luminous.System.<substruct>`.
+Here I provide tons of information about the system and you can access them using the notation `Luminous.<substruct>`.
 
 There are 11 different substructs here from which you can get information :
 - `Network`
