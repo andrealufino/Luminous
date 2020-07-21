@@ -7,67 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09DBA51D3FDB280CEAA4D0E7DED344FD /* Luminous+Carrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24F6AB2625099C6593694300B99220C /* Luminous+Carrier.swift */; };
-		0C8707EE78A201F66FF0AAA0A38A090C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C66CBDBD88EC9CA856D9A6F24B02993 /* CoreTelephony.framework */; };
-		0FE2E21CE37166D4E47E4F84D22600D5 /* Luminous-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E42E9C65615C0A6683C4DC4142DC22D5 /* Luminous-dummy.m */; };
-		0FF61717338C50CCBEF3373164E1304A /* Deviice-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A04994C7A5B213D38DE14FE18D9BDBC0 /* Deviice-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E44A4E5A7B1E9E8A118FAF333FF5927 /* Pods-Luminous_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A808887B96DCC761CCF0D710F9502454 /* Pods-Luminous_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		23357A051CE2706E63F07C130428CB6A /* Deviice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A26688A28C45F175DFF45952BFCC4C2 /* Deviice.framework */; };
-		240425FEDD0500A1CEF1C51BDF37FBF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */; };
-		2BD119EA4BE0D2E0F535AA3FB28579F2 /* Pods-Luminous_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D25213FC430987BB8606C5D1971244 /* Pods-Luminous_Example-dummy.m */; };
-		39F40894F02F107FF92C3388997E47FA /* Deviice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E8092860F63284105FD5793EC2016F /* Deviice.swift */; };
-		3AD87CBAFD7EA76C75E8D53176BA4719 /* Pods-Luminous_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473C2552277CAE890E0D02C2DEF7BD /* Pods-Luminous_Tests-dummy.m */; };
-		41638CF510796CE73E7A8B474397851D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */; };
-		4DA9DA00BB500AEE6650C8170568D1EC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25E7F30A8888AA5C06EE205DC24C8D4 /* AVFoundation.framework */; };
-		54AB81F971B6FA25EBDDE00499D8BF04 /* Luminous+Hardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BFB35FA0E2FD58E378C4CBFACC78CC /* Luminous+Hardware.swift */; };
-		6BFE8268E20D7A2F015D4785FCA7FFCD /* Luminous+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0697F13F0021AF06EECE4ABCF87F054 /* Luminous+Network.swift */; };
-		75F2ED08FC76A54D61356D1BEF5363A5 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501E8C1B41818F9ED506996186998181 /* ExternalAccessory.framework */; };
-		7ECD72BDE244666722F5EF6E741F820C /* Luminous+Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9292A915CA7012CA94EA20722F1AA17 /* Luminous+Disk.swift */; };
-		8658C7DA7DDF709BFB064BF4728BCDB1 /* Luminous+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4FFF40614C8492D2CC1E249E65F05 /* Luminous+Application.swift */; };
-		96FF2FE3CCAF2294CCEB1553E75B2DF2 /* Luminous+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDF8DD9B0078B79E7D7FDC810EFEBC0 /* Luminous+Locale.swift */; };
-		9C579008A4A0358B346D7A3243748BDA /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411BE315250777F36883F62F368CF621 /* Reachability.swift */; };
-		9DA68B7642071604FD96BFAB1BFB6375 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */; };
-		A7D44F57F2C46F784BE7862C953DEBF6 /* Luminous+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC2113CE7588BEDFAB8209A5BB1C2C8 /* Luminous+Audio.swift */; };
-		AD18F3871BEBE3CDE2781AE4872AE2BF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 390D84D51AFDC872B638DE922424E0CD /* SystemConfiguration.framework */; };
-		B6D79E9F973739F4AD992EFF0F641B83 /* Deviice-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B712842784F19043452C371531336DA /* Deviice-dummy.m */; };
-		C5BE14C26D649E439724904E05CA5601 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFD48A2864F418FB050A132FF5275B7 /* UIKit.framework */; };
-		EBD68E68382C16AC5564A6DE7F6EC352 /* Luminous-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BF6D2AF029EF65A049886781F0EBB5 /* Luminous-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ECC5D0054FFD5C43D8C60AA67532F435 /* Luminous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1654585A380B973ED3B035F87B8CD299 /* Luminous.swift */; };
+		0B2040327B3C6493D95B7242200E742D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */; };
+		0B3FE6B6EEAF2A794CBC37C95682E92C /* Luminous-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 96523E4DA885340687B5C1FAC53CA118 /* Luminous-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0FF61717338C50CCBEF3373164E1304A /* Deviice-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 729C86A46BBEDE8BD22C47288B4F3B36 /* Deviice-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D16B8F9121F7F6B81C904DC1E64B4EB /* Pods-Luminous_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D25213FC430987BB8606C5D1971244 /* Pods-Luminous_Example-dummy.m */; };
+		1FD8E6EBF378E28644EA674C42FA1976 /* Pods-Luminous_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D473C2552277CAE890E0D02C2DEF7BD /* Pods-Luminous_Tests-dummy.m */; };
+		21248F038561DBAB3328E05137503D35 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFD48A2864F418FB050A132FF5275B7 /* UIKit.framework */; };
+		30B412C790EB53E0303E99B8F40EE0F0 /* Luminous.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87951E764406106BB677DF89D7B8AA7 /* Luminous.swift */; };
+		39F40894F02F107FF92C3388997E47FA /* Deviice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FC89F51532ABD2FC7C5B9F25661C30 /* Deviice.swift */; };
+		4A83DE9916D8E0683E75E41F6E7F5B01 /* Deviice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A26688A28C45F175DFF45952BFCC4C2 /* Deviice.framework */; };
+		4B86EF4AA58D7EF0F65B8A2757A575B8 /* Luminous+Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8511F645D28E2B6F01DD97E11770963A /* Luminous+Battery.swift */; };
+		4C05C8625F7C37B733D374A670095B29 /* Luminous+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F738D8D46E834780DF0D921C98A285D /* Luminous+Locale.swift */; };
+		5588097EBFCDED07C15BE399F16581D2 /* Luminous+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C71D564106EC3C531DCBFC29B63A805 /* Luminous+Audio.swift */; };
+		58431F22EC4138343C9DBB567DF3BC5F /* Luminous-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F92CA1EAC51B0CF94545D94125E9B5B8 /* Luminous-dummy.m */; };
+		768596B000EF1E67222979A92D8FD417 /* Luminous+Hardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55118225C34B4CD53FD89752D2868328 /* Luminous+Hardware.swift */; };
+		78B9DC048A5AF584725DBE018D6B8D05 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25E7F30A8888AA5C06EE205DC24C8D4 /* AVFoundation.framework */; };
+		798FD3E20FD141115D161EBEB3535189 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */; };
+		79B0FFEC07E76D456C73B3CD785FA838 /* Luminous+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604F51DB2F6D78ACF579EEBA081ABBE /* Luminous+Network.swift */; };
+		7B05D33E3B91E192FF49AC18EEC46566 /* Luminous+Carrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2BC268585B9813FD0506489616ED2 /* Luminous+Carrier.swift */; };
+		806E0AFBABC95E70244915B79452219D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C66CBDBD88EC9CA856D9A6F24B02993 /* CoreTelephony.framework */; };
+		84F0818350D17DABA7071A351DFD1F7B /* Luminous+Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E98F29F983703477C4A85C2A9A3679B /* Luminous+Disk.swift */; };
+		945A8CC0A106E51CEE2EB5A0B5C0C6B1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535CDA0BE5F0DD4B59AB65C52A8ACF3C /* Reachability.swift */; };
+		9C2DE48C33682431FA3DEADB10CD060E /* Pods-Luminous_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 381D649CB8F17C9A5878A206ACBF7C93 /* Pods-Luminous_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9E2EEA04741AE13BF0FC717C5D2509ED /* Luminous+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44B0A8F8A868451ADD05FE5AE0673E1 /* Luminous+Application.swift */; };
+		A84D9112398C6B100FB7ACBCA499D79D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 390D84D51AFDC872B638DE922424E0CD /* SystemConfiguration.framework */; };
+		A91D509447EDF0CDEFE64D6A874FC4EA /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 501E8C1B41818F9ED506996186998181 /* ExternalAccessory.framework */; };
+		B6D79E9F973739F4AD992EFF0F641B83 /* Deviice-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B40351381C3BA1C34FCE98BC563E1C1 /* Deviice-dummy.m */; };
+		D02CE0BC3B2EA48BCFA99F9986F3B612 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */; };
+		ED3DBEBD34877F84BC5645C3E1DF9F29 /* Pods-Luminous_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A808887B96DCC761CCF0D710F9502454 /* Pods-Luminous_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FB7146681CEDB5E0B6BB7560D5DA5964 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */; };
-		FE23F309DD7439FD0C2DE4D205049D0E /* Pods-Luminous_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 381D649CB8F17C9A5878A206ACBF7C93 /* Pods-Luminous_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FE85011C53E00560A3BA00F4941259D1 /* Luminous+Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259B8C4603E2C2015A9846507AF10D86 /* Luminous+Battery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0DC41B6BECD6AA3FED6A7348DDA42D5E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 63A496E33B7DE3BAAB6CFA6996348CCE;
-			remoteInfo = Luminous;
-		};
-		5F6B21B9C65B71CC2BAD92A785E7309A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 63A496E33B7DE3BAAB6CFA6996348CCE;
-			remoteInfo = Luminous;
-		};
-		6C31A54EC9BC297268DA2EAEDC04E1F7 /* PBXContainerItemProxy */ = {
+		0BD1F824193F2418AB27BFADDB4CD9E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9C38C50A85857077D6D80C1715C865F5;
 			remoteInfo = Deviice;
 		};
-		6FAB82BCD49327820CF57ECB4ABB5AAD /* PBXContainerItemProxy */ = {
+		2B8A12D5B1C5EA07EBEC276ADBE8AF54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63A496E33B7DE3BAAB6CFA6996348CCE;
+			remoteInfo = Luminous;
+		};
+		4509B7C6FF5F2F5169EA8E61708D0C9B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9C38C50A85857077D6D80C1715C865F5;
 			remoteInfo = Deviice;
 		};
-		A5EE86336B99EDD600CEF37B4C28FE3F /* PBXContainerItemProxy */ = {
+		5F164CD4AF4A654EEA4884C0F74FACC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63A496E33B7DE3BAAB6CFA6996348CCE;
+			remoteInfo = Luminous;
+		};
+		89602EE712AB5AB364FEC9E23CA33D53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -77,73 +77,67 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10E8CBD03C03A819852CED0B0B557828 /* Deviice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Deviice.framework; path = Deviice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1654585A380B973ED3B035F87B8CD299 /* Luminous.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Luminous.swift; path = Luminous/Classes/Luminous.swift; sourceTree = "<group>"; };
+		10E8CBD03C03A819852CED0B0B557828 /* Deviice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Deviice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A1D5E4B59D69ABFE4705AB271066875 /* Luminous-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Luminous-Info.plist"; sourceTree = "<group>"; };
 		1CFB85B017A6532374BB8B14689D9B0C /* Pods-Luminous_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Luminous_Example.release.xcconfig"; sourceTree = "<group>"; };
-		259B8C4603E2C2015A9846507AF10D86 /* Luminous+Battery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Battery.swift"; path = "Luminous/Classes/Luminous+Battery.swift"; sourceTree = "<group>"; };
+		2541251A3686DC12D76208C309333847 /* Luminous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Luminous.release.xcconfig; sourceTree = "<group>"; };
 		25D25213FC430987BB8606C5D1971244 /* Pods-Luminous_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Luminous_Example-dummy.m"; sourceTree = "<group>"; };
-		27B0645C5574FADC33187097911501C8 /* Deviice.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Deviice.modulemap; sourceTree = "<group>"; };
-		28E54FBD717C91F1EEC942932F7BC5ED /* Luminous.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Luminous.xcconfig; sourceTree = "<group>"; };
+		27373974B76B8432EB7B1CFFD8014C50 /* Luminous.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Luminous.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2F738D8D46E834780DF0D921C98A285D /* Luminous+Locale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Locale.swift"; path = "Luminous/Classes/Luminous+Locale.swift"; sourceTree = "<group>"; };
 		381D649CB8F17C9A5878A206ACBF7C93 /* Pods-Luminous_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Luminous_Tests-umbrella.h"; sourceTree = "<group>"; };
 		381FCC6CA783698D35D722B0974F16E0 /* Pods-Luminous_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Luminous_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		390D84D51AFDC872B638DE922424E0CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		3D473C2552277CAE890E0D02C2DEF7BD /* Pods-Luminous_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Luminous_Tests-dummy.m"; sourceTree = "<group>"; };
-		411BE315250777F36883F62F368CF621 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Luminous/Classes/Reachability.swift; sourceTree = "<group>"; };
+		3EB2BC268585B9813FD0506489616ED2 /* Luminous+Carrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Carrier.swift"; path = "Luminous/Classes/Luminous+Carrier.swift"; sourceTree = "<group>"; };
+		478B58BDF6A8695FE8467F3CBFD6A538 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		4E98F29F983703477C4A85C2A9A3679B /* Luminous+Disk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Disk.swift"; path = "Luminous/Classes/Luminous+Disk.swift"; sourceTree = "<group>"; };
 		501E8C1B41818F9ED506996186998181 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/ExternalAccessory.framework; sourceTree = DEVELOPER_DIR; };
-		50BFB35FA0E2FD58E378C4CBFACC78CC /* Luminous+Hardware.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Hardware.swift"; path = "Luminous/Classes/Luminous+Hardware.swift"; sourceTree = "<group>"; };
-		51814881FA772F2054F8F7807C84C06D /* Luminous.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Luminous.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		52D9283C42F8FE1EAA09191A1E2A84BD /* Pods-Luminous_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Luminous_Example-frameworks.sh"; sourceTree = "<group>"; };
-		53E8092860F63284105FD5793EC2016F /* Deviice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deviice.swift; path = Pod/Classes/Deviice.swift; sourceTree = "<group>"; };
-		557EA473574514188CB912DD0A51C4D9 /* Deviice-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Deviice-Info.plist"; sourceTree = "<group>"; };
-		56BF6D2AF029EF65A049886781F0EBB5 /* Luminous-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Luminous-umbrella.h"; sourceTree = "<group>"; };
-		607D2980C9E7260D5A330A7E0CF88FCC /* Luminous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Luminous.framework; path = Luminous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		535CDA0BE5F0DD4B59AB65C52A8ACF3C /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Luminous/Classes/Reachability.swift; sourceTree = "<group>"; };
+		55118225C34B4CD53FD89752D2868328 /* Luminous+Hardware.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Hardware.swift"; path = "Luminous/Classes/Luminous+Hardware.swift"; sourceTree = "<group>"; };
+		5B5F8131A0EE3DE6C3C580D7A21B94F3 /* Deviice-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Deviice-Info.plist"; sourceTree = "<group>"; };
+		5C71D564106EC3C531DCBFC29B63A805 /* Luminous+Audio.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Audio.swift"; path = "Luminous/Classes/Luminous+Audio.swift"; sourceTree = "<group>"; };
+		607D2980C9E7260D5A330A7E0CF88FCC /* Luminous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Luminous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65AB1399683FBB3E1DE93867CEFA38CA /* Luminous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Luminous.debug.xcconfig; sourceTree = "<group>"; };
 		6A26688A28C45F175DFF45952BFCC4C2 /* Deviice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Deviice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A60C03D2BF9910CEEC4E461FD84589B /* Pods-Luminous_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Luminous_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		729C86A46BBEDE8BD22C47288B4F3B36 /* Deviice-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Deviice-umbrella.h"; sourceTree = "<group>"; };
+		74FC89F51532ABD2FC7C5B9F25661C30 /* Deviice.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deviice.swift; path = Pod/Classes/Deviice.swift; sourceTree = "<group>"; };
 		771DE566D065A75A1D4C0148DBD17778 /* Pods-Luminous_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Luminous_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		7817BDC0E35BB47EE0D498BA4EA3A901 /* Pods_Luminous_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Luminous_Tests.framework; path = "Pods-Luminous_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7817BDC0E35BB47EE0D498BA4EA3A901 /* Pods_Luminous_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Luminous_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D950F62239DF8787429CEB03198320 /* Pods-Luminous_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Luminous_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		7B712842784F19043452C371531336DA /* Deviice-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Deviice-dummy.m"; sourceTree = "<group>"; };
-		82C4FFF40614C8492D2CC1E249E65F05 /* Luminous+Application.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Application.swift"; path = "Luminous/Classes/Luminous+Application.swift"; sourceTree = "<group>"; };
-		83140F4E3682C3BBDC022DFD220C368C /* Luminous-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Luminous-Info.plist"; sourceTree = "<group>"; };
+		7A5B158A948F9C54E39AD2C7315C3739 /* Luminous.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Luminous.modulemap; sourceTree = "<group>"; };
+		7B40351381C3BA1C34FCE98BC563E1C1 /* Deviice-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Deviice-dummy.m"; sourceTree = "<group>"; };
+		8511F645D28E2B6F01DD97E11770963A /* Luminous+Battery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Battery.swift"; path = "Luminous/Classes/Luminous+Battery.swift"; sourceTree = "<group>"; };
 		8A570AC9AFE48FFCE443AE9A05966951 /* Pods-Luminous_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Luminous_Example.modulemap"; sourceTree = "<group>"; };
 		8C66CBDBD88EC9CA856D9A6F24B02993 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
-		8EDF8DD9B0078B79E7D7FDC810EFEBC0 /* Luminous+Locale.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Locale.swift"; path = "Luminous/Classes/Luminous+Locale.swift"; sourceTree = "<group>"; };
+		90B252CA2796A9099BE757157F7C8050 /* Deviice-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Deviice-prefix.pch"; sourceTree = "<group>"; };
+		96523E4DA885340687B5C1FAC53CA118 /* Luminous-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Luminous-umbrella.h"; sourceTree = "<group>"; };
 		9CF61CC2322597BDF4AFE8CACA935CA5 /* Pods-Luminous_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Luminous_Example-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A04994C7A5B213D38DE14FE18D9BDBC0 /* Deviice-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Deviice-umbrella.h"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A808887B96DCC761CCF0D710F9502454 /* Pods-Luminous_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Luminous_Example-umbrella.h"; sourceTree = "<group>"; };
-		B24F6AB2625099C6593694300B99220C /* Luminous+Carrier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Carrier.swift"; path = "Luminous/Classes/Luminous+Carrier.swift"; sourceTree = "<group>"; };
+		AD4B1090C89DEF783AB6CD8CCA500829 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B25E7F30A8888AA5C06EE205DC24C8D4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		C1C3929C63D8A932C146E22D1F31659E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		BEA338F1142CB545C771693E70B64251 /* Luminous-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Luminous-prefix.pch"; sourceTree = "<group>"; };
+		C063FCD399AD20BE146C691FF63AB458 /* Deviice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Deviice.debug.xcconfig; sourceTree = "<group>"; };
+		CA65102C69DDF9A9270AFE3F9D2CE119 /* Deviice.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Deviice.modulemap; sourceTree = "<group>"; };
 		CCFD48A2864F418FB050A132FF5275B7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		D10EED921D9D7F02AD4A3AF5382119B0 /* Deviice-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Deviice-prefix.pch"; sourceTree = "<group>"; };
-		D421F8615A195DF42E854E10E230689A /* Pods_Luminous_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Luminous_Example.framework; path = "Pods-Luminous_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D421F8615A195DF42E854E10E230689A /* Pods_Luminous_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Luminous_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D44B0A8F8A868451ADD05FE5AE0673E1 /* Luminous+Application.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Application.swift"; path = "Luminous/Classes/Luminous+Application.swift"; sourceTree = "<group>"; };
+		D604F51DB2F6D78ACF579EEBA081ABBE /* Luminous+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Network.swift"; path = "Luminous/Classes/Luminous+Network.swift"; sourceTree = "<group>"; };
+		D60CCCD3C572005F872D219E9104A1DD /* Deviice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Deviice.release.xcconfig; sourceTree = "<group>"; };
 		D63C005052227EA4FFB34D03CF31837A /* Pods-Luminous_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Luminous_Tests.modulemap"; sourceTree = "<group>"; };
-		D69FC8BF7F3DB2AFA2BB35BB884AFB4B /* Luminous.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Luminous.modulemap; sourceTree = "<group>"; };
-		D9292A915CA7012CA94EA20722F1AA17 /* Luminous+Disk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Disk.swift"; path = "Luminous/Classes/Luminous+Disk.swift"; sourceTree = "<group>"; };
-		DBC2113CE7588BEDFAB8209A5BB1C2C8 /* Luminous+Audio.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Audio.swift"; path = "Luminous/Classes/Luminous+Audio.swift"; sourceTree = "<group>"; };
-		E0697F13F0021AF06EECE4ABCF87F054 /* Luminous+Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Luminous+Network.swift"; path = "Luminous/Classes/Luminous+Network.swift"; sourceTree = "<group>"; };
 		E2B6A819F21D321EE38BE0295C5C34D6 /* Pods-Luminous_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Luminous_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E42E9C65615C0A6683C4DC4142DC22D5 /* Luminous-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Luminous-dummy.m"; sourceTree = "<group>"; };
-		E78CA422BE9697F693AB162029A879BC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		EB63EB78C405E102F58B54AF8AAD076D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		F1389B7A767D97EA5C9A7FA90766819B /* Pods-Luminous_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Luminous_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		F22EBAAE0906517707D167B7DC699FD9 /* Luminous-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Luminous-prefix.pch"; sourceTree = "<group>"; };
 		F5D73784340347DA856EC5135479C313 /* Pods-Luminous_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Luminous_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F8786E8660BCAC4C8552E3D4C66E02BF /* Pods-Luminous_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Luminous_Tests-Info.plist"; sourceTree = "<group>"; };
-		FD9E1544597A2EB2305ED2666C79B1FE /* Deviice.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Deviice.xcconfig; sourceTree = "<group>"; };
+		F87951E764406106BB677DF89D7B8AA7 /* Luminous.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Luminous.swift; path = Luminous/Classes/Luminous.swift; sourceTree = "<group>"; };
+		F92CA1EAC51B0CF94545D94125E9B5B8 /* Luminous-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Luminous-dummy.m"; sourceTree = "<group>"; };
 		FEB9926CEDCDD28DB2A810C121C808A8 /* Pods-Luminous_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Luminous_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		64AAF30F1FE6D5D0CEBCBF49898E5AA5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9DA68B7642071604FD96BFAB1BFB6375 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7BDE2203D6DF0EDBF08624C717691EC6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,49 +146,57 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA9B9363DEFBE257A0CCB3FC961BEA12 /* Frameworks */ = {
+		A024C21AB77ECD17A6B74769E29008D0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41638CF510796CE73E7A8B474397851D /* Foundation.framework in Frameworks */,
+				0B2040327B3C6493D95B7242200E742D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D97436E600CAF551043CC91620B6C2E1 /* Frameworks */ = {
+		A667CF0F42E963DDF74883041778C562 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DA9DA00BB500AEE6650C8170568D1EC /* AVFoundation.framework in Frameworks */,
-				0C8707EE78A201F66FF0AAA0A38A090C /* CoreTelephony.framework in Frameworks */,
-				23357A051CE2706E63F07C130428CB6A /* Deviice.framework in Frameworks */,
-				75F2ED08FC76A54D61356D1BEF5363A5 /* ExternalAccessory.framework in Frameworks */,
-				240425FEDD0500A1CEF1C51BDF37FBF6 /* Foundation.framework in Frameworks */,
-				AD18F3871BEBE3CDE2781AE4872AE2BF /* SystemConfiguration.framework in Frameworks */,
-				C5BE14C26D649E439724904E05CA5601 /* UIKit.framework in Frameworks */,
+				798FD3E20FD141115D161EBEB3535189 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C60B1C18E1BE61E40C7E41B7B9EC19E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78B9DC048A5AF584725DBE018D6B8D05 /* AVFoundation.framework in Frameworks */,
+				806E0AFBABC95E70244915B79452219D /* CoreTelephony.framework in Frameworks */,
+				4A83DE9916D8E0683E75E41F6E7F5B01 /* Deviice.framework in Frameworks */,
+				A91D509447EDF0CDEFE64D6A874FC4EA /* ExternalAccessory.framework in Frameworks */,
+				D02CE0BC3B2EA48BCFA99F9986F3B612 /* Foundation.framework in Frameworks */,
+				A84D9112398C6B100FB7ACBCA499D79D /* SystemConfiguration.framework in Frameworks */,
+				21248F038561DBAB3328E05137503D35 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		147CF409610ECA70CFE514B2D9EFB278 /* Deviice */ = {
+		03396B58980AC4755DF208D3DC62243E /* Luminous */ = {
 			isa = PBXGroup;
 			children = (
-				53E8092860F63284105FD5793EC2016F /* Deviice.swift */,
-				4A3DC6776E502444A47CEDD012660364 /* Support Files */,
+				F87951E764406106BB677DF89D7B8AA7 /* Luminous.swift */,
+				D44B0A8F8A868451ADD05FE5AE0673E1 /* Luminous+Application.swift */,
+				5C71D564106EC3C531DCBFC29B63A805 /* Luminous+Audio.swift */,
+				8511F645D28E2B6F01DD97E11770963A /* Luminous+Battery.swift */,
+				3EB2BC268585B9813FD0506489616ED2 /* Luminous+Carrier.swift */,
+				4E98F29F983703477C4A85C2A9A3679B /* Luminous+Disk.swift */,
+				55118225C34B4CD53FD89752D2868328 /* Luminous+Hardware.swift */,
+				2F738D8D46E834780DF0D921C98A285D /* Luminous+Locale.swift */,
+				D604F51DB2F6D78ACF579EEBA081ABBE /* Luminous+Network.swift */,
+				535CDA0BE5F0DD4B59AB65C52A8ACF3C /* Reachability.swift */,
+				51CD91347FFE4593758D1D82DC0F8A07 /* Pod */,
+				5CC906B4984587C9876D4E2869B2D4A1 /* Support Files */,
 			);
-			name = Deviice;
-			path = Deviice;
-			sourceTree = "<group>";
-		};
-		2C2B0DC9E0C289F441B78070CEABD027 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				E78CA422BE9697F693AB162029A879BC /* LICENSE */,
-				51814881FA772F2054F8F7807C84C06D /* Luminous.podspec */,
-				C1C3929C63D8A932C146E22D1F31659E /* README.md */,
-			);
-			name = Pod;
+			name = Luminous;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		2CFEEDA7B427187266EE5241B0B16B45 /* Pods-Luminous_Tests */ = {
@@ -214,68 +216,54 @@
 			path = "Target Support Files/Pods-Luminous_Tests";
 			sourceTree = "<group>";
 		};
-		42A4946A4C5ECFF7655D73800FF164C8 /* Luminous */ = {
-			isa = PBXGroup;
-			children = (
-				1654585A380B973ED3B035F87B8CD299 /* Luminous.swift */,
-				82C4FFF40614C8492D2CC1E249E65F05 /* Luminous+Application.swift */,
-				DBC2113CE7588BEDFAB8209A5BB1C2C8 /* Luminous+Audio.swift */,
-				259B8C4603E2C2015A9846507AF10D86 /* Luminous+Battery.swift */,
-				B24F6AB2625099C6593694300B99220C /* Luminous+Carrier.swift */,
-				D9292A915CA7012CA94EA20722F1AA17 /* Luminous+Disk.swift */,
-				50BFB35FA0E2FD58E378C4CBFACC78CC /* Luminous+Hardware.swift */,
-				8EDF8DD9B0078B79E7D7FDC810EFEBC0 /* Luminous+Locale.swift */,
-				E0697F13F0021AF06EECE4ABCF87F054 /* Luminous+Network.swift */,
-				411BE315250777F36883F62F368CF621 /* Reachability.swift */,
-				2C2B0DC9E0C289F441B78070CEABD027 /* Pod */,
-				71302807D769070212256BD2C35F084B /* Support Files */,
-			);
-			name = Luminous;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		4A3DC6776E502444A47CEDD012660364 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				27B0645C5574FADC33187097911501C8 /* Deviice.modulemap */,
-				FD9E1544597A2EB2305ED2666C79B1FE /* Deviice.xcconfig */,
-				7B712842784F19043452C371531336DA /* Deviice-dummy.m */,
-				557EA473574514188CB912DD0A51C4D9 /* Deviice-Info.plist */,
-				D10EED921D9D7F02AD4A3AF5382119B0 /* Deviice-prefix.pch */,
-				A04994C7A5B213D38DE14FE18D9BDBC0 /* Deviice-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Deviice";
-			sourceTree = "<group>";
-		};
 		4FAEBCE08282549C9E0FF6040C54B7DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				147CF409610ECA70CFE514B2D9EFB278 /* Deviice */,
+				6557E602E8B2BD781EFE9CA0CB7A7A35 /* Deviice */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		51CD91347FFE4593758D1D82DC0F8A07 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				478B58BDF6A8695FE8467F3CBFD6A538 /* LICENSE */,
+				27373974B76B8432EB7B1CFFD8014C50 /* Luminous.podspec */,
+				AD4B1090C89DEF783AB6CD8CCA500829 /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		551E80A96FFD728036F46D1ED8CAB377 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				42A4946A4C5ECFF7655D73800FF164C8 /* Luminous */,
+				03396B58980AC4755DF208D3DC62243E /* Luminous */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		71302807D769070212256BD2C35F084B /* Support Files */ = {
+		5CC906B4984587C9876D4E2869B2D4A1 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				D69FC8BF7F3DB2AFA2BB35BB884AFB4B /* Luminous.modulemap */,
-				28E54FBD717C91F1EEC942932F7BC5ED /* Luminous.xcconfig */,
-				E42E9C65615C0A6683C4DC4142DC22D5 /* Luminous-dummy.m */,
-				83140F4E3682C3BBDC022DFD220C368C /* Luminous-Info.plist */,
-				F22EBAAE0906517707D167B7DC699FD9 /* Luminous-prefix.pch */,
-				56BF6D2AF029EF65A049886781F0EBB5 /* Luminous-umbrella.h */,
+				7A5B158A948F9C54E39AD2C7315C3739 /* Luminous.modulemap */,
+				F92CA1EAC51B0CF94545D94125E9B5B8 /* Luminous-dummy.m */,
+				1A1D5E4B59D69ABFE4705AB271066875 /* Luminous-Info.plist */,
+				BEA338F1142CB545C771693E70B64251 /* Luminous-prefix.pch */,
+				96523E4DA885340687B5C1FAC53CA118 /* Luminous-umbrella.h */,
+				65AB1399683FBB3E1DE93867CEFA38CA /* Luminous.debug.xcconfig */,
+				2541251A3686DC12D76208C309333847 /* Luminous.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/Luminous";
+			sourceTree = "<group>";
+		};
+		6557E602E8B2BD781EFE9CA0CB7A7A35 /* Deviice */ = {
+			isa = PBXGroup;
+			children = (
+				74FC89F51532ABD2FC7C5B9F25661C30 /* Deviice.swift */,
+				9F980FEC0D087D809388190F5B67ECC5 /* Support Files */,
+			);
+			path = Deviice;
 			sourceTree = "<group>";
 		};
 		7D99FCF74D930B29421F19419A35DD4E /* Pods-Luminous_Example */ = {
@@ -311,6 +299,21 @@
 				F2D25C7C82669D6659EB431CCDF07134 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F980FEC0D087D809388190F5B67ECC5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CA65102C69DDF9A9270AFE3F9D2CE119 /* Deviice.modulemap */,
+				7B40351381C3BA1C34FCE98BC563E1C1 /* Deviice-dummy.m */,
+				5B5F8131A0EE3DE6C3C580D7A21B94F3 /* Deviice-Info.plist */,
+				90B252CA2796A9099BE757157F7C8050 /* Deviice-prefix.pch */,
+				729C86A46BBEDE8BD22C47288B4F3B36 /* Deviice-umbrella.h */,
+				C063FCD399AD20BE146C691FF63AB458 /* Deviice.debug.xcconfig */,
+				D60CCCD3C572005F872D219E9104A1DD /* Deviice.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Deviice";
 			sourceTree = "<group>";
 		};
 		AA4C2329D1B249C3CE7AE0F785E08826 /* Products */ = {
@@ -352,14 +355,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0A04A86242CB1012EA3373F83AB2BE83 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EBD68E68382C16AC5564A6DE7F6EC352 /* Luminous-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3C684050126A7253CB6A1A4D402BA5D3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,19 +363,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2D19FCE9195B600E7E41CDD56990794 /* Headers */ = {
+		9A010F59910D95959E85743CB52F13B8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E44A4E5A7B1E9E8A118FAF333FF5927 /* Pods-Luminous_Example-umbrella.h in Headers */,
+				0B3FE6B6EEAF2A794CBC37C95682E92C /* Luminous-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D51A02A6BA7AAE543CF26B0A1DD48814 /* Headers */ = {
+		EC74AD6693B0C400B2597963D90A832C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE23F309DD7439FD0C2DE4D205049D0E /* Pods-Luminous_Tests-umbrella.h in Headers */,
+				9C2DE48C33682431FA3DEADB10CD060E /* Pods-Luminous_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF5DAD9373F65E6D926D86372D20D672 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED3DBEBD34877F84BC5645C3E1DF9F29 /* Pods-Luminous_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,18 +392,18 @@
 /* Begin PBXNativeTarget section */
 		3DBCE2D1EB05220EC9473F0E4942FC1D /* Pods-Luminous_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 090569EECE950A9A9C8125840BEF3E53 /* Build configuration list for PBXNativeTarget "Pods-Luminous_Example" */;
+			buildConfigurationList = BA42FA781D92C0A66B6B34B1999BF5BB /* Build configuration list for PBXNativeTarget "Pods-Luminous_Example" */;
 			buildPhases = (
-				D2D19FCE9195B600E7E41CDD56990794 /* Headers */,
-				8C8F4C988D67C57FC091F21526FAECE0 /* Sources */,
-				CA9B9363DEFBE257A0CCB3FC961BEA12 /* Frameworks */,
-				5EB0A5D57A8ADE5A517F6FC26CBCD974 /* Resources */,
+				EF5DAD9373F65E6D926D86372D20D672 /* Headers */,
+				0FFFB521BD7370B381C13F896B5CC6D0 /* Sources */,
+				A667CF0F42E963DDF74883041778C562 /* Frameworks */,
+				E2E204CB8A4A115D12CA2C2FBB284A13 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C1BFFB0CAB44A3E2726E2A477EF8EAA3 /* PBXTargetDependency */,
-				6B65E2BC9A6B3EF77DD8E5808D2FABB3 /* PBXTargetDependency */,
+				ECE80686CED50F9D85254664B369D9A6 /* PBXTargetDependency */,
+				3321B63AD053AAFFBD53AB7507178DBA /* PBXTargetDependency */,
 			);
 			name = "Pods-Luminous_Example";
 			productName = "Pods-Luminous_Example";
@@ -409,18 +412,18 @@
 		};
 		5979515703480169F0D9FD392F022413 /* Pods-Luminous_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3C9394727502FBA8EF3369A6E367EC2E /* Build configuration list for PBXNativeTarget "Pods-Luminous_Tests" */;
+			buildConfigurationList = FA6D98BB7A1AC6714ABE258CA94CC79F /* Build configuration list for PBXNativeTarget "Pods-Luminous_Tests" */;
 			buildPhases = (
-				D51A02A6BA7AAE543CF26B0A1DD48814 /* Headers */,
-				CFF86204A97511F43CF075A9E237FA3E /* Sources */,
-				64AAF30F1FE6D5D0CEBCBF49898E5AA5 /* Frameworks */,
-				10B826A8165F0D8B7272D01E7B9C5CF1 /* Resources */,
+				EC74AD6693B0C400B2597963D90A832C /* Headers */,
+				081AA46FD63BEAF98058DF4951BE755A /* Sources */,
+				A024C21AB77ECD17A6B74769E29008D0 /* Frameworks */,
+				F49E72FCD778856ACF41B5FC9121AA97 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4F18793F627966D3DB071137C676CD97 /* PBXTargetDependency */,
-				1883EFBDD10BB1B41B7CFDB66D7C642B /* PBXTargetDependency */,
+				0D18624FA6240FCD56C904425BFA5FCF /* PBXTargetDependency */,
+				EEA194E8E82ED5869786A7E477B231BC /* PBXTargetDependency */,
 			);
 			name = "Pods-Luminous_Tests";
 			productName = "Pods-Luminous_Tests";
@@ -429,17 +432,17 @@
 		};
 		63A496E33B7DE3BAAB6CFA6996348CCE /* Luminous */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8BFD8B210BE816F32740E3FD21FF646 /* Build configuration list for PBXNativeTarget "Luminous" */;
+			buildConfigurationList = 2AFA52F28D1288ED0D8FDE776413A653 /* Build configuration list for PBXNativeTarget "Luminous" */;
 			buildPhases = (
-				0A04A86242CB1012EA3373F83AB2BE83 /* Headers */,
-				BDE2B13C012F354D57A89284CC98615E /* Sources */,
-				D97436E600CAF551043CC91620B6C2E1 /* Frameworks */,
-				024F1514BA203BF3E468500E016F6AE3 /* Resources */,
+				9A010F59910D95959E85743CB52F13B8 /* Headers */,
+				E5962FB76B7435EC3A196E0C68245D70 /* Sources */,
+				C60B1C18E1BE61E40C7E41B7B9EC19E1 /* Frameworks */,
+				47CC1CF67322697999B79942C0876861 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				20C28AD1794220DC99794137C8912745 /* PBXTargetDependency */,
+				C0F454AF37174396095CCC691E354D00 /* PBXTargetDependency */,
 			);
 			name = Luminous;
 			productName = Luminous;
@@ -479,6 +482,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = AA4C2329D1B249C3CE7AE0F785E08826 /* Products */;
@@ -494,14 +498,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		024F1514BA203BF3E468500E016F6AE3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		10B826A8165F0D8B7272D01E7B9C5CF1 /* Resources */ = {
+		47CC1CF67322697999B79942C0876861 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -515,7 +512,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EB0A5D57A8ADE5A517F6FC26CBCD974 /* Resources */ = {
+		E2E204CB8A4A115D12CA2C2FBB284A13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F49E72FCD778856ACF41B5FC9121AA97 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -525,6 +529,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		081AA46FD63BEAF98058DF4951BE755A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FD8E6EBF378E28644EA674C42FA1976 /* Pods-Luminous_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FFFB521BD7370B381C13F896B5CC6D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D16B8F9121F7F6B81C904DC1E64B4EB /* Pods-Luminous_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1159C47692D6F2323A6794A674DF8795 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -534,76 +554,125 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8C8F4C988D67C57FC091F21526FAECE0 /* Sources */ = {
+		E5962FB76B7435EC3A196E0C68245D70 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BD119EA4BE0D2E0F535AA3FB28579F2 /* Pods-Luminous_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BDE2B13C012F354D57A89284CC98615E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8658C7DA7DDF709BFB064BF4728BCDB1 /* Luminous+Application.swift in Sources */,
-				A7D44F57F2C46F784BE7862C953DEBF6 /* Luminous+Audio.swift in Sources */,
-				FE85011C53E00560A3BA00F4941259D1 /* Luminous+Battery.swift in Sources */,
-				09DBA51D3FDB280CEAA4D0E7DED344FD /* Luminous+Carrier.swift in Sources */,
-				7ECD72BDE244666722F5EF6E741F820C /* Luminous+Disk.swift in Sources */,
-				54AB81F971B6FA25EBDDE00499D8BF04 /* Luminous+Hardware.swift in Sources */,
-				96FF2FE3CCAF2294CCEB1553E75B2DF2 /* Luminous+Locale.swift in Sources */,
-				6BFE8268E20D7A2F015D4785FCA7FFCD /* Luminous+Network.swift in Sources */,
-				0FE2E21CE37166D4E47E4F84D22600D5 /* Luminous-dummy.m in Sources */,
-				ECC5D0054FFD5C43D8C60AA67532F435 /* Luminous.swift in Sources */,
-				9C579008A4A0358B346D7A3243748BDA /* Reachability.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CFF86204A97511F43CF075A9E237FA3E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3AD87CBAFD7EA76C75E8D53176BA4719 /* Pods-Luminous_Tests-dummy.m in Sources */,
+				9E2EEA04741AE13BF0FC717C5D2509ED /* Luminous+Application.swift in Sources */,
+				5588097EBFCDED07C15BE399F16581D2 /* Luminous+Audio.swift in Sources */,
+				4B86EF4AA58D7EF0F65B8A2757A575B8 /* Luminous+Battery.swift in Sources */,
+				7B05D33E3B91E192FF49AC18EEC46566 /* Luminous+Carrier.swift in Sources */,
+				84F0818350D17DABA7071A351DFD1F7B /* Luminous+Disk.swift in Sources */,
+				768596B000EF1E67222979A92D8FD417 /* Luminous+Hardware.swift in Sources */,
+				4C05C8625F7C37B733D374A670095B29 /* Luminous+Locale.swift in Sources */,
+				79B0FFEC07E76D456C73B3CD785FA838 /* Luminous+Network.swift in Sources */,
+				58431F22EC4138343C9DBB567DF3BC5F /* Luminous-dummy.m in Sources */,
+				30B412C790EB53E0303E99B8F40EE0F0 /* Luminous.swift in Sources */,
+				945A8CC0A106E51CEE2EB5A0B5C0C6B1 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1883EFBDD10BB1B41B7CFDB66D7C642B /* PBXTargetDependency */ = {
+		0D18624FA6240FCD56C904425BFA5FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Deviice;
+			target = 9C38C50A85857077D6D80C1715C865F5 /* Deviice */;
+			targetProxy = 0BD1F824193F2418AB27BFADDB4CD9E2 /* PBXContainerItemProxy */;
+		};
+		3321B63AD053AAFFBD53AB7507178DBA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Luminous;
 			target = 63A496E33B7DE3BAAB6CFA6996348CCE /* Luminous */;
-			targetProxy = 5F6B21B9C65B71CC2BAD92A785E7309A /* PBXContainerItemProxy */;
+			targetProxy = 5F164CD4AF4A654EEA4884C0F74FACC2 /* PBXContainerItemProxy */;
 		};
-		20C28AD1794220DC99794137C8912745 /* PBXTargetDependency */ = {
+		C0F454AF37174396095CCC691E354D00 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Deviice;
 			target = 9C38C50A85857077D6D80C1715C865F5 /* Deviice */;
-			targetProxy = 6C31A54EC9BC297268DA2EAEDC04E1F7 /* PBXContainerItemProxy */;
+			targetProxy = 4509B7C6FF5F2F5169EA8E61708D0C9B /* PBXContainerItemProxy */;
 		};
-		4F18793F627966D3DB071137C676CD97 /* PBXTargetDependency */ = {
+		ECE80686CED50F9D85254664B369D9A6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Deviice;
 			target = 9C38C50A85857077D6D80C1715C865F5 /* Deviice */;
-			targetProxy = 6FAB82BCD49327820CF57ECB4ABB5AAD /* PBXContainerItemProxy */;
+			targetProxy = 89602EE712AB5AB364FEC9E23CA33D53 /* PBXContainerItemProxy */;
 		};
-		6B65E2BC9A6B3EF77DD8E5808D2FABB3 /* PBXTargetDependency */ = {
+		EEA194E8E82ED5869786A7E477B231BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Luminous;
 			target = 63A496E33B7DE3BAAB6CFA6996348CCE /* Luminous */;
-			targetProxy = 0DC41B6BECD6AA3FED6A7348DDA42D5E /* PBXContainerItemProxy */;
-		};
-		C1BFFB0CAB44A3E2726E2A477EF8EAA3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Deviice;
-			target = 9C38C50A85857077D6D80C1715C865F5 /* Deviice */;
-			targetProxy = A5EE86336B99EDD600CEF37B4C28FE3F /* PBXContainerItemProxy */;
+			targetProxy = 2B8A12D5B1C5EA07EBEC276ADBE8AF54 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		287D5A62EF665D83F9FDA4FF1C038370 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1389B7A767D97EA5C9A7FA90766819B /* Pods-Luminous_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Luminous_Example/Pods-Luminous_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Luminous_Example/Pods-Luminous_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		424726A02B15E54A864F4C7145D7E9F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D60CCCD3C572005F872D219E9104A1DD /* Deviice.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Deviice/Deviice-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Deviice/Deviice-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Deviice/Deviice.modulemap";
+				PRODUCT_MODULE_NAME = Deviice;
+				PRODUCT_NAME = Deviice;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		4BE66A09A74FD25164AAB3C2645B9B93 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -657,14 +726,13 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		5994DE724EBE8760AF668CDE71B88F68 /* Release */ = {
+		6B4208FA76FFA8D0CAB4704B6725A35C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1CFB85B017A6532374BB8B14689D9B0C /* Pods-Luminous_Example.release.xcconfig */;
 			buildSettings = {
@@ -698,11 +766,10 @@
 			};
 			name = Release;
 		};
-		6D5ABD94FBBB5586259D2D28A736D78B /* Release */ = {
+		7A626692E53FBF9BFC7739CA39F6A0A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5D73784340347DA856EC5135479C313 /* Pods-Luminous_Tests.release.xcconfig */;
+			baseConfigurationReference = 65AB1399683FBB3E1DE93867CEFA38CA /* Luminous.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -712,53 +779,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Luminous/Luminous-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Luminous/Luminous-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MARKETING_VERSION = 2.0.1;
+				MODULEMAP_FILE = "Target Support Files/Luminous/Luminous.modulemap";
+				PRODUCT_MODULE_NAME = Luminous;
+				PRODUCT_NAME = Luminous;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		72639C5716ADE8DC9D0456A1DA489C04 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2B6A819F21D321EE38BE0295C5C34D6 /* Pods-Luminous_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -829,103 +862,9 @@
 			};
 			name = Debug;
 		};
-		9BB2E666E548CE77E67A3952A2BC3364 /* Debug */ = {
+		9474B7B82081EC7299E2B8A06BFDE4C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD9E1544597A2EB2305ED2666C79B1FE /* Deviice.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Deviice/Deviice-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Deviice/Deviice-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Deviice/Deviice.modulemap";
-				PRODUCT_MODULE_NAME = Deviice;
-				PRODUCT_NAME = Deviice;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		C4AB9674E9D5502BC8879D7799404395 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28E54FBD717C91F1EEC942932F7BC5ED /* Luminous.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Luminous/Luminous-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Luminous/Luminous-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Luminous/Luminous.modulemap";
-				PRODUCT_MODULE_NAME = Luminous;
-				PRODUCT_NAME = Luminous;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		CE0B97C680630E0FFC6155D78100CAB4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD9E1544597A2EB2305ED2666C79B1FE /* Deviice.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Deviice/Deviice-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Deviice/Deviice-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Deviice/Deviice.modulemap";
-				PRODUCT_MODULE_NAME = Deviice;
-				PRODUCT_NAME = Deviice;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D37213099D38844BBFA3AF2181C96E6C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1389B7A767D97EA5C9A7FA90766819B /* Pods-Luminous_Example.debug.xcconfig */;
+			baseConfigurationReference = E2B6A819F21D321EE38BE0295C5C34D6 /* Pods-Luminous_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -937,12 +876,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Luminous_Example/Pods-Luminous_Example-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Luminous_Example/Pods-Luminous_Example.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -956,9 +895,9 @@
 			};
 			name = Debug;
 		};
-		E4C77C9DCD63B7F0120141B4AA2F7E95 /* Release */ = {
+		B23C7B64B8E2FEAA79EB049019BD73CB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28E54FBD717C91F1EEC942932F7BC5ED /* Luminous.xcconfig */;
+			baseConfigurationReference = 2541251A3686DC12D76208C309333847 /* Luminous.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -974,6 +913,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 2.0.1;
 				MODULEMAP_FILE = "Target Support Files/Luminous/Luminous.modulemap";
 				PRODUCT_MODULE_NAME = Luminous;
 				PRODUCT_NAME = Luminous;
@@ -988,23 +928,79 @@
 			};
 			name = Release;
 		};
+		C9359D8666BA98D3F0A23CCBE440BF18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5D73784340347DA856EC5135479C313 /* Pods-Luminous_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Luminous_Tests/Pods-Luminous_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FA6CB64736A2DE97F49089A1ECA779B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C063FCD399AD20BE146C691FF63AB458 /* Deviice.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Deviice/Deviice-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Deviice/Deviice-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Deviice/Deviice.modulemap";
+				PRODUCT_MODULE_NAME = Deviice;
+				PRODUCT_NAME = Deviice;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		090569EECE950A9A9C8125840BEF3E53 /* Build configuration list for PBXNativeTarget "Pods-Luminous_Example" */ = {
+		2AFA52F28D1288ED0D8FDE776413A653 /* Build configuration list for PBXNativeTarget "Luminous" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D37213099D38844BBFA3AF2181C96E6C /* Debug */,
-				5994DE724EBE8760AF668CDE71B88F68 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3C9394727502FBA8EF3369A6E367EC2E /* Build configuration list for PBXNativeTarget "Pods-Luminous_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				72639C5716ADE8DC9D0456A1DA489C04 /* Debug */,
-				6D5ABD94FBBB5586259D2D28A736D78B /* Release */,
+				7A626692E53FBF9BFC7739CA39F6A0A2 /* Debug */,
+				B23C7B64B8E2FEAA79EB049019BD73CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1018,11 +1014,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C8BFD8B210BE816F32740E3FD21FF646 /* Build configuration list for PBXNativeTarget "Luminous" */ = {
+		BA42FA781D92C0A66B6B34B1999BF5BB /* Build configuration list for PBXNativeTarget "Pods-Luminous_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C4AB9674E9D5502BC8879D7799404395 /* Debug */,
-				E4C77C9DCD63B7F0120141B4AA2F7E95 /* Release */,
+				287D5A62EF665D83F9FDA4FF1C038370 /* Debug */,
+				6B4208FA76FFA8D0CAB4704B6725A35C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1030,8 +1026,17 @@
 		F5EF1207186A33EA5E7E29293186B81D /* Build configuration list for PBXNativeTarget "Deviice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9BB2E666E548CE77E67A3952A2BC3364 /* Debug */,
-				CE0B97C680630E0FFC6155D78100CAB4 /* Release */,
+				FA6CB64736A2DE97F49089A1ECA779B0 /* Debug */,
+				424726A02B15E54A864F4C7145D7E9F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA6D98BB7A1AC6714ABE258CA94CC79F /* Build configuration list for PBXNativeTarget "Pods-Luminous_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9474B7B82081EC7299E2B8A06BFDE4C3 /* Debug */,
+				C9359D8666BA98D3F0A23CCBE440BF18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

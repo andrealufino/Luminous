@@ -1,6 +1,6 @@
 # Luminous
 
-![Logo](./Example/Luminous.png)
+![Logo](./Example/luminous.png)
 
 ## Example
 
@@ -153,7 +153,7 @@ Any suggestion would be really appreciated. The library is designed using struct
 
 ## Author
 
-Andrea Mario Lufino, andrea.lufino@me.com
+Andrea Mario Lufino, andrea@andrelaufino.com.
 
 ## License
 
