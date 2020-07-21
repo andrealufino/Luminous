@@ -1,6 +1,6 @@
 # Luminous
 
-![Logo](./Example/luminous.png)
+![Luminous](./Example/luminous.png)
 
 ## Example
 
