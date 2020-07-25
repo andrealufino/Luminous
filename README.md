@@ -1,6 +1,6 @@
 # Luminous
 
-![Logo](./Example/Luminous.png)
+![Luminous](./Example/luminous.png)
 
 ## Example
 
@@ -20,8 +20,6 @@ Luminous is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-platform :ios, '8.0'
-use_frameworks!
 pod "Luminous"
 ```
 
@@ -54,10 +52,11 @@ In version 2, I've changed some things and added others. An important change has
 - `Audio` (thanks to [GregOriol](https://github.com/GregOriol))
     - `currentAudioOutputVolume`
     - `secondaryAudioShouldBeSilencedHint`
+- `SystemVersion` (from version 2.1.0) : this has been added under the `Hardware` struct and represents the system version
 
 ## What is Luminous?
 
-Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained (it still is my best library on github). I got ideas from that one and I wrote everything from scratch in Swift 3 adding some new feature and designing it in a different way thanks to the differences between Objective-C and Swift.
+Luminous is the son of [ALSystemUtilities](https://github.com/andrealufino/ALSystemUtilities) library which is no longer maintained (it still is my best library on github). I got ideas from that one and I wrote everything from scratch in Swift adding some new feature and designing it in a different way thanks to the differences between Objective-C and Swift.
 
 Luminous is a big library that I like to consider an "Helper Library". It provides a lot of information about the system and has some features that can speed up significantly the development process.
 
@@ -94,11 +93,12 @@ There are 11 different substructs here from which you can get information :
     - `mobileNetworkCode`
     - `allowsVOIP`
 - `Hardware`
+    - `SystemVersion`  struct
     - `processorsNumber`
     - `activeProcessorsNumber`
     - `physicalMemory`
     - `systemName`
-    - `systemVersion`
+    - `systemVersion` (this is a `SystemVersion` struct from version 2.1.0, no more a `String`)
     - `bootTime`
     - `isLowPowerModeEnabled`
     - `Screen`
@@ -153,7 +153,7 @@ Any suggestion would be really appreciated. The library is designed using struct
 
 ## Author
 
-Andrea Mario Lufino, andrea.lufino@me.com
+Andrea Mario Lufino, andrea@andrelaufino.com.
 
 ## License
 

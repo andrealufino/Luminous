@@ -55,6 +55,7 @@ class ViewController: UIViewController {
         print("processorsNumber: \(Luminous.Hardware.processorsNumber)")
         print("systemName: \(Luminous.Hardware.systemName)")
         print("systemVersion: \(Luminous.Hardware.systemVersion)")
+        print("isOperatingSystemAtLeastVersion \(Luminous.Hardware.isOperatingSystemAtLeastVersion("13"))")
         if #available(iOS 9.0, *) {
             print("isLowPowerModeEnabled: \(Luminous.Hardware.isLowPowerModeEnabled)")
         }

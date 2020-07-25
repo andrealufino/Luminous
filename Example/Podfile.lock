@@ -1,6 +1,6 @@
 PODS:
   - Deviice (1.20)
-  - Luminous (2.0.0):
+  - Luminous (2.0.1):
     - Deviice
 
 DEPENDENCIES:
@@ -16,8 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Deviice: 04d4669725709743bb9f54119039f429681eabbb
-  Luminous: 34be8e2f9afd9911f3be159c7894431c07565cd9
+  Luminous: 011350dc18eb9e423be505e6fcb080123cd214df
 
 PODFILE CHECKSUM: 33a6a638d825998a3ec0450afaa7114e0144de11
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

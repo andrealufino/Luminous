@@ -17,10 +17,10 @@ extension Luminous {
         
         private static var device: UIDevice {
             get {
-                let dev = UIDevice.current
-                dev.isBatteryMonitoringEnabled = true
+                let device = UIDevice.current
+                device.isBatteryMonitoringEnabled = true
                 
-                return dev
+                return device
             }
         }
         
