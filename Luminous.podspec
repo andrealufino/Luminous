@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '2.0.1'
+  s.version          = '2.1.0'
   s.summary          = 'Everything you need to know about your system.'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ This library allows to have a lot of system information in a very fast way.
   s.homepage         = 'https://github.com/andrealufino/Luminous'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Andrea Mario Lufino' => 'andrea.lufino@me.com' }
+  s.author           = { 'Andrea Mario Lufino' => 'andrea@andrealufino.com' }
   s.source           = { :git => 'https://github.com/andrealufino/Luminous.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

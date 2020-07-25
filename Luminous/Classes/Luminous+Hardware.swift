@@ -17,6 +17,66 @@ import Deviice
 
 extension Luminous {
     
+    /// This structure represents the system version. It's useful in case there's the need to
+    /// split up the OS version for specific purposes.
+    public struct SystemVersion: Equatable, Comparable {
+        
+        /// The major version. Ex: "10.1.2" will return 10.
+        private(set) var major: Int
+        /// The minor version. Ex: "10.1.2" will return 1.
+        private(set) var minor: Int
+        /// The patch version. Ex: "10.1.2" will return 2.
+        private(set) var patch: Int
+        /// The value of the version as string.
+        private(set) var stringValue: String
+        
+        init() {
+            major = 0
+            minor = 0
+            patch = 0
+            stringValue = "\(major).\(minor).\(patch)"
+        }
+        
+        /// Init with a string version.
+        /// This will fail if the version is not formatted in the correct way, with at least a dot inside it.
+        /// - Parameter version: The version used to init the structure.
+        init(withVersion version: String) {
+            
+            guard version.contains(".") else {
+                fatalError("version is not in the correct format")
+            }
+            
+            stringValue = version
+            
+            let components = version.components(separatedBy: ".")
+            
+            major = Int(components.first!)!
+            minor = Int(components.first!)!
+            patch = Int(components.first!)!
+        }
+        
+        public static func ==(lhs: SystemVersion, rhs: SystemVersion) -> Bool {
+            
+            return lhs.stringValue == rhs.stringValue
+        }
+        
+        public static func > (lhs: Luminous.SystemVersion, rhs: Luminous.SystemVersion) -> Bool {
+            
+            let lValue = "\(lhs.major)\(lhs.minor)\(lhs.patch)"
+            let rValue = "\(rhs.major)\(rhs.minor)\(rhs.patch)"
+            
+            return Double(lValue)! > Double(rValue)!
+        }
+        
+        public static func < (lhs: Luminous.SystemVersion, rhs: Luminous.SystemVersion) -> Bool {
+            
+            let lValue = "\(lhs.major)\(lhs.minor)\(lhs.patch)"
+            let rValue = "\(rhs.major)\(rhs.minor)\(rhs.patch)"
+            
+            return Double(lValue)! < Double(rValue)!
+        }
+    }
+    
     // MARK: Hardware
     
     /// Hardware information.
@@ -59,10 +119,16 @@ extension Luminous {
             return UIDevice().systemName
         }
         
-        /// The version of the system.
-        public static var systemVersion: String {
+        /// The version of the system. Private use.
+        private static var _systemVersion: String {
             
             return UIDevice().systemVersion
+        }
+        
+        /// The version of the system.
+        public static var systemVersion: SystemVersion {
+            
+            return SystemVersion.init(withVersion: _systemVersion)
         }
         
         /// The current boot time expressed in seconds.
