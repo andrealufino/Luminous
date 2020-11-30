@@ -16,7 +16,6 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(
             url: "https://github.com/andrealufino/Deviice",
-            from: "1.30.2",
             .branch("master")
         )
     ],
