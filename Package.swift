@@ -29,5 +29,6 @@ let package = Package(
         .testTarget(
             name: "LuminousTests",
             dependencies: ["Luminous"]),
-    ]
+    ],
+    exclude: ["Example", "Luminous.podspec", "Package.resolved"]
 )
