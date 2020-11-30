@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '2.1.0'
+  s.version          = '2.1.1'
   s.summary          = 'Everything you need to know about your system.'
 
 # This description is used to generate tags and improve search results.
@@ -29,7 +29,7 @@ This library allows to have a lot of system information in a very fast way.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
-  s.source_files = 'Luminous/Classes/**/*'
+  s.source_files = 'Luminous/Sources/**/*'
   s.swift_version = ["5.0"]
   
   # s.resource_bundles = {
