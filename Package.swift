@@ -30,5 +30,5 @@ let package = Package(
             name: "LuminousTests",
             dependencies: ["Luminous"]),
     ],
-    exclude: ["Example", "Luminous.podspec", "Package.resolved"]
+    exclude: ["./Example", "./Luminous.podspec", "./Package.resolved"]
 )
