@@ -14,10 +14,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
+Luminous is available through [CocoaPods](http://cocoapods.org) and Swift Package Manager.
+
 ### CocoaPods
 
-Luminous is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod "Luminous"
@@ -25,9 +26,13 @@ pod "Luminous"
 
 Then use `import Luminous` wherever you want to use the library.
 
+### Swift Package Manager
+
+To add Luminous to your Xcode project, select File -> Swift Packages -> Add Package Depedancy. Enter `https://github.com/andrealufino/Luminous` for the URL. Check the use branch option and enter `master`.
+
 ### Manually
 
-Download the project and drag the `Luminous.swift` and `Reachability.swift` files into your project. The library depends from the [Deviice](https://github.com/andrealufino/Deviice) framework. Download it and do the same with it (dragging `Deviice.swift`).
+Download the project and drag all the files present in `Luminous -> Luminous -> Sources` into your project. The library depends from the [Deviice](https://github.com/andrealufino/Deviice) framework. Download it and do the same with it (dragging `Deviice.swift`).
 
 ## Dependencies
 
@@ -153,7 +158,7 @@ Any suggestion would be really appreciated. The library is designed using struct
 
 ## Author
 
-Andrea Mario Lufino, andrea@andrelaufino.com.
+[Andrea Mario Lufino](https://andrealufino.com), andrea@andrelaufino.com.
 
 ## License
 
