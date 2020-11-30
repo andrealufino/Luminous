@@ -26,7 +26,7 @@ let package = Package(
             name: "Luminous",
             dependencies: [],
             path: "Sources",
-            exclude: ["./Example", "./Luminous.podspec", "./Package.resolved"]),
+            exclude: ["Example", "Luminous.podspec", "Package.resolved"]),
         .testTarget(
             name: "LuminousTests",
             dependencies: ["Luminous"]),
