@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Deviice",
+        "repositoryURL": "https://github.com/andrealufino/Deviice.git",
+        "state": {
+          "branch": "master",
+          "revision": "a3b1b0950ad55dd4886a915c21d1912b20b4d83d",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
