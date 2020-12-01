@@ -12,6 +12,7 @@ import CoreTelephony
 import ExternalAccessory
 import Foundation
 import SystemConfiguration.CaptiveNetwork
+import UIKit
 
 import Deviice
 
