@@ -1,6 +1,6 @@
 {
   "name": "Luminous",
-  "version": "2.1.21",
+  "version": "2.1.22",
   "summary": "Everything you need to know about your system.",
   "description": "This library allows to have a lot of system information in a very fast way.",
   "homepage": "https://github.com/andrealufino/Luminous",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/andrealufino/Luminous.git",
-    "tag": "2.1.21"
+    "tag": "2.1.22"
   },
   "platforms": {
     "ios": "8.0"
