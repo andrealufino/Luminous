@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '2.1.22'
+  s.version          = '2.1.23'
   s.summary          = 'Everything you need to know about your system.'
 
 # This description is used to generate tags and improve search results.
