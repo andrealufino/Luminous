@@ -22,7 +22,6 @@ extension Luminous {
             do {
                 try audioSession.setActive(true)
                 let volume = audioSession.outputVolume
-                try audioSession.setActive(false)
                 return Double(volume)
             } catch {
                 print("Luminous - Failed to activate audio session.")
