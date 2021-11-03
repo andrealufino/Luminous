@@ -23,13 +23,13 @@ extension Luminous {
     public struct SystemVersion: Equatable, Comparable {
         
         /// The major version. Ex: "10.1.2" will return 10.
-        private(set) var major: Int
+        public var major: Int
         /// The minor version. Ex: "10.1.2" will return 1.
-        private(set) var minor: Int
+        public var minor: Int
         /// The patch version. Ex: "10.1.2" will return 2.
-        private(set) var patch: Int
+        public var patch: Int
         /// The value of the version as string.
-        private(set) var stringValue: String
+        public var stringValue: String
         
         init() {
             major = 0
@@ -51,9 +51,9 @@ extension Luminous {
             
             let components = version.components(separatedBy: ".")
             
-            major = Int(components.first!)!
-            minor = Int(components.first!)!
-            patch = Int(components.first!)!
+            major = components.count > 0 ? Int(components[0])! : 0
+            minor = components.count > 1 ? Int(components[1])! : 0
+            patch = components.count > 2 ? Int(components[2])! : 0
         }
         
         public static func ==(lhs: SystemVersion, rhs: SystemVersion) -> Bool {
