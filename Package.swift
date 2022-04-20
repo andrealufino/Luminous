@@ -16,7 +16,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(
             url: "https://github.com/andrealufino/Deviice.git",
-            from: "1.31.00"
+            from: "2.0.0"
         )
     ],
     targets: [

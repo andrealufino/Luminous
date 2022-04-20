@@ -8,13 +8,16 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-- iOS 8+
+- iOS 12+
 - Swift 5
-- Xcode 10
 
 ## Installation
 
-Luminous is available through [CocoaPods](http://cocoapods.org) and Swift Package Manager.
+Luminous is available through Swift Package Manager and [CocoaPods](http://cocoapods.org).
+
+### Swift Package Manager
+
+Add `https://github.com/andrealufino/Luminous` as the URL of the library. [Deviice](https://github.com/andrealufino/Deviice) will also be imported. 
 
 ### CocoaPods
 
@@ -26,17 +29,13 @@ pod "Luminous"
 
 Then use `import Luminous` wherever you want to use the library.
 
-### Swift Package Manager
-
-To add Luminous to your Xcode project, select File -> Swift Packages -> Add Package Depedancy. Enter `https://github.com/andrealufino/Luminous` for the URL. Check the use branch option and enter `master`.
-
-### Manually
-
-Download the project and drag all the files present in `Luminous -> Luminous -> Sources` into your project. The library depends from the [Deviice](https://github.com/andrealufino/Deviice) framework. Download it and do the same with it (dragging `Deviice.swift`).
-
 ## Dependencies
 
-Luminous has only 1 dependency : [Deviice](https://github.com/andrealufino/Deviice) which is my other library useful to know on which device your app is running on, plus some nice information.
+Luminous has only 1 dependency : [Deviice](https://github.com/andrealufino/Deviice) which is my other library useful to know on which device your app is running on, plus some nice information. This dependency is no more actually used since version 2.2.0, but it is still there when you add `Luminous`.
+
+## Version 2.2.0 - Breaking Change
+
+In version 2.2.0 I updated the `Luminous.Hardware.Device` structure, removing the `current` var that was returning a `Deviice` object. Given that the [Deviice](https://github.com/andrealufino/Deviice) library has been updated to version 2, I took the opportunity to make a change also here. So, Luminous still automatically download the [Deviice](https://github.com/andrealufino/Deviice) library, but it is not using it in the framework. If you want to get the `Deviice` (or, better, the new `Device`) object, you have to do it importing `Deviice` and use everything from there. 
 
 ## Migration to version 2
 
@@ -158,7 +157,7 @@ Any suggestion would be really appreciated. The library is designed using struct
 
 ## Author
 
-[Andrea Mario Lufino](https://andrealufino.com), andrea@andrelaufino.com.
+[Andrea Mario Lufino](https://andrealufino.com).
 
 ## License
 

@@ -5,29 +5,48 @@
 
 ![Logo](./Example/Deviice/Deviice.png)
 
+## Version 2
+
+The library has been completely rewritten from scratch. This version still offers the `Deviice` structure, but it has been marked as deprecated and will be removed in future versions. Now, the whole magic is done via the `Device` class. 
+
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+There is documentation for all the classes, methods and properties in the code. 
+To give a general idea, this is how things work. 
 
-<pre><code>let device = Deviice.current
-</code></pre>
-device is a Deviice struct and has some properties:
- 
-<pre><code>device.identifier
-device.type
-device.modelName
-device.size
-device.connectivity
-device.completeDeviceName
-</code></pre>
+```swift
+let device = Device.init()  // This instantiate a `Device` object based on the current device.
+
+print(device.model.marketingName)   // This prints "iPhone 12 Pro" in case it is running on an iPhone 12 Pro
+
+```
+
+There is also the possibility to get the actual device being simulated on a Mac. 
+
+```swift
+let device = Device.init()
+
+print(device.model.marketingName)           // This will print "Simulator"
+print(device.actualModel.marketingName)     // This will print "iPhone 12 Pro" in case you're simulating an iPhone 12 Pro
+```
+
+With the first release, there's no chance to get the type of connectivity of a specific device. This will be probably added later. 
 
 ## Requirements
  
-This library works on iOS 8 or higher.
+This library works on iOS 12 or higher.
 
 ## Installation
 
-Deviice is available through [CocoaPods](http://cocoapods.org). To install
+Deviice is available through Swift Package Manager and [CocoaPods](http://cocoapods.org).
+
+### Swift Package Manager
+
+You can add this library via Swift Package Manager, using this url `https://github.com/andrealufino/Deviice`.
+
+### CocoaPods
+
+To install
 it, simply add the following line to your Podfile:
 
 ```ruby
@@ -36,7 +55,7 @@ pod "Deviice"
 
 ## Author
 
-Andrea Mario Lufino, [andrealufino.me](https://andrealufino.me).
+Andrea Mario Lufino, [andrealufino.com](https://andrealufino.com). Thanks to all the contributors.
 
 ## License
 

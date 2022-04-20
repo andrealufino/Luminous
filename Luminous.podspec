@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Luminous'
-  s.version          = '2.1.24'
+  s.version          = '2.2.0'
   s.summary          = 'Everything you need to know about your system.'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ This library allows to have a lot of system information in a very fast way.
   s.source           = { :git => 'https://github.com/andrealufino/Luminous.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '12.0'
   s.source_files = 'Sources/Luminous/*.swift'
   s.swift_version = ["5.0"]
   
@@ -38,5 +38,5 @@ This library allows to have a lot of system information in a very fast way.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'SystemConfiguration', 'CoreTelephony', 'AVFoundation', 'ExternalAccessory'
-  s.dependency 'Deviice'
+  s.dependency 'Deviice', '>= 2.0.0'
 end

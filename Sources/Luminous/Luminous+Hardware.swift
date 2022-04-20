@@ -13,8 +13,6 @@ import Foundation
 import SystemConfiguration.CaptiveNetwork
 import UIKit
 
-import Deviice
-
 
 extension Luminous {
     
@@ -203,12 +201,6 @@ extension Luminous {
         
         /// Device information
         public struct Device {
-            
-            /// The current device as Deviice object (see [Deviice](https://github.com/andrealufino/Deviice) library)
-            public static var current: Deviice {
-                
-                return Deviice.current
-            }
             
             /// The identifier for vendor of the device
             public static var identifierForVendor: String? {
