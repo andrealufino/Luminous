@@ -1,7 +1,7 @@
 PODS:
   - Deviice (2.0.0)
   - Luminous (2.2.0):
-    - Deviice (~> 2.0.0)
+    - Deviice (>= 2.0.0)
 
 DEPENDENCIES:
   - Luminous (from `../`)
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Deviice: fddd65ddc8b5580aacd98b2792564732c2669e9e
-  Luminous: 73f7e061c42039d379599812ddfd1c669959ba4f
+  Luminous: 22b449577c9de4ea2d2eda87add34fbc50115a97
 
 PODFILE CHECKSUM: 502b5f76f1f73a099fe50c0aba9ac75c7fed5e40
 
