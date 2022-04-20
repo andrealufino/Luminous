@@ -1,6 +1,6 @@
 {
   "name": "Luminous",
-  "version": "2.1.22",
+  "version": "2.2.0",
   "summary": "Everything you need to know about your system.",
   "description": "This library allows to have a lot of system information in a very fast way.",
   "homepage": "https://github.com/andrealufino/Luminous",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/andrealufino/Luminous.git",
-    "tag": "2.1.22"
+    "tag": "2.2.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "12.0"
   },
   "source_files": "Sources/Luminous/*.swift",
   "swift_versions": [
@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "Deviice": [
-
+      "~> 2.0.0"
     ]
   },
   "swift_version": "5.0"

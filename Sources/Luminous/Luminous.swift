@@ -13,8 +13,6 @@ import ExternalAccessory
 import Foundation
 import SystemConfiguration.CaptiveNetwork
 
-import Deviice
-
 
 // MARK: Luminous
 
