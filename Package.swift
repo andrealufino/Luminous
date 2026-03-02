@@ -1,11 +1,11 @@
-// swift-tools-version:5.3
+// swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
     name: "Luminous",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v17)
     ],
     products: [
         .library(
@@ -17,9 +17,14 @@ let package = Package(
         .target(
             name: "Luminous",
             dependencies: [],
-            path: "Sources"),
+            path: "Sources",
+            swiftSettings: [
+                .swiftLanguageMode(.v6)
+            ]
+        ),
         .testTarget(
             name: "LuminousTests",
-            dependencies: ["Luminous"]),
+            dependencies: ["Luminous"]
+        ),
     ]
 )

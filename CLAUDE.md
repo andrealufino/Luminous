@@ -2,70 +2,74 @@
 
 ## Project Identity
 
-**Luminous** is a personal iOS Swift Package by Andrea Mario Lufino. It is a system information helper library providing a unified static API for querying device/system data (hardware, battery, disk, network, locale, carrier, audio, app metadata).
+**Luminous** is a personal iOS Swift Package by Andrea Mario Lufino. It is a system information helper library providing a unified static API for querying device/system data (hardware, battery, disk, network, locale, audio, app metadata).
 
-- Version: 2.2.0
-- Platform: iOS 12+, Swift 5 (swift-tools-version 5.3)
+- Version: 3.0.0
+- Platform: iOS 17+, Swift 6 (swift-tools-version 6.0, `.swiftLanguageMode(.v6)`)
 - Distribution: SPM + CocoaPods
 - Current branch: `develop` (git-flow model: develop → release/X.Y.Z → master)
 
 ## Architecture Reference
 
-See `docs/architecture.md` for the full reference — type hierarchy, API tables, design patterns, file map, and known issues. Read that before making any changes.
+See `docs/architecture.md` for the full reference — type hierarchy, API tables, design patterns, file map, and breaking changes from v2. Read that before making any changes.
 
 ## Project Structure
 
 ```
-Sources/Luminous/         10 source files — the entire library
-Tests/LuminousTests/      7 real tests (all passing)
-Example/                  CocoaPods example UIKit app (slightly outdated)
+Sources/Luminous/         9 source files — the entire library
+Tests/LuminousTests/      21 tests (all passing)
+Example/                  CocoaPods example UIKit app (outdated, references removed APIs)
 docs/                     Architecture and reference documentation
-Luminous.podspec          CocoaPods spec
-Package.swift             SPM manifest (platforms: iOS 12+, no external dependencies)
+Luminous.podspec          CocoaPods spec (v3.0.0, iOS 17, Swift 6)
+Package.swift             SPM manifest (iOS 17, swift-tools-version 6.0, no external deps)
 ```
 
 ## Design Conventions
 
-This library has established conventions — match them exactly:
+Match these exactly when making changes:
 
-- **Namespace struct pattern**: all public API lives as `static` properties/methods on nested structs under `Luminous`. No instances, no state.
-- **Extension-per-domain**: each domain is `extension Luminous { public struct Domain { ... } }` in its own `Luminous+Domain.swift` file.
-- **Value types only**: use `struct` for any new types. The only class is the vendored `Reachability.swift`.
-- **No protocols**: the library defines zero protocols. Don't introduce them without a compelling reason.
-- **No ViewModels, no Combine, no async/await**: this is a pure data-access library with synchronous (or simple async) reads. Respect that.
-- **`MeasureUnit` for size values**: disk and memory values take a `MeasureUnit` parameter — follow that pattern for any new size-based API.
-- **Deprecate, don't remove**: when changing an API, use `@available(*, deprecated, renamed:)` first. See existing disk/carrier deprecations as examples.
+- **Namespace enum pattern**: `Luminous` is an empty `enum` (not struct) — prevents instantiation.
+- **Extension-per-domain**: each domain is `extension Luminous { public struct Domain { ... } }` in `Luminous+Domain.swift`.
+- **Static-only API**: all properties/methods are `static`. No instances, no stored state (except `Network.monitor`).
+- **Swift 6 concurrency**: structs that don't touch UIKit are `Sendable`; UIKit-dependent ones are `@MainActor`. See `docs/architecture.md` for the full concurrency table.
+- **`UnitInformationStorage` for size values**: disk and memory parameters use `UnitInformationStorage` (not custom enums).
+- **`OperatingSystemVersion` for OS versions**: use `ProcessInfo.processInfo.operatingSystemVersion` and the `Comparable` extension in `OperatingSystemVersion+Comparable.swift`.
+- **No protocols**: the library defines zero protocols.
+- **No ViewModels, no Combine**: pure synchronous data-access library.
+- **Breaking changes allowed**: v3 is a major version; deprecated v2 APIs have been removed.
 
 ## Dependencies
 
-- No external SPM dependencies.
-- **Reachability.swift**: vendored third-party file (Ashley Mills, BSD license). Used internally by `Luminous.Network`. Candidate for replacement with `NWPathMonitor` (API phase).
+No external SPM or CocoaPods dependencies.
 
 ## Adding a New Domain
 
 1. Create `Sources/Luminous/Luminous+NewDomain.swift`
-2. Add the standard file header
+2. Add the standard Xcode file header
 3. `import` only the frameworks actually needed
-4. Write `extension Luminous { public struct NewDomain { ... } }` with all-`static` properties
-5. Update `docs/architecture.md` with the new type
+4. `extension Luminous { public struct NewDomain: Sendable { ... } }` with all-`static` properties
+5. Add `@MainActor` to the struct if it requires UIKit
+6. Update `docs/architecture.md` with the new type and API table
 
 ## Known State
 
-- Example app won't compile as-is (references removed `Device.current` from Deviice)
-- Several API-level issues remain (see `docs/architecture.md` → Known Issues)
+- Example app won't compile (references v2 APIs that were removed in v3)
+- `OperatingSystemVersion` has both `@retroactive Equatable` and `@retroactive Comparable` — both are needed for Swift 6 (synthesis doesn't work in retroactive cross-module extensions)
 
 ## Build & Test
 
-`swift build` doesn't work — UIKit makes this iOS-only. Use xcodebuild:
+`swift build` fails — UIKit is iOS-only. Use xcodebuild via XcodeBuildMCP:
+
+```
+mcp__XcodeBuildMCP__test_sim
+```
+
+Or raw xcodebuild:
 
 ```bash
-# Build
-xcodebuild -workspace . -scheme Luminous build \
-  -destination 'platform=iOS Simulator,id=<SIM_UUID>'
-
-# Test
-xcodebuild -workspace . -scheme Luminous test \
+xcodebuild -workspace .swiftpm/xcode/package.xcworkspace \
+  -scheme Luminous test \
   -destination 'platform=iOS Simulator,id=<SIM_UUID>'
 ```
 
-Use `mcp__XcodeBuildMCP__build_sim` / `test_sim` when working within an app context that imports Luminous.
+Session defaults are already configured (`workspacePath`, `scheme`, `simulatorId`).

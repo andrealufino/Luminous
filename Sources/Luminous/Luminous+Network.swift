@@ -7,26 +7,28 @@
 
 import Foundation
 import Network
-import SystemConfiguration.CaptiveNetwork
 
+
+// MARK: - Network
 
 extension Luminous {
 
-
-    // MARK: - Network
-
-    /// Network information.
+    /// Network connectivity information.
+    ///
+    /// Backed by a shared `NWPathMonitor` that starts once on first access and
+    /// updates in the background. The initial path is delivered synchronously so
+    /// the first read always returns a valid value.
     public struct Network {
 
         // MARK: Private
 
-        /// Internal singleton that monitors the current network path.
-        ///
-        /// Uses `NWPathMonitor` to deliver the initial path synchronously on first access,
-        /// then keeps updating in the background for all subsequent reads.
         private static let monitor: PathMonitor = PathMonitor()
 
-        private final class PathMonitor {
+        /// Thread-safe wrapper around `NWPathMonitor`.
+        ///
+        /// Marked `@unchecked Sendable` because thread-safety is enforced manually
+        /// through `NSLock`.
+        private final class PathMonitor: @unchecked Sendable {
 
             private let nwMonitor = NWPathMonitor()
             private let queue = DispatchQueue(label: "com.luminous.pathMonitor", qos: .utility)
@@ -34,23 +36,22 @@ extension Luminous {
             private var _currentPath: NWPath?
 
             var currentPath: NWPath? {
-                lock.lock()
-                defer { lock.unlock() }
-                return _currentPath
+                lock.withLock { _currentPath }
             }
 
             init() {
                 let semaphore = DispatchSemaphore(value: 0)
-                var signalled = false
 
                 nwMonitor.pathUpdateHandler = { [weak self] path in
                     guard let self else { return }
+                    var shouldSignal = false
                     self.lock.lock()
-                    let isFirst = self._currentPath == nil
-                    self._currentPath = path
+                    if self._currentPath == nil {
+                        self._currentPath = path
+                        shouldSignal = true
+                    }
                     self.lock.unlock()
-                    if isFirst && !signalled {
-                        signalled = true
+                    if shouldSignal {
                         semaphore.signal()
                     }
                 }
@@ -61,46 +62,48 @@ extension Luminous {
         }
 
 
-        // MARK: Public Properties
+        // MARK: Connectivity
 
-        /// Check if the device is connected via WiFi.
+        /// Whether the device is currently connected via Wi-Fi.
         public static var isConnectedViaWiFi: Bool {
             monitor.currentPath?.usesInterfaceType(.wifi) ?? false
         }
 
-        /// Check if the device is connected via cellular.
+        /// Whether the device is currently connected via cellular.
         public static var isConnectedViaCellular: Bool {
             monitor.currentPath?.usesInterfaceType(.cellular) ?? false
         }
 
-        /// Check if internet is available (any satisfied connection).
+        /// Whether any satisfied network path is available.
         public static var isInternetAvailable: Bool {
             monitor.currentPath?.status == .satisfied
         }
 
-        /// Get the network SSID. Does not work in the Simulator.
+        // MARK: Path Attributes
+
+        /// Whether the current network path is considered expensive (e.g. cellular
+        /// or a personal hotspot).
         ///
-        /// Deprecated since iOS 13: `CNCopySupportedInterfaces` is no longer accessible
-        /// without the "Access WiFi Information" entitlement, and returns empty results
-        /// in most contexts.
-        @available(iOS, deprecated: 13.0, message: "SSID access via CNCopySupportedInterfaces is no longer reliable on iOS 13+.")
-        public static var SSID: String {
-            var currentSSID = ""
+        /// Apps should reduce non-essential data usage when this is `true`.
+        public static var isExpensive: Bool {
+            monitor.currentPath?.isExpensive ?? false
+        }
 
-            guard let interfaces = CNCopySupportedInterfaces() as? [String] else {
-                return currentSSID
-            }
+        /// Whether the current network path is constrained by Low Data Mode.
+        ///
+        /// Apps should defer discretionary transfers when this is `true`.
+        public static var isConstrained: Bool {
+            monitor.currentPath?.isConstrained ?? false
+        }
 
-            for interface in interfaces {
-                guard
-                    let info = CNCopyCurrentNetworkInfo(interface as CFString) as? [String: Any],
-                    let ssid = info["SSID"] as? String
-                else { continue }
-                currentSSID = ssid
-                break
-            }
+        /// Whether the current network path supports IPv4.
+        public static var supportsIPv4: Bool {
+            monitor.currentPath?.supportsIPv4 ?? false
+        }
 
-            return currentSSID
+        /// Whether the current network path supports IPv6.
+        public static var supportsIPv6: Bool {
+            monitor.currentPath?.supportsIPv6 ?? false
         }
     }
 }

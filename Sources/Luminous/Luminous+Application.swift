@@ -6,38 +6,34 @@
 //
 
 import Foundation
-import UIKit
 
+
+// MARK: - Application
 
 extension Luminous {
-    
-    // MARK: Application
-    
-    /// Application information.
-    public struct Application {
-        
-        /// The current app version. Returns an empty string if the bundle info is unavailable
-        /// (e.g. in test or framework contexts without an Info.plist).
+
+    /// Application bundle information.
+    public struct Application: Sendable {
+
+        /// The current app version string (e.g. "2.1.3").
+        ///
+        /// Returns an empty string if `CFBundleShortVersionString` is absent from
+        /// the bundle info dictionary (e.g. in test targets or frameworks without Info.plist).
         public static var version: String {
             Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         }
 
-        /// The build number. Returns an empty string if the bundle info is unavailable
-        /// (e.g. in test or framework contexts without an Info.plist).
+        /// The current build number string (e.g. "343").
+        ///
+        /// Returns an empty string if `CFBundleVersion` is absent from the bundle
+        /// info dictionary.
         public static var build: String {
             Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
         }
-        
-        /// The complete app version with build number (i.e. : "2.1.3 (343)").
+
+        /// The combined version and build string (e.g. "2.1.3 (343)").
         public static var completeAppVersion: String {
-            
-            return "\(Application.version) (\(Application.build))"
-        }
-        
-        /// The current content of the clipboard (only string).
-        public static var clipboardString: String? {
-            
-            return UIPasteboard.general.string
+            "\(version) (\(build))"
         }
     }
 }

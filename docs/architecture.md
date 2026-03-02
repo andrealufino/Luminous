@@ -2,11 +2,11 @@
 
 ## Overview
 
-Luminous is an iOS system information library written in Swift. It provides a unified, static API to query device and system data: hardware specs, battery, disk, network, locale, carrier, audio, and application metadata.
+Luminous is an iOS system information library written in Swift. It provides a unified, static API to query device and system data: hardware specs, battery, disk, network, locale, audio, and application metadata.
 
-- **Version**: 2.2.0
-- **Platform**: iOS 12+
-- **Swift version**: 5.0 (swift-tools-version 5.3)
+- **Version**: 3.0.0
+- **Platform**: iOS 17+
+- **Swift version**: 6.0 (strict concurrency)
 - **Distribution**: Swift Package Manager + CocoaPods
 - **License**: MIT
 - **Author**: Andrea Mario Lufino
@@ -16,9 +16,9 @@ Luminous is an iOS system information library written in Swift. It provides a un
 
 ## Module Structure
 
-Single SPM module: `Luminous`. All source lives under `Sources/Luminous/` (10 files). One test target `LuminousTests` under `Tests/LuminousTests/`.
+Single SPM module: `Luminous`. All source lives under `Sources/Luminous/` (9 files). One test target `LuminousTests` under `Tests/LuminousTests/`.
 
-Architecture pattern: **hub-and-spoke**. The `Luminous` struct acts as a namespace. Each domain area is a nested struct in its own extension file. All API is `static` — no instantiation needed.
+Architecture pattern: **hub-and-spoke**. `Luminous` is an `enum` (prevents instantiation) acting as a namespace. Each domain area is a nested struct in its own extension file. All API is `static` — no instantiation needed.
 
 ---
 
@@ -26,53 +26,75 @@ Architecture pattern: **hub-and-spoke**. The `Luminous` struct acts as a namespa
 
 | File | Nested Type | Purpose |
 |------|-------------|---------|
-| `Luminous.swift` | — | Root namespace struct, `BatteryState` enum, `MeasureUnit` enum |
-| `Luminous+Application.swift` | `Luminous.Application` | App version, build number, clipboard |
-| `Luminous+Audio.swift` | `Luminous.Audio` | Audio output volume, secondary audio hint |
+| `Luminous.swift` | — | Root namespace enum (empty body) |
+| `OperatingSystemVersion+Comparable.swift` | — | Retroactive `Equatable` + `Comparable` for `OperatingSystemVersion` |
+| `Luminous+Application.swift` | `Luminous.Application` | App version and build number |
+| `Luminous+Audio.swift` | `Luminous.Audio` | Audio volume, headphone detection |
 | `Luminous+Battery.swift` | `Luminous.Battery` | Battery level (%) and state |
-| `Luminous+Carrier.swift` | `Luminous.Carrier` | Carrier name, MCC, MNC, VoIP support |
-| `Luminous+Disk.swift` | `Luminous.Disk` | Total/free/used disk space in configurable units |
-| `Luminous+Hardware.swift` | `Luminous.Hardware` + `Luminous.SystemVersion` | CPU, RAM, OS version, screen, device ID, accessories, sensors |
+| `Luminous+Disk.swift` | `Luminous.Disk` | Total/free/used disk space via URL resource values |
+| `Luminous+Hardware.swift` | `Luminous.Hardware` | CPU, RAM, OS version, thermal state, screen, device |
 | `Luminous+Locale.swift` | `Luminous.Locale` | Language, timezone, country, currency, metric system |
-| `Luminous+Network.swift` | `Luminous.Network` | WiFi/cellular/internet reachability, SSID |
-| `Reachability.swift` | `Reachability` | Vendored third-party class (Ashley Mills, BSD) for `SCNetworkReachability` |
+| `Luminous+Network.swift` | `Luminous.Network` | WiFi/cellular/internet, expense/constraint/IP version flags |
 
 ---
 
 ## Type Hierarchy
 
 ```
-Luminous (struct — namespace only)
-├── BatteryState (enum)          .unknown | .unplugged | .charging | .full
-├── MeasureUnit (enum)           .bytes | .kilobytes | .megabytes | .gigabytes | .percentage
-├── SystemVersion (struct)       Equatable, Comparable — parses "major.minor.patch"
-├── Application (struct)         version, build, completeAppVersion, clipboardString
-├── Audio (struct)               currentAudioOutputVolume, secondaryAudioShouldBeSilencedHint
-├── Battery (struct)             level, state
-├── Carrier (struct)             name, ISOCountryCode, mobileCountryCode, mobileNetworkCode, isVoipAllowed
-├── Disk (struct)                totalSpaceInBytes, freeSpaceInBytes, totalSpace(measureUnit:), freeSpace(measureUnit:), usedSpace(measureUnit:)
-├── Hardware (struct)
-│   ├── processorsNumber, activeProcessorsNumber
-│   ├── physicalMemory(with:), systemName, systemVersion, bootTime, isLowPowerModeEnabled
-│   ├── Screen (struct)          brightness, isScreenMirrored, nativeBounds, nativeScale, bounds, scale, snapshotOfCurrentView
-│   ├── Device (struct)          identifierForVendor, orientation
-│   ├── Accessory (struct)       count, connectedAccessoriesNames, connectedAccessories, isHeadsetPluggedIn
-│   └── Sensors (struct)         isAccelerometerAvailable, isGyroAvailable, isMagnetometerAvailable, isDeviceMotionAvailable
-├── Locale (struct)              currentLanguage, currentTimeZone, currentTimeZoneName, currentCountry, currentCurrency, currentCurrencySymbol, usesMetricSystem, decimalSeparator
-└── Network (struct)             isConnectedViaWiFi, isConnectedViaCellular, isInternetAvailable, SSID
+Luminous (enum — namespace only, no cases)
+├── Application (struct: Sendable)
+│   version, build, completeAppVersion
+├── Audio (struct: Sendable)
+│   currentAudioOutputVolume, secondaryAudioShouldBeSilencedHint
+│   isWiredHeadsetPluggedIn, isAnyHeadphoneConnected
+├── Battery (@MainActor struct)
+│   level, state
+├── Disk (struct: Sendable)
+│   totalSpaceInBytes, freeSpaceInBytes
+│   totalSpace(in:), freeSpace(in:), usedSpace(in:)
+├── Hardware (struct: Sendable)
+│   processorsNumber, activeProcessorsNumber
+│   physicalMemory(in:), availableMemoryInBytes, availableMemory(in:)
+│   systemVersion, uptime, isLowPowerModeEnabled, thermalState, modelIdentifier
+│   ├── Screen (@MainActor struct)
+│   │   brightness, isScreenMirrored, nativeBounds, nativeScale
+│   │   bounds, scale, maximumRefreshRate
+│   └── Device (@MainActor struct)
+│       identifierForVendor, orientation, systemName, userInterfaceStyle
+├── Locale (struct: Sendable)
+│   currentLanguage, currentTimeZone, currentTimeZoneName
+│   currentCountry, currentCurrency, currentCurrencySymbol
+│   usesMetricSystem, decimalSeparator
+└── Network (struct)
+    isConnectedViaWiFi, isConnectedViaCellular, isInternetAvailable
+    isExpensive, isConstrained, supportsIPv4, supportsIPv6
 
-Reachability (class — standalone, not nested under Luminous)
-├── NetworkStatus (enum)         .notReachable | .reachableViaWiFi | .reachableViaWWAN
-└── ReachabilityError (enum)     failure cases for setup
+OperatingSystemVersion (Foundation) — extended with @retroactive Equatable + Comparable
 ```
+
+---
+
+## Concurrency Model
+
+| Domain | Isolation | Reason |
+|--------|-----------|--------|
+| `Application` | `nonisolated` | `Bundle` is thread-safe |
+| `Audio` | `nonisolated` | `AVAudioSession` is thread-safe |
+| `Battery` | `@MainActor` | `UIDevice` must run on main thread |
+| `Disk` | `nonisolated` | `FileManager` / URL resource values are thread-safe |
+| `Hardware` (root) | `nonisolated` | `ProcessInfo` is thread-safe |
+| `Hardware.Screen` | `@MainActor` | `UIWindowScene`, `UIScreen` require main thread |
+| `Hardware.Device` | `@MainActor` | `UIDevice` requires main thread |
+| `Locale` | `nonisolated` | `Foundation.Locale` is thread-safe |
+| `Network` | `nonisolated` + `@unchecked Sendable` | `NWPathMonitor` on dedicated queue, `NSLock` for internal state |
 
 ---
 
 ## Design Patterns
 
-### Namespace struct + extension-per-domain
+### Namespace enum + extension-per-domain
 
-`Luminous` is never instantiated. Each domain lives in its own file as `extension Luminous { public struct Domain { ... } }`. This keeps the codebase modular while maintaining a single coherent namespace.
+`Luminous` is an empty `enum` — it cannot be instantiated (unlike a struct where `init()` is implicitly available). Each domain lives in its own file as `extension Luminous { public struct Domain { ... } }`.
 
 **Adding a new domain**: Create `Sources/Luminous/Luminous+NewDomain.swift` with `extension Luminous { public struct NewDomain { ... } }`.
 
@@ -81,47 +103,42 @@ Reachability (class — standalone, not nested under Luminous)
 Every property and method on every nested struct is `static`. Consumers never hold references. Call sites look like:
 
 ```swift
-let level = Luminous.Battery.level
-let free = Luminous.Disk.freeSpace(measureUnit: .gigabytes)
-let brightness = Luminous.Hardware.Screen.brightness
+let level = await Luminous.Battery.level          // @MainActor
+let free  = Luminous.Disk.freeSpace(in: .gigabytes)
+let wifi  = Luminous.Network.isConnectedViaWiFi
 ```
 
-### Value types throughout
+### Network: PathMonitor singleton
 
-All Luminous-defined types are structs. The only class is the vendored `Reachability`.
+`NWPathMonitor` is started once on first access to `Luminous.Network`. A `DispatchSemaphore` blocks until the first path update arrives, so the very first read is always synchronous and accurate. Subsequent updates happen in the background on a dedicated utility queue.
 
-### No protocols, no delegation, no generics
+### Disk: URL resource values
 
-The library defines zero protocols. It is a pure data-access layer with no callbacks or observation patterns of its own (Reachability has its own notification/callback system internally, but that is not part of the public Luminous API).
+Disk space uses `URL.resourceValues(forKeys:)`:
+- `.volumeTotalCapacityKey` for total capacity
+- `.volumeAvailableCapacityForImportantUsageKey` for free space
 
-### Deprecated API migration pattern
+The latter accounts for purgeable content and gives a more accurate picture of space available for important writes than the old `FileManager.attributesOfFileSystem` approach.
 
-Older string-returning disk properties (`totalSpace`, `freeSpace`, `usedSpace`) are marked `@available(*, deprecated)` in favour of the `measureUnit:`-based methods. Same pattern used for `Carrier.networkCountryCode` → `mobileNetworkCode`.
+### Screen: UIWindowScene
+
+`Hardware.Screen` queries the foreground-active `UIWindowScene` for all screen metrics, replacing the deprecated `UIScreen.main` accessors. Falls back to `UIScreen.main` when no scene is active (e.g. during background execution).
 
 ---
 
 ## Dependencies
-
-### Deviice
-
-Removed. Was used by `Luminous.Hardware.Device.current` (dropped in v2.2.0), then lingered in `Package.swift` and `Luminous.podspec` as dead weight. Consumers who need device identification should add Deviice directly to their project.
-
-### Network framework
-
-`import Network` — used by `Luminous.Network` for `NWPathMonitor`. Replaces the previously vendored `Reachability.swift` (Ashley Mills, SCNetworkReachability-based).
 
 ### System frameworks
 
 | Framework | Used by |
 |-----------|---------|
 | `Foundation` | All |
-| `UIKit` | Battery, Hardware (Screen, Device), Application |
+| `UIKit` | Battery, Hardware (Screen, Device) |
 | `Network` | Network (NWPathMonitor) |
-| `AVFoundation` | Audio, Hardware.Accessory (headphone detection) |
-| `CoreTelephony` | Carrier |
-| `CoreMotion` | Hardware.Sensors |
-| `ExternalAccessory` | Hardware.Accessory |
-| `SystemConfiguration.CaptiveNetwork` | Network (deprecated SSID only) |
+| `AVFoundation` | Audio |
+| `Darwin` | Hardware (`os_proc_available_memory`, `uname`) |
+
+No third-party dependencies.
 
 ---
 
@@ -130,144 +147,124 @@ Removed. Was used by `Luminous.Hardware.Device.current` (dropped in v2.2.0), the
 ### Luminous.Application
 | Property | Type | Notes |
 |----------|------|-------|
-| `version` | `String` | `CFBundleShortVersionString` |
-| `build` | `String` | `CFBundleVersion` |
+| `version` | `String` | `CFBundleShortVersionString`; `""` if absent |
+| `build` | `String` | `CFBundleVersion`; `""` if absent |
 | `completeAppVersion` | `String` | `"2.1.3 (343)"` |
-| `clipboardString` | `String?` | Current UIPasteboard string |
 
 ### Luminous.Audio
 | Property | Type | Notes |
 |----------|------|-------|
-| `currentAudioOutputVolume` | `Double?` | 0.0–1.0 via AVAudioSession |
+| `currentAudioOutputVolume` | `Float?` | 0.0–1.0; does not activate session |
 | `secondaryAudioShouldBeSilencedHint` | `Bool` | Another app playing non-mixable audio |
+| `isWiredHeadsetPluggedIn` | `Bool` | 3.5 mm / Lightning / USB-C only |
+| `isAnyHeadphoneConnected` | `Bool` | Wired + all Bluetooth variants |
 
-### Luminous.Battery
+### Luminous.Battery (`@MainActor`)
 | Property | Type | Notes |
 |----------|------|-------|
-| `level` | `Float?` | 0–100, nil if unavailable |
-| `state` | `BatteryState` | Maps UIDevice.batteryState |
-
-### Luminous.Carrier
-| Property | Type | Notes |
-|----------|------|-------|
-| `name` | `String?` | |
-| `ISOCountryCode` | `String?` | |
-| `mobileCountryCode` | `String?` | MCC |
-| `mobileNetworkCode` | `String?` | MNC |
-| `isVoipAllowed` | `Bool?` | |
+| `level` | `Float?` | 0–100; `nil` if unavailable (Simulator) |
+| `state` | `UIDevice.BatteryState` | `.unknown / .unplugged / .charging / .full` |
 
 ### Luminous.Disk
 | Property/Method | Type | Notes |
 |-----------------|------|-------|
-| `totalSpaceInBytes` | `Int64` | |
-| `freeSpaceInBytes` | `Int64` | |
-| `totalSpace(measureUnit:)` | `Double` | Preferred |
-| `freeSpace(measureUnit:)` | `Double` | Preferred |
-| `usedSpace(measureUnit:)` | `Double` | Preferred |
-| `usedSpaceInPercentage` | `Float` | |
-| `totalSpace`, `freeSpace`, `usedSpace` | `String` | Deprecated formatted strings |
+| `totalSpaceInBytes` | `Int64` | Raw bytes |
+| `freeSpaceInBytes` | `Int64` | Includes purgeable; raw bytes |
+| `totalSpace(in:)` | `Double` | Default `.gigabytes` |
+| `freeSpace(in:)` | `Double` | Default `.gigabytes` |
+| `usedSpace(in:)` | `Double` | Default `.gigabytes` |
 
 ### Luminous.Hardware
 | Property/Method | Type | Notes |
 |-----------------|------|-------|
 | `processorsNumber` | `Int` | |
 | `activeProcessorsNumber` | `Int` | |
-| `physicalMemory(with:)` | `Double` | Pass `MeasureUnit` |
-| `systemName` | `String` | e.g. "iOS" |
-| `systemVersion` | `SystemVersion` | Comparable value type |
-| `bootTime` | `TimeInterval` | Seconds since boot |
+| `physicalMemory(in:)` | `Double` | Default `.gigabytes` |
+| `availableMemoryInBytes` | `Int64` | `os_proc_available_memory()` |
+| `availableMemory(in:)` | `Double` | Default `.megabytes` |
+| `systemVersion` | `OperatingSystemVersion` | Comparable via retroactive extension |
+| `uptime` | `TimeInterval` | Seconds since last boot |
 | `isLowPowerModeEnabled` | `Bool` | |
+| `thermalState` | `ProcessInfo.ThermalState` | `.nominal / .fair / .serious / .critical` |
+| `modelIdentifier` | `String` | e.g. `"iPhone16,1"` via `utsname` |
 
-### Luminous.Hardware.Screen
-| Property | Type |
-|----------|------|
-| `brightness` | `Float` |
-| `isScreenMirrored` | `Bool` |
-| `nativeBounds` | `CGRect` |
-| `nativeScale` | `Float` |
-| `bounds` | `CGRect` |
-| `scale` | `Float` |
-| `snapshotOfCurrentView` | `UIView` |
+### Luminous.Hardware.Screen (`@MainActor`)
+| Property | Type | Notes |
+|----------|------|-------|
+| `brightness` | `Float` | 0.0–1.0 |
+| `isScreenMirrored` | `Bool` | |
+| `nativeBounds` | `CGRect` | Physical pixels |
+| `nativeScale` | `Float` | |
+| `bounds` | `CGRect` | Logical points |
+| `scale` | `Float` | |
+| `maximumRefreshRate` | `Int` | 60, 120, etc. |
 
-### Luminous.Hardware.Device
-| Property | Type |
-|----------|------|
-| `identifierForVendor` | `String?` |
-| `orientation` | `UIDeviceOrientation` |
-
-### Luminous.Hardware.Accessory
-| Property | Type |
-|----------|------|
-| `count` | `Int` |
-| `connectedAccessoriesNames` | `[String]` |
-| `connectedAccessories` | `[EAAccessory]` |
-| `isHeadsetPluggedIn` | `Bool` |
-
-### Luminous.Hardware.Sensors
-| Property | Type |
-|----------|------|
-| `isAccelerometerAvailable` | `Bool` |
-| `isGyroAvailable` | `Bool` |
-| `isMagnetometerAvailable` | `Bool` |
-| `isDeviceMotionAvailable` | `Bool` |
+### Luminous.Hardware.Device (`@MainActor`)
+| Property | Type | Notes |
+|----------|------|-------|
+| `identifierForVendor` | `String?` | |
+| `orientation` | `UIDeviceOrientation` | |
+| `systemName` | `String` | e.g. `"iPhone OS"` |
+| `userInterfaceStyle` | `UIUserInterfaceStyle` | `.light / .dark / .unspecified` |
 
 ### Luminous.Locale
-| Property | Type |
-|----------|------|
-| `currentLanguage` | `String?` |
-| `currentTimeZone` | `TimeZone` |
-| `currentTimeZoneName` | `String` |
-| `currentCountry` | `String?` |
-| `currentCurrency` | `String?` |
-| `currentCurrencySymbol` | `String?` |
-| `usesMetricSystem` | `Bool` |
-| `decimalSeparator` | `String?` |
+| Property | Type | Notes |
+|----------|------|-------|
+| `currentLanguage` | `String?` | BCP 47 code, e.g. `"en"` |
+| `currentTimeZone` | `TimeZone` | |
+| `currentTimeZoneName` | `String` | IANA identifier |
+| `currentCountry` | `String?` | ISO 3166-1, e.g. `"IT"` |
+| `currentCurrency` | `String?` | ISO 4217, e.g. `"EUR"` |
+| `currentCurrencySymbol` | `String?` | e.g. `"€"` |
+| `usesMetricSystem` | `Bool` | Via `measurementSystem == .metric` |
+| `decimalSeparator` | `String?` | `"."` or `","` |
 
 ### Luminous.Network
 | Property | Type | Notes |
 |----------|------|-------|
-| `isConnectedViaWiFi` | `Bool` | Via NWPathMonitor |
-| `isConnectedViaCellular` | `Bool` | Via NWPathMonitor |
-| `isInternetAvailable` | `Bool` | Via NWPathMonitor |
-| `SSID` | `String` | Deprecated on iOS 13+; requires entitlement |
+| `isConnectedViaWiFi` | `Bool` | |
+| `isConnectedViaCellular` | `Bool` | |
+| `isInternetAvailable` | `Bool` | `NWPath.status == .satisfied` |
+| `isExpensive` | `Bool` | Cellular / personal hotspot |
+| `isConstrained` | `Bool` | Low Data Mode |
+| `supportsIPv4` | `Bool` | |
+| `supportsIPv6` | `Bool` | |
 
-### Luminous.SystemVersion
-Value type, `Equatable`, `Comparable`. Properties: `major: Int`, `minor: Int`, `patch: Int`, `stringValue: String`. Useful for comparing OS versions at runtime.
+---
+
+## Breaking Changes from v2 → v3
+
+| Removed | Replacement |
+|---------|-------------|
+| `Luminous.Carrier` (entire struct) | CTCarrier deprecated since iOS 16.1, no viable replacement |
+| `Luminous.Hardware.Sensors` | Returns `true` on every device since 2014; removed entirely |
+| `Luminous.Hardware.Accessory` | MFi-only, niche API passthrough; removed entirely |
+| `Luminous.Network.SSID` | Dead on iOS 13+ without entitlement + location |
+| `Luminous.Application.clipboardString` | Triggers iOS paste permission prompt as side-effect |
+| `Luminous.Hardware.Screen.snapshotOfCurrentView` | Deprecated `UIScreen` API, no `@MainActor` safety |
+| `BatteryState` enum | Use `UIDevice.BatteryState` directly |
+| `MeasureUnit` enum | Use `UnitInformationStorage` from Foundation |
+| `SystemVersion` struct | Use `OperatingSystemVersion` with the new `Comparable` extension |
+| `Hardware.systemName` | Moved to `Hardware.Device.systemName` |
+| `Hardware.bootTime` | Renamed to `Hardware.uptime` (was misleading) |
+| `Disk.totalSpace` / `freeSpace` / `usedSpace` (String) | Deprecated since v2, now removed |
+| `Disk.usedSpaceInBytes` | Deprecated since v2, now removed |
+| `Disk.freeSpaceInPercentage` / `usedSpaceInPercentage` | Removed |
+| `Disk.totalSpace(measureUnit:)` etc. | Replaced with `totalSpace(in: UnitInformationStorage)` |
+| `Hardware.physicalMemory(with:)` | Replaced with `physicalMemory(in: UnitInformationStorage)` |
 
 ---
 
 ## Versioning & Branching
 
-Git-flow model: `develop` → `release/X.Y.Z` → `master`. All releases are tagged on `master`. Current branch is `develop`.
+Git-flow model: `develop` → `release/X.Y.Z` → `master`. All releases are tagged on `master`.
 
-Tag history: `0.40.x` → `0.50.x` → `1.0.x` → `1.10/1.11` → `2.0.0` → `2.1.x` → `2.2.0`.
+Tag history: `0.40.x` → `0.50.x` → `1.0.x` → `1.10/1.11` → `2.0.0` → `2.1.x` → `2.2.0` → `3.0.0`.
 
 ---
 
-## Known Issues / Technical Debt
+## Known Issues
 
-### Resolved
-
-**Structural cleanup:**
-- Tests now compile and pass (13/13)
-- Deviice dependency removed from `Package.swift` and `Luminous.podspec`
-- `platforms: [.iOS(.v12)]` added to `Package.swift`
-- `.travis.yml` deleted (was targeting Xcode 7.3)
-- Linux test scaffolding (`XCTestManifests.swift`, `LinuxMain.swift`) deleted
-
-**API modernization:**
-- `Reachability.swift` (vendored, SCNetworkReachability) replaced with `NWPathMonitor`
-- `isConnectedViaCellular` logic fixed (was `!isConnectedViaWiFi` — returned true when offline)
-- `Carrier` migrated to `serviceSubscriberCellularProviders`, marked deprecated on iOS 16.1
-- `networkCountryCode` deprecated property removed from `Carrier`
-- `SystemVersion.init` made failable (was `fatalError`); comparison logic fixed for multi-digit components
-- Force-unwraps removed from `Disk` and `Application`
-- Internal disk methods no longer call deprecated `usedSpaceInBytes`
-- No-op `@available(iOS 9.0,*)` annotation removed from `Hardware.isLowPowerModeEnabled`
-- Unused `SystemConfiguration.CaptiveNetwork` and `CoreTelephony` imports removed from `Hardware`
-
-### Remaining
 | Issue | Location | Severity |
 |-------|----------|---------|
-| Example app references removed `Device.current` | `Example/Luminous/ViewController.swift` | Low |
-| `SSID` uses deprecated `CNCopySupportedInterfaces` (iOS 13+) | `Luminous+Network.swift` | Low (already marked deprecated) |
+| Example app references removed APIs | `Example/Luminous/ViewController.swift` | Low — Example app not part of SPM target |
