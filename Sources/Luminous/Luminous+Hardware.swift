@@ -7,72 +7,45 @@
 
 import AVFoundation
 import CoreMotion
-import CoreTelephony
 import ExternalAccessory
 import Foundation
-import SystemConfiguration.CaptiveNetwork
 import UIKit
 
 
 extension Luminous {
     
-    /// This structure represents the system version. It's useful in case there's the need to
-    /// split up the OS version for specific purposes.
+    /// Represents an OS version split into major, minor, and patch components.
+    ///
+    /// Supports equality and ordered comparison via tuple semantics, which correctly
+    /// handles multi-digit version components (e.g. "2.10.0" > "2.9.0").
     public struct SystemVersion: Equatable, Comparable {
-        
-        /// The major version. Ex: "10.1.2" will return 10.
-        public var major: Int
-        /// The minor version. Ex: "10.1.2" will return 1.
-        public var minor: Int
-        /// The patch version. Ex: "10.1.2" will return 2.
-        public var patch: Int
-        /// The value of the version as string.
-        public var stringValue: String
-        
-        init() {
-            major = 0
-            minor = 0
-            patch = 0
-            stringValue = "\(major).\(minor).\(patch)"
+
+        /// The major version component. "10.1.2" → 10.
+        public let major: Int
+        /// The minor version component. "10.1.2" → 1.
+        public let minor: Int
+        /// The patch version component. "10.1.2" → 2.
+        public let patch: Int
+        /// The original version string.
+        public let stringValue: String
+
+        /// Creates a `SystemVersion` by parsing a dot-separated version string.
+        ///
+        /// Returns `nil` if the string does not contain at least two numeric
+        /// dot-separated components (e.g. "18" or "abc" are invalid).
+        ///
+        /// - Parameter version: A version string such as "18.3.1".
+        public init?(withVersion version: String) {
+            let components = version.split(separator: ".").compactMap { Int($0) }
+            guard components.count >= 2 else { return nil }
+            self.major = components[0]
+            self.minor = components[1]
+            self.patch = components.count > 2 ? components[2] : 0
+            self.stringValue = version
         }
-        
-        /// Init with a string version.
-        /// This will fail if the version is not formatted in the correct way, with at least a dot inside it.
-        /// - Parameter version: The version used to init the structure.
-        init(withVersion version: String) {
-            
-            guard version.contains(".") else {
-                fatalError("version is not in the correct format")
-            }
-            
-            stringValue = version
-            
-            let components = version.components(separatedBy: ".")
-            
-            major = components.count > 0 ? Int(components[0])! : 0
-            minor = components.count > 1 ? Int(components[1])! : 0
-            patch = components.count > 2 ? Int(components[2])! : 0
-        }
-        
-        public static func ==(lhs: SystemVersion, rhs: SystemVersion) -> Bool {
-            
-            return lhs.stringValue == rhs.stringValue
-        }
-        
-        public static func > (lhs: Luminous.SystemVersion, rhs: Luminous.SystemVersion) -> Bool {
-            
-            let lValue = "\(lhs.major)\(lhs.minor)\(lhs.patch)"
-            let rValue = "\(rhs.major)\(rhs.minor)\(rhs.patch)"
-            
-            return Double(lValue)! > Double(rValue)!
-        }
-        
-        public static func < (lhs: Luminous.SystemVersion, rhs: Luminous.SystemVersion) -> Bool {
-            
-            let lValue = "\(lhs.major)\(lhs.minor)\(lhs.patch)"
-            let rValue = "\(rhs.major)\(rhs.minor)\(rhs.patch)"
-            
-            return Double(lValue)! < Double(rValue)!
+
+        public static func < (lhs: SystemVersion, rhs: SystemVersion) -> Bool {
+            (lhs.major, lhs.minor, lhs.patch) < (rhs.major, rhs.minor, rhs.patch)
         }
     }
     
@@ -126,8 +99,8 @@ extension Luminous {
         
         /// The version of the system.
         public static var systemVersion: SystemVersion {
-            
-            return SystemVersion.init(withVersion: _systemVersion)
+            // UIDevice.current.systemVersion is always a valid version string.
+            return SystemVersion(withVersion: _systemVersion)!
         }
         
         /// The current boot time expressed in seconds.
@@ -136,8 +109,7 @@ extension Luminous {
             return ProcessInfo().systemUptime
         }
         
-        @available(iOS 9.0,*)
-        /// Check if the low power mode is currently enabled (iOS 9 and above).
+        /// Check if the low power mode is currently enabled.
         public static var isLowPowerModeEnabled: Bool {
             
             return ProcessInfo().isLowPowerModeEnabled

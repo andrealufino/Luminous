@@ -10,78 +10,59 @@ import Foundation
 
 
 extension Luminous {
-    
-    
-    // MARK: Carrier
-    
-    /// The Carrier information.
+
+
+    // MARK: - Carrier
+
+    /// Carrier information.
+    ///
+    /// - Note: `CTCarrier` was deprecated by Apple in iOS 16.1 with no official replacement.
+    ///   All properties in this struct may return `nil` on iOS 16.1+ even with an active SIM.
+    @available(iOS, deprecated: 16.1, message: "CTCarrier was deprecated by Apple in iOS 16.1 with no replacement. Carrier info may not be available.")
     public struct Carrier {
-        
-        /// The name of the carrier or nil if not available.
+
+        // MARK: Private
+
+        /// Returns the active carrier, preferring the data SIM on multi-SIM devices.
+        ///
+        /// Uses `dataServiceIdentifier` (iOS 13+) to pick the active data SIM.
+        /// Falls back to the first available provider on iOS 12.
+        private static var currentCarrier: CTCarrier? {
+            let netInfo = CTTelephonyNetworkInfo()
+            guard let providers = netInfo.serviceSubscriberCellularProviders,
+                  !providers.isEmpty else { return nil }
+            if #available(iOS 13.0, *), let dataId = netInfo.dataServiceIdentifier {
+                return providers[dataId]
+            }
+            return providers.values.first
+        }
+
+
+        // MARK: Public Properties
+
+        /// The name of the carrier, or `nil` if not available.
         public static var name: String? {
-            
-            let netInfo = CTTelephonyNetworkInfo()
-            if let carrier = netInfo.subscriberCellularProvider {
-                return carrier.carrierName
-            }
-            
-            return nil
+            currentCarrier?.carrierName
         }
-        
-        /// The carrier ISO code or nil if not available.
+
+        /// The carrier ISO country code, or `nil` if not available.
         public static var ISOCountryCode: String? {
-            
-            let netInfo = CTTelephonyNetworkInfo()
-            if let carrier = netInfo.subscriberCellularProvider {
-                return carrier.isoCountryCode
-            }
-            
-            return nil
+            currentCarrier?.isoCountryCode
         }
-        
-        /// The carrier mobile country code or nil if not available.
+
+        /// The mobile country code (MCC), or `nil` if not available.
         public static var mobileCountryCode: String? {
-            
-            let netInfo = CTTelephonyNetworkInfo()
-            if let carrier = netInfo.subscriberCellularProvider {
-                return carrier.mobileCountryCode
-            }
-            
-            return nil
+            currentCarrier?.mobileCountryCode
         }
-        
-        /// The carrier network country code or nil if not available
-        @available(*, deprecated, message: "Use mobileNetworkCode instead")
-        public static var networkCountryCode: String? {
-            
-            let netInfo = CTTelephonyNetworkInfo()
-            if let carrier = netInfo.subscriberCellularProvider {
-                return carrier.mobileNetworkCode
-            }
-            
-            return nil
-        }
-        
-        /// The carrier network country code or nil if not available.
+
+        /// The mobile network code (MNC), or `nil` if not available.
         public static var mobileNetworkCode: String? {
-            
-            let netInfo = CTTelephonyNetworkInfo()
-            if let carrier = netInfo.subscriberCellularProvider {
-                return carrier.mobileNetworkCode
-            }
-            
-            return nil
+            currentCarrier?.mobileNetworkCode
         }
-        
-        /// Check if the carrier allows Voip.
+
+        /// Whether the carrier allows VoIP, or `nil` if not available.
         public static var isVoipAllowed: Bool? {
-            
-            let netInfo = CTTelephonyNetworkInfo()
-            if let carrier = netInfo.subscriberCellularProvider {
-                return carrier.allowsVOIP
-            }
-            
-            return nil
+            currentCarrier?.allowsVOIP
         }
     }
 }

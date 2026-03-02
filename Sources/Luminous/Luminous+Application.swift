@@ -16,16 +16,16 @@ extension Luminous {
     /// Application information.
     public struct Application {
         
-        /// The current app version.
+        /// The current app version. Returns an empty string if the bundle info is unavailable
+        /// (e.g. in test or framework contexts without an Info.plist).
         public static var version: String {
-            
-            return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+            Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         }
-        
-        /// The build number.
+
+        /// The build number. Returns an empty string if the bundle info is unavailable
+        /// (e.g. in test or framework contexts without an Info.plist).
         public static var build: String {
-            
-            return Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+            Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
         }
         
         /// The complete app version with build number (i.e. : "2.1.3 (343)").

@@ -6,64 +6,100 @@
 //
 
 import Foundation
+import Network
 import SystemConfiguration.CaptiveNetwork
 
 
 extension Luminous {
-    
-    
-    // MARK: Network
-    
+
+
+    // MARK: - Network
+
     /// Network information.
     public struct Network {
-        
-        /// Check if the device is connected to the WiFi network.
-        public static var isConnectedViaWiFi: Bool {
-            let reachability = Reachability()!
-            
-            if reachability.isReachableViaWiFi {
-                return true
-            } else {
-                return false
+
+        // MARK: Private
+
+        /// Internal singleton that monitors the current network path.
+        ///
+        /// Uses `NWPathMonitor` to deliver the initial path synchronously on first access,
+        /// then keeps updating in the background for all subsequent reads.
+        private static let monitor: PathMonitor = PathMonitor()
+
+        private final class PathMonitor {
+
+            private let nwMonitor = NWPathMonitor()
+            private let queue = DispatchQueue(label: "com.luminous.pathMonitor", qos: .utility)
+            private let lock = NSLock()
+            private var _currentPath: NWPath?
+
+            var currentPath: NWPath? {
+                lock.lock()
+                defer { lock.unlock() }
+                return _currentPath
             }
-        }
-        
-        /// Check if the device is connected to the cellular network.
-        public static var isConnectedViaCellular: Bool {
-            
-            return !isConnectedViaWiFi
-        }
-        
-        /// Check if the internet is available.
-        public static var isInternetAvailable: Bool {
-            
-            return Reachability()!.isReachable
-        }
-        
-        /// Get the network SSID (doesn't work in the Simulator). Empty string if not available.
-        /// This property is deprecated since version 2 of Luminous as iOS 13 does not allow access to
-        /// `CNCopySupportedInterfaces`.
-        @available(iOS, deprecated: 13.0, message: "It's no longer possible to get SSID info using CNCopySupportedInterfaces.")
-        public static var SSID: String {
-            
-            // Doesn't work in the Simulator
-            var currentSSID = ""
-            if let interfaces:CFArray = CNCopySupportedInterfaces() {
-                for i in 0..<CFArrayGetCount(interfaces){
-                    let interfaceName: UnsafeRawPointer = CFArrayGetValueAtIndex(interfaces, i)
-                    let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
-                    let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString)
-                    if unsafeInterfaceData != nil {
-                        let interfaceData = unsafeInterfaceData! as Dictionary?
-                        for dictData in interfaceData! {
-                            if dictData.key as! String == "SSID" {
-                                currentSSID = dictData.value as! String
-                            }
-                        }
+
+            init() {
+                let semaphore = DispatchSemaphore(value: 0)
+                var signalled = false
+
+                nwMonitor.pathUpdateHandler = { [weak self] path in
+                    guard let self else { return }
+                    self.lock.lock()
+                    let isFirst = self._currentPath == nil
+                    self._currentPath = path
+                    self.lock.unlock()
+                    if isFirst && !signalled {
+                        signalled = true
+                        semaphore.signal()
                     }
                 }
+
+                nwMonitor.start(queue: queue)
+                semaphore.wait()
             }
-            
+        }
+
+
+        // MARK: Public Properties
+
+        /// Check if the device is connected via WiFi.
+        public static var isConnectedViaWiFi: Bool {
+            monitor.currentPath?.usesInterfaceType(.wifi) ?? false
+        }
+
+        /// Check if the device is connected via cellular.
+        public static var isConnectedViaCellular: Bool {
+            monitor.currentPath?.usesInterfaceType(.cellular) ?? false
+        }
+
+        /// Check if internet is available (any satisfied connection).
+        public static var isInternetAvailable: Bool {
+            monitor.currentPath?.status == .satisfied
+        }
+
+        /// Get the network SSID. Does not work in the Simulator.
+        ///
+        /// Deprecated since iOS 13: `CNCopySupportedInterfaces` is no longer accessible
+        /// without the "Access WiFi Information" entitlement, and returns empty results
+        /// in most contexts.
+        @available(iOS, deprecated: 13.0, message: "SSID access via CNCopySupportedInterfaces is no longer reliable on iOS 13+.")
+        public static var SSID: String {
+            var currentSSID = ""
+
+            guard let interfaces = CNCopySupportedInterfaces() as? [String] else {
+                return currentSSID
+            }
+
+            for interface in interfaces {
+                guard
+                    let info = CNCopyCurrentNetworkInfo(interface as CFString) as? [String: Any],
+                    let ssid = info["SSID"] as? String
+                else { continue }
+                currentSSID = ssid
+                break
+            }
+
             return currentSSID
         }
     }

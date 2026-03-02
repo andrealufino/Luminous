@@ -45,20 +45,20 @@ extension Luminous {
         /// The total disk space in bytes. 0 if something went wrong.
         public static var totalSpaceInBytes: Int64 {
             do {
-                let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
-                let space = (systemAttributes[FileAttributeKey.systemSize] as? NSNumber)?.int64Value
-                return space!
+                let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory())
+                guard let space = (systemAttributes[FileAttributeKey.systemSize] as? NSNumber)?.int64Value else { return 0 }
+                return space
             } catch {
                 return 0
             }
         }
-        
+
         /// The free disk space in bytes. 0 if something went wrong.
         public static var freeSpaceInBytes: Int64 {
             do {
-                let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
-                let freeSpace = (systemAttributes[FileAttributeKey.systemFreeSize] as? NSNumber)?.int64Value
-                return freeSpace!
+                let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory())
+                guard let freeSpace = (systemAttributes[FileAttributeKey.systemFreeSize] as? NSNumber)?.int64Value else { return 0 }
+                return freeSpace
             } catch {
                 return 0
             }
@@ -83,46 +83,33 @@ extension Luminous {
         
         /// The used disk space in percentage.
         public static var usedSpaceInPercentage: Float {
-            
-            let usedSpace = Float(usedSpaceInBytes)
-            let totalSpace = Float(totalSpaceInBytes)
-            
-            return (usedSpace * 100) / totalSpace
+            let used = Float(totalSpaceInBytes - freeSpaceInBytes)
+            let total = Float(totalSpaceInBytes)
+            return (used * 100) / total
         }
-        
+
         /// The total space of the internal disk.
         /// - Parameter measureUnit: The measure unit. If `percentage` the return value will be `100.0`.
         public static func totalSpace(measureUnit: MeasureUnit = .bytes) -> Double {
-            
             switch measureUnit {
-            case .bytes:
-                return Double(totalSpaceInBytes)
-            case .kilobytes:
-                return Double(totalSpaceInBytes / 1024)
-            case .megabytes:
-                return Double(totalSpaceInBytes / 1024 / 1024)
-            case .gigabytes:
-                return Double(totalSpaceInBytes / 1024 / 1024 / 1024)
-            case .percentage:
-                return 100.0
+            case .bytes:      return Double(totalSpaceInBytes)
+            case .kilobytes:  return Double(totalSpaceInBytes / 1024)
+            case .megabytes:  return Double(totalSpaceInBytes / 1024 / 1024)
+            case .gigabytes:  return Double(totalSpaceInBytes / 1024 / 1024 / 1024)
+            case .percentage: return 100.0
             }
         }
-        
+
         /// The used space of the internal disk.
         /// - Parameter measureUnit: The measure unit.
         public static func usedSpace(measureUnit: MeasureUnit = .bytes) -> Double {
-            
+            let usedBytes = totalSpaceInBytes - freeSpaceInBytes
             switch measureUnit {
-            case .bytes:
-                return Double(usedSpaceInBytes)
-            case .kilobytes:
-                return Double(usedSpaceInBytes / 1024)
-            case .megabytes:
-                return Double(usedSpaceInBytes / 1024 / 1024)
-            case .gigabytes:
-                return Double(usedSpaceInBytes / 1024 / 1024 / 1024)
-            case .percentage:
-                return Double(((usedSpaceInBytes * 100) / totalSpaceInBytes))
+            case .bytes:      return Double(usedBytes)
+            case .kilobytes:  return Double(usedBytes / 1024)
+            case .megabytes:  return Double(usedBytes / 1024 / 1024)
+            case .gigabytes:  return Double(usedBytes / 1024 / 1024 / 1024)
+            case .percentage: return Double((usedBytes * 100) / totalSpaceInBytes)
             }
         }
         

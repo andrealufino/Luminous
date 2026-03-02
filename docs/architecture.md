@@ -104,25 +104,24 @@ Older string-returning disk properties (`totalSpace`, `freeSpace`, `usedSpace`) 
 
 ### Deviice
 
-Removed as of this cleanup. Was used by `Luminous.Hardware.Device.current` (dropped in v2.2.0), then lingered in `Package.swift` and `Luminous.podspec` as dead weight. Fully removed now — consumers who need device identification should add Deviice directly to their project.
+Removed. Was used by `Luminous.Hardware.Device.current` (dropped in v2.2.0), then lingered in `Package.swift` and `Luminous.podspec` as dead weight. Consumers who need device identification should add Deviice directly to their project.
 
-### Reachability (vendored, BSD license)
+### Network framework
 
-- `Sources/Luminous/Reachability.swift` — Ashley Mills' `SCNetworkReachability` wrapper
-- Embedded directly in the source rather than as a dependency
-- Used only by `Luminous.Network` internally
+`import Network` — used by `Luminous.Network` for `NWPathMonitor`. Replaces the previously vendored `Reachability.swift` (Ashley Mills, SCNetworkReachability-based).
 
 ### System frameworks
 
 | Framework | Used by |
 |-----------|---------|
 | `Foundation` | All |
-| `UIKit` | Battery, Hardware (Screen, Device), Application, Disk |
+| `UIKit` | Battery, Hardware (Screen, Device), Application |
+| `Network` | Network (NWPathMonitor) |
 | `AVFoundation` | Audio, Hardware.Accessory (headphone detection) |
 | `CoreTelephony` | Carrier |
 | `CoreMotion` | Hardware.Sensors |
 | `ExternalAccessory` | Hardware.Accessory |
-| `SystemConfiguration` / `CaptiveNetwork` | Network (Reachability, SSID) |
+| `SystemConfiguration.CaptiveNetwork` | Network (deprecated SSID only) |
 
 ---
 
@@ -156,7 +155,6 @@ Removed as of this cleanup. Was used by `Luminous.Hardware.Device.current` (drop
 | `mobileCountryCode` | `String?` | MCC |
 | `mobileNetworkCode` | `String?` | MNC |
 | `isVoipAllowed` | `Bool?` | |
-| `networkCountryCode` | `String?` | Deprecated → use `mobileNetworkCode` |
 
 ### Luminous.Disk
 | Property/Method | Type | Notes |
@@ -228,9 +226,9 @@ Removed as of this cleanup. Was used by `Luminous.Hardware.Device.current` (drop
 ### Luminous.Network
 | Property | Type | Notes |
 |----------|------|-------|
-| `isConnectedViaWiFi` | `Bool` | Via Reachability |
-| `isConnectedViaCellular` | `Bool` | `!isConnectedViaWiFi` |
-| `isInternetAvailable` | `Bool` | Via Reachability |
+| `isConnectedViaWiFi` | `Bool` | Via NWPathMonitor |
+| `isConnectedViaCellular` | `Bool` | Via NWPathMonitor |
+| `isInternetAvailable` | `Bool` | Via NWPathMonitor |
 | `SSID` | `String` | Deprecated on iOS 13+; requires entitlement |
 
 ### Luminous.SystemVersion
@@ -248,20 +246,28 @@ Tag history: `0.40.x` → `0.50.x` → `1.0.x` → `1.10/1.11` → `2.0.0` → `
 
 ## Known Issues / Technical Debt
 
-### Resolved (this cleanup)
-- Tests now compile and pass (7/7)
+### Resolved
+
+**Structural cleanup:**
+- Tests now compile and pass (13/13)
 - Deviice dependency removed from `Package.swift` and `Luminous.podspec`
 - `platforms: [.iOS(.v12)]` added to `Package.swift`
 - `.travis.yml` deleted (was targeting Xcode 7.3)
 - Linux test scaffolding (`XCTestManifests.swift`, `LinuxMain.swift`) deleted
 
-### Remaining (API phase)
+**API modernization:**
+- `Reachability.swift` (vendored, SCNetworkReachability) replaced with `NWPathMonitor`
+- `isConnectedViaCellular` logic fixed (was `!isConnectedViaWiFi` — returned true when offline)
+- `Carrier` migrated to `serviceSubscriberCellularProviders`, marked deprecated on iOS 16.1
+- `networkCountryCode` deprecated property removed from `Carrier`
+- `SystemVersion.init` made failable (was `fatalError`); comparison logic fixed for multi-digit components
+- Force-unwraps removed from `Disk` and `Application`
+- Internal disk methods no longer call deprecated `usedSpaceInBytes`
+- No-op `@available(iOS 9.0,*)` annotation removed from `Hardware.isLowPowerModeEnabled`
+- Unused `SystemConfiguration.CaptiveNetwork` and `CoreTelephony` imports removed from `Hardware`
+
+### Remaining
 | Issue | Location | Severity |
 |-------|----------|---------|
-| `isConnectedViaCellular` is just `!isConnectedViaWiFi` — imprecise | `Luminous+Network.swift` | Medium |
-| `Reachability.swift` is vendored — migrate to `NWPathMonitor` | `Sources/Luminous/Reachability.swift` | Medium |
-| `Carrier` uses `subscriberCellularProvider` deprecated on iOS 16 | `Luminous+Carrier.swift` | Medium |
-| `SSID` uses `CNCopySupportedInterfaces` deprecated on iOS 13 | `Luminous+Network.swift` | Low |
-| `SystemVersion` uses `fatalError` for invalid version strings | `Luminous+Hardware.swift` | Low |
-| Several `force-unwrap` in disk and app info | `Luminous+Disk.swift`, `Luminous+Application.swift` | Low |
 | Example app references removed `Device.current` | `Example/Luminous/ViewController.swift` | Low |
+| `SSID` uses deprecated `CNCopySupportedInterfaces` (iOS 13+) | `Luminous+Network.swift` | Low (already marked deprecated) |
