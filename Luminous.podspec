@@ -38,5 +38,4 @@ This library allows to have a lot of system information in a very fast way.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'SystemConfiguration', 'CoreTelephony', 'AVFoundation', 'ExternalAccessory'
-  s.dependency 'Deviice', '>= 2.0.0'
 end
