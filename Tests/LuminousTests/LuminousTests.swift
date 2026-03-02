@@ -14,12 +14,20 @@ final class LuminousTests: XCTestCase {
 
     // MARK: - Application
 
-    func testApplicationVersionDoesNotCrash() {
+    func testApplicationVersionAndBuildReturnStrings() {
         // In a test target Bundle.main lacks Info.plist keys — must return "" not crash
-        let version = Luminous.Application.version
-        let build = Luminous.Application.build
-        XCTAssertNotNil(version)
-        XCTAssertNotNil(build)
+        let version: String = Luminous.Application.version
+        let build: String = Luminous.Application.build
+        // Both are non-optional String — compile-time guarantee. Verify they don't crash.
+        _ = version
+        _ = build
+    }
+
+    func testApplicationCompleteVersionContainsBrackets() {
+        let complete = Luminous.Application.completeAppVersion
+        // Format is "\(version) (\(build))" — must contain a space and parentheses
+        XCTAssertTrue(complete.contains("("), "completeAppVersion should contain opening parenthesis")
+        XCTAssertTrue(complete.contains(")"), "completeAppVersion should contain closing parenthesis")
     }
 
 
@@ -32,10 +40,27 @@ final class LuminousTests: XCTestCase {
         }
     }
 
-    func testAudioHeadphonePropertiesDoNotCrash() {
+    func testAudioPropertiesDoNotCrash() {
         _ = Luminous.Audio.isWiredHeadsetPluggedIn
         _ = Luminous.Audio.isAnyHeadphoneConnected
         _ = Luminous.Audio.secondaryAudioShouldBeSilencedHint
+    }
+
+
+    // MARK: - Battery
+
+    @MainActor
+    func testBatteryStateDoesNotCrash() {
+        _ = Luminous.Battery.state
+    }
+
+    @MainActor
+    func testBatteryLevelIsNilOrInRange() {
+        if let level = Luminous.Battery.level {
+            XCTAssertGreaterThanOrEqual(level, 0, "Battery level must be >= 0")
+            XCTAssertLessThanOrEqual(level, 100, "Battery level must be <= 100")
+        }
+        // nil is valid in Simulator where battery monitoring is unavailable
     }
 
 
@@ -101,6 +126,54 @@ final class LuminousTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(Luminous.Hardware.availableMemoryInBytes, 0)
     }
 
+    func testHardwareAvailableMemoryConvertedIsNonNegative() {
+        XCTAssertGreaterThanOrEqual(Luminous.Hardware.availableMemory(in: .megabytes), 0)
+    }
+
+    func testHardwareIsLowPowerModeDoesNotCrash() {
+        _ = Luminous.Hardware.isLowPowerModeEnabled
+    }
+
+
+    // MARK: - Hardware.Screen
+
+    @MainActor
+    func testScreenPropertiesDoNotCrash() {
+        _ = Luminous.Hardware.Screen.isScreenMirrored
+        _ = Luminous.Hardware.Screen.nativeBounds
+        _ = Luminous.Hardware.Screen.nativeScale
+        _ = Luminous.Hardware.Screen.bounds
+        _ = Luminous.Hardware.Screen.scale
+        _ = Luminous.Hardware.Screen.maximumRefreshRate
+    }
+
+    @MainActor
+    func testScreenBrightnessIsInRange() {
+        let brightness = Luminous.Hardware.Screen.brightness
+        XCTAssertGreaterThanOrEqual(brightness, 0, "Brightness must be >= 0")
+        XCTAssertLessThanOrEqual(brightness, 1, "Brightness must be <= 1")
+    }
+
+    @MainActor
+    func testScreenMaximumRefreshRateIsPositive() {
+        XCTAssertGreaterThan(Luminous.Hardware.Screen.maximumRefreshRate, 0)
+    }
+
+
+    // MARK: - Hardware.Device
+
+    @MainActor
+    func testDevicePropertiesDoNotCrash() {
+        _ = Luminous.Hardware.Device.identifierForVendor
+        _ = Luminous.Hardware.Device.orientation
+        _ = Luminous.Hardware.Device.userInterfaceStyle
+    }
+
+    @MainActor
+    func testDeviceSystemNameIsNotEmpty() {
+        XCTAssertFalse(Luminous.Hardware.Device.systemName.isEmpty)
+    }
+
 
     // MARK: - Network
 
@@ -136,6 +209,10 @@ final class LuminousTests: XCTestCase {
 
     func testLocaleTimeZoneNameIsNotEmpty() {
         XCTAssertFalse(Luminous.Locale.currentTimeZoneName.isEmpty)
+    }
+
+    func testLocaleDecimalSeparatorIsNotNil() {
+        XCTAssertNotNil(Luminous.Locale.decimalSeparator)
     }
 
 

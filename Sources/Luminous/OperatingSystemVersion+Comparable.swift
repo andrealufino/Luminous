@@ -20,6 +20,7 @@ import Foundation
 /// ```
 extension OperatingSystemVersion: @retroactive Equatable {
 
+    /// Returns `true` when two versions have identical major, minor, and patch components.
     public static func == (lhs: OperatingSystemVersion, rhs: OperatingSystemVersion) -> Bool {
         (lhs.majorVersion, lhs.minorVersion, lhs.patchVersion) ==
         (rhs.majorVersion, rhs.minorVersion, rhs.patchVersion)
@@ -28,6 +29,7 @@ extension OperatingSystemVersion: @retroactive Equatable {
 
 extension OperatingSystemVersion: @retroactive Comparable {
 
+    /// Returns `true` when `lhs` is an earlier OS version than `rhs`.
     public static func < (lhs: OperatingSystemVersion, rhs: OperatingSystemVersion) -> Bool {
         (lhs.majorVersion, lhs.minorVersion, lhs.patchVersion) <
         (rhs.majorVersion, rhs.minorVersion, rhs.patchVersion)

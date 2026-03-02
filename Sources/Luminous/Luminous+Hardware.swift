@@ -113,8 +113,9 @@ extension Luminous {
 
         /// Screen information.
         ///
-        /// All properties are `@MainActor` and use the active `UIWindowScene`
-        /// instead of the deprecated `UIScreen.main`.
+        /// All properties are `@MainActor` and access the screen via the active
+        /// `UIWindowScene`. Properties return safe defaults (`.zero`, `1`, `false`)
+        /// when no foreground scene is available.
         @MainActor
         public struct Screen {
 
@@ -129,8 +130,10 @@ extension Luminous {
             }
 
             /// The current screen brightness (0.0–1.0).
+            ///
+            /// Returns `0` when called with no foreground-active scene (e.g. in background).
             public static var brightness: Float {
-                Float(currentWindowScene?.screen.brightness ?? UIScreen.main.brightness)
+                Float(currentWindowScene?.screen.brightness ?? 0)
             }
 
             /// Whether the screen is currently being mirrored to another display.
@@ -139,23 +142,31 @@ extension Luminous {
             }
 
             /// The bounding rectangle of the physical screen, in pixels.
+            ///
+            /// Returns `.zero` when no foreground-active scene is available.
             public static var nativeBounds: CGRect {
-                currentWindowScene?.screen.nativeBounds ?? UIScreen.main.nativeBounds
+                currentWindowScene?.screen.nativeBounds ?? .zero
             }
 
             /// The scale factor of the physical screen.
+            ///
+            /// Returns `1` when no foreground-active scene is available.
             public static var nativeScale: Float {
-                Float(currentWindowScene?.screen.nativeScale ?? UIScreen.main.nativeScale)
+                Float(currentWindowScene?.screen.nativeScale ?? 1)
             }
 
             /// The logical bounds of the screen, in points.
+            ///
+            /// Returns `.zero` when no foreground-active scene is available.
             public static var bounds: CGRect {
-                currentWindowScene?.screen.bounds ?? UIScreen.main.bounds
+                currentWindowScene?.screen.bounds ?? .zero
             }
 
             /// The logical scale factor of the screen (e.g. 2.0 on Retina displays).
+            ///
+            /// Returns `1` when no foreground-active scene is available.
             public static var scale: Float {
-                Float(currentWindowScene?.screen.scale ?? UIScreen.main.scale)
+                Float(currentWindowScene?.screen.scale ?? 1)
             }
 
             /// The maximum refresh rate of the screen in frames per second.

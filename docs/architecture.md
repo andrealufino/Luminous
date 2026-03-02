@@ -7,7 +7,7 @@ Luminous is an iOS system information library written in Swift. It provides a un
 - **Version**: 3.0.0
 - **Platform**: iOS 17+
 - **Swift version**: 6.0 (strict concurrency)
-- **Distribution**: Swift Package Manager + CocoaPods
+- **Distribution**: Swift Package Manager
 - **License**: MIT
 - **Author**: Andrea Mario Lufino
 - **Repository**: `https://github.com/andrealufino/Luminous`
@@ -265,6 +265,4 @@ Tag history: `0.40.x` → `0.50.x` → `1.0.x` → `1.10/1.11` → `2.0.0` → `
 
 ## Known Issues
 
-| Issue | Location | Severity |
-|-------|----------|---------|
-| Example app references removed APIs | `Example/Luminous/ViewController.swift` | Low — Example app not part of SPM target |
+None.

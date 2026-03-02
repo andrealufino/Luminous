@@ -6,7 +6,7 @@
 
 - Version: 3.0.0
 - Platform: iOS 17+, Swift 6 (swift-tools-version 6.0, `.swiftLanguageMode(.v6)`)
-- Distribution: SPM + CocoaPods
+- Distribution: Swift Package Manager only
 - Current branch: `develop` (git-flow model: develop → release/X.Y.Z → master)
 
 ## Architecture Reference
@@ -17,10 +17,8 @@ See `docs/architecture.md` for the full reference — type hierarchy, API tables
 
 ```
 Sources/Luminous/         9 source files — the entire library
-Tests/LuminousTests/      21 tests (all passing)
-Example/                  CocoaPods example UIKit app (outdated, references removed APIs)
+Tests/LuminousTests/      32 tests (all passing, zero warnings)
 docs/                     Architecture and reference documentation
-Luminous.podspec          CocoaPods spec (v3.0.0, iOS 17, Swift 6)
 Package.swift             SPM manifest (iOS 17, swift-tools-version 6.0, no external deps)
 ```
 
@@ -40,7 +38,7 @@ Match these exactly when making changes:
 
 ## Dependencies
 
-No external SPM or CocoaPods dependencies.
+No external SPM dependencies.
 
 ## Adding a New Domain
 
@@ -53,8 +51,8 @@ No external SPM or CocoaPods dependencies.
 
 ## Known State
 
-- Example app won't compile (references v2 APIs that were removed in v3)
 - `OperatingSystemVersion` has both `@retroactive Equatable` and `@retroactive Comparable` — both are needed for Swift 6 (synthesis doesn't work in retroactive cross-module extensions)
+- `Hardware.Screen` returns safe defaults (`.zero`, `1`, `false`, `60`) when no foreground-active `UIWindowScene` is available
 
 ## Build & Test
 

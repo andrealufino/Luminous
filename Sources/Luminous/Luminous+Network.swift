@@ -18,7 +18,7 @@ extension Luminous {
     /// Backed by a shared `NWPathMonitor` that starts once on first access and
     /// updates in the background. The initial path is delivered synchronously so
     /// the first read always returns a valid value.
-    public struct Network {
+    public struct Network: Sendable {
 
         // MARK: Private
 
