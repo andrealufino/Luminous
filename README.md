@@ -201,6 +201,59 @@ if current >= ios18 {
 
 ---
 
+## Migrating from v2
+
+### Removed (no replacement)
+
+| API | Reason |
+|-----|--------|
+| `Luminous.Carrier` | `CTCarrier` deprecated since iOS 16.1; no reliable replacement |
+| `Luminous.Hardware.Sensors` | All sensors have returned `true` on every iPhone since 2014 |
+| `Luminous.Hardware.Accessory` | MFi-only niche API with no broad use case |
+| `Luminous.Network.SSID` | Dead on iOS 13+ without entitlements and location access |
+| `Luminous.Application.clipboardString` | Triggered iOS paste permission banner as a side-effect |
+| `Luminous.Hardware.Screen.snapshotOfCurrentView` | Used deprecated `UIScreen` API, no `@MainActor` safety |
+| CocoaPods support | SPM is the standard; use `Package.swift` |
+
+### Renamed / Moved
+
+| v2 | v3 |
+|----|----|
+| `Hardware.bootTime` | `Hardware.uptime` |
+| `Hardware.systemName` | `Hardware.Device.systemName` |
+| `Hardware.Accessory.isHeadsetPluggedIn` | `Audio.isWiredHeadsetPluggedIn` |
+
+### Replaced
+
+| v2 | v3 |
+|----|----|
+| `BatteryState` (custom enum) | `UIDevice.BatteryState` directly |
+| `MeasureUnit` (custom enum) | `UnitInformationStorage` from Foundation |
+| `SystemVersion` struct | `OperatingSystemVersion` + `Comparable` extension (see above) |
+| `Disk.totalSpace(measureUnit:)` | `Disk.totalSpace(in: UnitInformationStorage)` |
+| `Disk.freeSpace(measureUnit:)` | `Disk.freeSpace(in: UnitInformationStorage)` |
+| `Disk.usedSpace(measureUnit:)` | `Disk.usedSpace(in: UnitInformationStorage)` |
+| `Hardware.physicalMemory(with:)` | `Hardware.physicalMemory(in: UnitInformationStorage)` |
+| `Audio.currentAudioOutputVolume` → `Double?` | `Audio.currentAudioOutputVolume` → `Float?` (no session activation side-effect) |
+| Deprecated Disk string properties | Use `totalSpace(in:)` / `freeSpace(in:)` / `usedSpace(in:)` |
+
+### New in v3
+
+| API | Description |
+|-----|-------------|
+| `Audio.isAnyHeadphoneConnected` | Includes AirPods and all Bluetooth audio |
+| `Hardware.thermalState` | `ProcessInfo.ThermalState` — nominal / fair / serious / critical |
+| `Hardware.modelIdentifier` | Hardware model string, e.g. `"iPhone16,1"` |
+| `Hardware.availableMemoryInBytes` / `availableMemory(in:)` | Memory available to the process |
+| `Hardware.Screen.maximumRefreshRate` | 60, 120, etc. |
+| `Hardware.Device.userInterfaceStyle` | Light / dark / unspecified |
+| `Network.isExpensive` | True on cellular or personal hotspot |
+| `Network.isConstrained` | True when Low Data Mode is active |
+| `Network.supportsIPv4` / `supportsIPv6` | IP protocol support on current path |
+| `OperatingSystemVersion` Comparable | Use `>=`, `<`, `==` directly on OS version values |
+
+---
+
 ## Author
 
 [Andrea Mario Lufino](https://andrealufino.com)
