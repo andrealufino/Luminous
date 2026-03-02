@@ -45,6 +45,9 @@ extension Luminous {
         ///
         /// Returns `UIDevice.BatteryState` directly, including `.unknown` when
         /// the state cannot be determined.
+        ///
+        /// - Note: Replaces the custom `BatteryState` enum from v2. Use
+        ///   `UIDevice.BatteryState` in switch statements.
         public static var state: UIDevice.BatteryState {
             device.batteryState
         }

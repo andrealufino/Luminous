@@ -52,6 +52,8 @@ extension Luminous {
         ///
         /// - Parameter unit: The `UnitInformationStorage` to convert to.
         ///   Defaults to `.gigabytes`.
+        ///
+        /// - Note: Previously `totalSpace(measureUnit:)` in v2.
         public static func totalSpace(in unit: UnitInformationStorage = .gigabytes) -> Double {
             convert(bytes: totalSpaceInBytes, to: unit)
         }
@@ -60,6 +62,8 @@ extension Luminous {
         ///
         /// - Parameter unit: The `UnitInformationStorage` to convert to.
         ///   Defaults to `.gigabytes`.
+        ///
+        /// - Note: Previously `freeSpace(measureUnit:)` in v2.
         public static func freeSpace(in unit: UnitInformationStorage = .gigabytes) -> Double {
             convert(bytes: freeSpaceInBytes, to: unit)
         }
@@ -68,6 +72,8 @@ extension Luminous {
         ///
         /// - Parameter unit: The `UnitInformationStorage` to convert to.
         ///   Defaults to `.gigabytes`.
+        ///
+        /// - Note: Previously `usedSpace(measureUnit:)` in v2.
         public static func usedSpace(in unit: UnitInformationStorage = .gigabytes) -> Double {
             convert(bytes: totalSpaceInBytes - freeSpaceInBytes, to: unit)
         }

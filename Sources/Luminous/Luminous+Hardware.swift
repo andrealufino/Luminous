@@ -41,6 +41,8 @@ extension Luminous {
         ///
         /// - Parameter unit: The `UnitInformationStorage` to convert to.
         ///   Defaults to `.gigabytes`.
+        ///
+        /// - Note: Previously `physicalMemory(with: MeasureUnit)` in v2.
         public static func physicalMemory(in unit: UnitInformationStorage = .gigabytes) -> Double {
             let bytes = Double(ProcessInfo.processInfo.physicalMemory)
             return Measurement<UnitInformationStorage>(value: bytes, unit: .bytes)
@@ -74,11 +76,16 @@ extension Luminous {
         /// let ios18 = OperatingSystemVersion(majorVersion: 18, minorVersion: 0, patchVersion: 0)
         /// if Luminous.Hardware.systemVersion >= ios18 { ... }
         /// ```
+        ///
+        /// - Note: Replaces the custom `SystemVersion` struct from v2.
+        ///   Use `OperatingSystemVersion` with `>=`, `<`, `==` directly.
         public static var systemVersion: OperatingSystemVersion {
             ProcessInfo.processInfo.operatingSystemVersion
         }
 
         /// The elapsed time since the device last booted, in seconds.
+        ///
+        /// - Note: Previously `bootTime` in v2 (the name was misleading).
         public static var uptime: TimeInterval {
             ProcessInfo.processInfo.systemUptime
         }
@@ -200,6 +207,9 @@ extension Luminous {
             }
 
             /// The name of the operating system (e.g. `"iPhone OS"`).
+            ///
+            /// - Note: Previously `Hardware.systemName` in v2. Moved to
+            ///   `Hardware.Device.systemName` in v3.
             public static var systemName: String {
                 UIDevice.current.systemName
             }

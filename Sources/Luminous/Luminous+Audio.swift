@@ -21,6 +21,9 @@ extension Luminous {
         /// Reads `AVAudioSession.outputVolume` directly without activating the
         /// session, avoiding the harmful side-effect of interrupting other audio.
         /// Returns `nil` if the value is outside the expected range.
+        ///
+        /// - Note: Changed from `Double?` to `Float?` in v3. No longer activates
+        ///   the audio session as a side-effect.
         public static var currentAudioOutputVolume: Float? {
             let volume = AVAudioSession.sharedInstance().outputVolume
             guard volume >= 0 else { return nil }
@@ -39,6 +42,8 @@ extension Luminous {
         ///
         /// Returns `false` for Bluetooth audio devices; use
         /// `isAnyHeadphoneConnected` to include those.
+        ///
+        /// - Note: Previously `Hardware.Accessory.isHeadsetPluggedIn` in v2.
         public static var isWiredHeadsetPluggedIn: Bool {
             AVAudioSession.sharedInstance().currentRoute.outputs.contains {
                 $0.portType == .headphones
