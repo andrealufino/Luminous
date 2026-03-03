@@ -103,6 +103,18 @@ extension Luminous {
             ProcessInfo.processInfo.thermalState
         }
 
+        /// Whether the code is running in an iOS Simulator environment.
+        ///
+        /// Determined at compile time via `targetEnvironment(simulator)`.
+        /// Always `false` on physical devices.
+        public static var isSimulator: Bool {
+            #if targetEnvironment(simulator)
+            return true
+            #else
+            return false
+            #endif
+        }
+
         /// The hardware model identifier string (e.g. `"iPhone16,1"`).
         ///
         /// Obtained via `uname(2)`. Returns an empty string on failure.
@@ -182,6 +194,18 @@ extension Luminous {
             public static var maximumRefreshRate: Int {
                 currentWindowScene?.screen.maximumFramesPerSecond ?? 60
             }
+
+            /// Whether Display Zoom is currently active.
+            ///
+            /// Display Zoom renders content at a lower logical resolution so that
+            /// elements appear larger. When active, `nativeScale` differs from
+            /// `scale` on the underlying `UIScreen`.
+            ///
+            /// Returns `false` when no foreground-active scene is available.
+            public static var isZoomed: Bool {
+                guard let screen = currentWindowScene?.screen else { return false }
+                return screen.nativeScale != screen.scale
+            }
         }
 
 
@@ -212,6 +236,13 @@ extension Luminous {
             ///   `Hardware.Device.systemName` in v3.
             public static var systemName: String {
                 UIDevice.current.systemName
+            }
+
+            /// The name of the device as set by the user (e.g. `"Andrea's iPhone"`).
+            ///
+            /// Reads `UIDevice.current.name`. Useful for diagnostics and support screens.
+            public static var name: String {
+                UIDevice.current.name
             }
 
             /// The current user interface style (light, dark, or unspecified).

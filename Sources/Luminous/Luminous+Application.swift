@@ -35,5 +35,23 @@ extension Luminous {
         public static var completeAppVersion: String {
             "\(version) (\(build))"
         }
+
+        /// The bundle identifier of the app (e.g. `"com.example.MyApp"`).
+        ///
+        /// Returns `nil` in test targets and frameworks that have no bundle
+        /// identifier in their Info.plist.
+        public static var bundleIdentifier: String? {
+            Bundle.main.bundleIdentifier
+        }
+
+        /// The user-visible display name of the app.
+        ///
+        /// Reads `CFBundleDisplayName` first, then falls back to `CFBundleName`.
+        /// Returns an empty string if neither key is present (e.g. in test targets).
+        public static var displayName: String {
+            Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
+                ?? Bundle.main.infoDictionary?["CFBundleName"] as? String
+                ?? ""
+        }
     }
 }

@@ -91,6 +91,8 @@ let brightness = await MainActor.run { Luminous.Hardware.Screen.brightness }
 | `version` | `String` | `CFBundleShortVersionString` (e.g. `"3.0.0"`); `""` if absent |
 | `build` | `String` | `CFBundleVersion` (e.g. `"42"`); `""` if absent |
 | `completeAppVersion` | `String` | `"3.0.0 (42)"` |
+| `bundleIdentifier` | `String?` | Bundle identifier (e.g. `"com.example.MyApp"`); `nil` if absent |
+| `displayName` | `String` | User-visible app name; `""` if absent |
 
 ### `Luminous.Audio`
 
@@ -107,6 +109,7 @@ let brightness = await MainActor.run { Luminous.Hardware.Screen.brightness }
 |----------|------|-------------|
 | `level` | `Float?` | 0–100; `nil` in Simulator |
 | `state` | `UIDevice.BatteryState` | `.unknown` / `.unplugged` / `.charging` / `.full` |
+| `isCharging` | `Bool` | Convenience shorthand for `state == .charging` |
 
 ### `Luminous.Disk`
 
@@ -116,6 +119,7 @@ All size methods accept a `UnitInformationStorage` parameter (default: `.gigabyt
 |-------------------|------|-------------|
 | `totalSpaceInBytes` | `Int64` | Raw total capacity |
 | `freeSpaceInBytes` | `Int64` | Available space including purgeable content |
+| `usedSpaceInBytes` | `Int64` | Used space in bytes |
 | `totalSpace(in:)` | `Double` | Total capacity in the given unit |
 | `freeSpace(in:)` | `Double` | Free space in the given unit |
 | `usedSpace(in:)` | `Double` | Used space in the given unit |
@@ -139,6 +143,7 @@ let mb = Luminous.Disk.usedSpace(in: .megabytes)
 | `isLowPowerModeEnabled` | `Bool` | |
 | `thermalState` | `ProcessInfo.ThermalState` | `.nominal` / `.fair` / `.serious` / `.critical` |
 | `modelIdentifier` | `String` | Hardware model string (e.g. `"iPhone16,1"`) |
+| `isSimulator` | `Bool` | `true` when running in the iOS Simulator |
 
 ### `Luminous.Hardware.Screen` — `@MainActor`
 
@@ -146,6 +151,7 @@ let mb = Luminous.Disk.usedSpace(in: .megabytes)
 |----------|------|-------------|
 | `brightness` | `Float` | 0.0–1.0 |
 | `isScreenMirrored` | `Bool` | |
+| `isZoomed` | `Bool` | Display Zoom is active |
 | `nativeBounds` | `CGRect` | Physical screen bounds in pixels |
 | `nativeScale` | `Float` | Physical screen scale |
 | `bounds` | `CGRect` | Logical screen bounds in points |
@@ -157,6 +163,7 @@ let mb = Luminous.Disk.usedSpace(in: .megabytes)
 | Property | Type | Description |
 |----------|------|-------------|
 | `identifierForVendor` | `String?` | Vendor UUID |
+| `name` | `String` | User-assigned device name (e.g. `"Andrea's iPhone"`) |
 | `orientation` | `UIDeviceOrientation` | Current device orientation |
 | `systemName` | `String` | OS name (e.g. `"iPhone OS"`) |
 | `userInterfaceStyle` | `UIUserInterfaceStyle` | `.light` / `.dark` / `.unspecified` |

@@ -51,5 +51,12 @@ extension Luminous {
         public static var state: UIDevice.BatteryState {
             device.batteryState
         }
+
+        /// Whether the device is currently charging.
+        ///
+        /// Convenience shorthand for `state == .charging`.
+        public static var isCharging: Bool {
+            state == .charging
+        }
     }
 }

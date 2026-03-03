@@ -30,6 +30,16 @@ final class LuminousTests: XCTestCase {
         XCTAssertTrue(complete.contains(")"), "completeAppVersion should contain closing parenthesis")
     }
 
+    func testApplicationBundleIdentifierDoesNotCrash() {
+        // May be nil in a test target without a bundle identifier; just must not crash
+        _ = Luminous.Application.bundleIdentifier
+    }
+
+    func testApplicationDisplayNameDoesNotCrash() {
+        // Returns "" in test targets that have no CFBundleDisplayName/CFBundleName
+        _ = Luminous.Application.displayName
+    }
+
 
     // MARK: - Audio
 
@@ -55,6 +65,11 @@ final class LuminousTests: XCTestCase {
     }
 
     @MainActor
+    func testBatteryIsChargingDoesNotCrash() {
+        _ = Luminous.Battery.isCharging
+    }
+
+    @MainActor
     func testBatteryLevelIsNilOrInRange() {
         if let level = Luminous.Battery.level {
             XCTAssertGreaterThanOrEqual(level, 0, "Battery level must be >= 0")
@@ -68,6 +83,13 @@ final class LuminousTests: XCTestCase {
 
     func testDiskTotalSpaceInBytesIsPositive() {
         XCTAssertGreaterThan(Luminous.Disk.totalSpaceInBytes, 0)
+    }
+
+    func testDiskUsedSpaceInBytesIsNonNegativeAndSmallerThanTotal() {
+        let used = Luminous.Disk.usedSpaceInBytes
+        let total = Luminous.Disk.totalSpaceInBytes
+        XCTAssertGreaterThanOrEqual(used, 0)
+        XCTAssertLessThanOrEqual(used, total)
     }
 
     func testDiskFreeSpaceIsNonNegativeAndSmallerThanTotal() {
@@ -134,6 +156,11 @@ final class LuminousTests: XCTestCase {
         _ = Luminous.Hardware.isLowPowerModeEnabled
     }
 
+    func testHardwareIsSimulatorIsTrueInTests() {
+        // Test targets always run on simulator; value must be true
+        XCTAssertTrue(Luminous.Hardware.isSimulator)
+    }
+
 
     // MARK: - Hardware.Screen
 
@@ -159,6 +186,11 @@ final class LuminousTests: XCTestCase {
         XCTAssertGreaterThan(Luminous.Hardware.Screen.maximumRefreshRate, 0)
     }
 
+    @MainActor
+    func testScreenIsZoomedDoesNotCrash() {
+        _ = Luminous.Hardware.Screen.isZoomed
+    }
+
 
     // MARK: - Hardware.Device
 
@@ -172,6 +204,11 @@ final class LuminousTests: XCTestCase {
     @MainActor
     func testDeviceSystemNameIsNotEmpty() {
         XCTAssertFalse(Luminous.Hardware.Device.systemName.isEmpty)
+    }
+
+    @MainActor
+    func testDeviceNameIsNotEmpty() {
+        XCTAssertFalse(Luminous.Hardware.Device.name.isEmpty)
     }
 
 

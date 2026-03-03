@@ -43,24 +43,25 @@ Architecture pattern: **hub-and-spoke**. `Luminous` is an `enum` (prevents insta
 ```
 Luminous (enum — namespace only, no cases)
 ├── Application (struct: Sendable)
-│   version, build, completeAppVersion
+│   version, build, completeAppVersion, bundleIdentifier, displayName
 ├── Audio (struct: Sendable)
 │   currentAudioOutputVolume, secondaryAudioShouldBeSilencedHint
 │   isWiredHeadsetPluggedIn, isAnyHeadphoneConnected
 ├── Battery (@MainActor struct)
-│   level, state
+│   level, state, isCharging
 ├── Disk (struct: Sendable)
-│   totalSpaceInBytes, freeSpaceInBytes
+│   totalSpaceInBytes, freeSpaceInBytes, usedSpaceInBytes
 │   totalSpace(in:), freeSpace(in:), usedSpace(in:)
 ├── Hardware (struct: Sendable)
 │   processorsNumber, activeProcessorsNumber
 │   physicalMemory(in:), availableMemoryInBytes, availableMemory(in:)
 │   systemVersion, uptime, isLowPowerModeEnabled, thermalState, modelIdentifier
+│   isSimulator
 │   ├── Screen (@MainActor struct)
-│   │   brightness, isScreenMirrored, nativeBounds, nativeScale
+│   │   brightness, isScreenMirrored, isZoomed, nativeBounds, nativeScale
 │   │   bounds, scale, maximumRefreshRate
 │   └── Device (@MainActor struct)
-│       identifierForVendor, orientation, systemName, userInterfaceStyle
+│       identifierForVendor, name, orientation, systemName, userInterfaceStyle
 ├── Locale (struct: Sendable)
 │   currentLanguage, currentTimeZone, currentTimeZoneName
 │   currentCountry, currentCurrency, currentCurrencySymbol
@@ -150,6 +151,8 @@ No third-party dependencies.
 | `version` | `String` | `CFBundleShortVersionString`; `""` if absent |
 | `build` | `String` | `CFBundleVersion`; `""` if absent |
 | `completeAppVersion` | `String` | `"2.1.3 (343)"` |
+| `bundleIdentifier` | `String?` | `Bundle.main.bundleIdentifier`; `nil` if absent |
+| `displayName` | `String` | `CFBundleDisplayName` → `CFBundleName` → `""`  |
 
 ### Luminous.Audio
 | Property | Type | Notes |
@@ -164,12 +167,14 @@ No third-party dependencies.
 |----------|------|-------|
 | `level` | `Float?` | 0–100; `nil` if unavailable (Simulator) |
 | `state` | `UIDevice.BatteryState` | `.unknown / .unplugged / .charging / .full` |
+| `isCharging` | `Bool` | `state == .charging` |
 
 ### Luminous.Disk
 | Property/Method | Type | Notes |
 |-----------------|------|-------|
 | `totalSpaceInBytes` | `Int64` | Raw bytes |
 | `freeSpaceInBytes` | `Int64` | Includes purgeable; raw bytes |
+| `usedSpaceInBytes` | `Int64` | `total - free`; raw bytes |
 | `totalSpace(in:)` | `Double` | Default `.gigabytes` |
 | `freeSpace(in:)` | `Double` | Default `.gigabytes` |
 | `usedSpace(in:)` | `Double` | Default `.gigabytes` |
@@ -187,12 +192,14 @@ No third-party dependencies.
 | `isLowPowerModeEnabled` | `Bool` | |
 | `thermalState` | `ProcessInfo.ThermalState` | `.nominal / .fair / .serious / .critical` |
 | `modelIdentifier` | `String` | e.g. `"iPhone16,1"` via `utsname` |
+| `isSimulator` | `Bool` | Compile-time `targetEnvironment(simulator)` check |
 
 ### Luminous.Hardware.Screen (`@MainActor`)
 | Property | Type | Notes |
 |----------|------|-------|
 | `brightness` | `Float` | 0.0–1.0 |
 | `isScreenMirrored` | `Bool` | |
+| `isZoomed` | `Bool` | Display Zoom active (`nativeScale != scale`) |
 | `nativeBounds` | `CGRect` | Physical pixels |
 | `nativeScale` | `Float` | |
 | `bounds` | `CGRect` | Logical points |
@@ -203,6 +210,7 @@ No third-party dependencies.
 | Property | Type | Notes |
 |----------|------|-------|
 | `identifierForVendor` | `String?` | |
+| `name` | `String` | User-assigned device name |
 | `orientation` | `UIDeviceOrientation` | |
 | `systemName` | `String` | e.g. `"iPhone OS"` |
 | `userInterfaceStyle` | `UIUserInterfaceStyle` | `.light / .dark / .unspecified` |

@@ -78,6 +78,13 @@ extension Luminous {
             convert(bytes: totalSpaceInBytes - freeSpaceInBytes, to: unit)
         }
 
+        /// Used disk space in bytes.
+        ///
+        /// Computed as `totalSpaceInBytes - freeSpaceInBytes`.
+        public static var usedSpaceInBytes: Int64 {
+            totalSpaceInBytes - freeSpaceInBytes
+        }
+
         // MARK: Private helpers
 
         /// Converts a byte count to the requested `UnitInformationStorage`.
