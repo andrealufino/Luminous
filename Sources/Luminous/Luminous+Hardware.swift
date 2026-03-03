@@ -5,289 +5,249 @@
 //  Created by Andrea Mario Lufino on 10/11/2019.
 //
 
-import AVFoundation
-import CoreMotion
-import CoreTelephony
-import ExternalAccessory
 import Foundation
-import SystemConfiguration.CaptiveNetwork
 import UIKit
 
 
+// MARK: - Hardware
+
 extension Luminous {
-    
-    /// This structure represents the system version. It's useful in case there's the need to
-    /// split up the OS version for specific purposes.
-    public struct SystemVersion: Equatable, Comparable {
-        
-        /// The major version. Ex: "10.1.2" will return 10.
-        public var major: Int
-        /// The minor version. Ex: "10.1.2" will return 1.
-        public var minor: Int
-        /// The patch version. Ex: "10.1.2" will return 2.
-        public var patch: Int
-        /// The value of the version as string.
-        public var stringValue: String
-        
-        init() {
-            major = 0
-            minor = 0
-            patch = 0
-            stringValue = "\(major).\(minor).\(patch)"
-        }
-        
-        /// Init with a string version.
-        /// This will fail if the version is not formatted in the correct way, with at least a dot inside it.
-        /// - Parameter version: The version used to init the structure.
-        init(withVersion version: String) {
-            
-            guard version.contains(".") else {
-                fatalError("version is not in the correct format")
-            }
-            
-            stringValue = version
-            
-            let components = version.components(separatedBy: ".")
-            
-            major = components.count > 0 ? Int(components[0])! : 0
-            minor = components.count > 1 ? Int(components[1])! : 0
-            patch = components.count > 2 ? Int(components[2])! : 0
-        }
-        
-        public static func ==(lhs: SystemVersion, rhs: SystemVersion) -> Bool {
-            
-            return lhs.stringValue == rhs.stringValue
-        }
-        
-        public static func > (lhs: Luminous.SystemVersion, rhs: Luminous.SystemVersion) -> Bool {
-            
-            let lValue = "\(lhs.major)\(lhs.minor)\(lhs.patch)"
-            let rValue = "\(rhs.major)\(rhs.minor)\(rhs.patch)"
-            
-            return Double(lValue)! > Double(rValue)!
-        }
-        
-        public static func < (lhs: Luminous.SystemVersion, rhs: Luminous.SystemVersion) -> Bool {
-            
-            let lValue = "\(lhs.major)\(lhs.minor)\(lhs.patch)"
-            let rValue = "\(rhs.major)\(rhs.minor)\(rhs.patch)"
-            
-            return Double(lValue)! < Double(rValue)!
-        }
-    }
-    
-    // MARK: Hardware
-    
+
     /// Hardware information.
-    public struct Hardware {
-        
-        /// Number of processors.
+    ///
+    /// Core properties are `nonisolated` — `ProcessInfo` is thread-safe.
+    /// `Screen` and `Device` are `@MainActor` because they access UIKit APIs
+    /// that must run on the main thread.
+    public struct Hardware: Sendable {
+
+        // MARK: Processors
+
+        /// The total number of processors on the device.
         public static var processorsNumber: Int {
-            
-            return ProcessInfo().processorCount
+            ProcessInfo.processInfo.processorCount
         }
-        
-        /// Number of active processors.
+
+        /// The number of active processors on the device.
         public static var activeProcessorsNumber: Int {
-            
-            return ProcessInfo().activeProcessorCount
+            ProcessInfo.processInfo.activeProcessorCount
         }
-        
-        /// Physical memory of the device in megabytes.
-        public static func physicalMemory(with sizeScale: MeasureUnit = .gigabytes) -> Double {
-            
-            let physicalMemory = Float(ProcessInfo().physicalMemory)
-            
-            switch sizeScale {
-            case .bytes:
-                return Double(physicalMemory)
-            case .kilobytes:
-                return Double(physicalMemory / 1024)
-            case .megabytes:
-                return Double(physicalMemory / 1024 / 1024)
-            case .gigabytes:
-                return Double(physicalMemory / 1024 / 1024 / 1024)
-            case .percentage:
-                return 100.0
-            }
+
+        // MARK: Memory
+
+        /// Physical RAM of the device converted to the given unit.
+        ///
+        /// Uses `UInt64` → `Double` arithmetic directly to avoid the precision
+        /// loss caused by an intermediate `Float` conversion.
+        ///
+        /// - Parameter unit: The `UnitInformationStorage` to convert to.
+        ///   Defaults to `.gigabytes`.
+        ///
+        /// - Note: Previously `physicalMemory(with: MeasureUnit)` in v2.
+        public static func physicalMemory(in unit: UnitInformationStorage = .gigabytes) -> Double {
+            let bytes = Double(ProcessInfo.processInfo.physicalMemory)
+            return Measurement<UnitInformationStorage>(value: bytes, unit: .bytes)
+                .converted(to: unit).value
         }
-        
-        /// The name of the system.
-        public static var systemName: String {
-            
-            return UIDevice().systemName
+
+        /// Memory currently available to the process, in bytes.
+        ///
+        /// Uses `os_proc_available_memory()` from the `os` framework.
+        /// Returns `0` if the value cannot be determined.
+        public static var availableMemoryInBytes: Int64 {
+            let raw = os_proc_available_memory()
+            return raw > 0 ? Int64(raw) : 0
         }
-        
-        /// The version of the system. Private use.
-        private static var _systemVersion: String {
-            
-            return UIDevice().systemVersion
+
+        /// Memory currently available to the process, converted to the given unit.
+        ///
+        /// - Parameter unit: The `UnitInformationStorage` to convert to.
+        ///   Defaults to `.megabytes`.
+        public static func availableMemory(in unit: UnitInformationStorage = .megabytes) -> Double {
+            Measurement<UnitInformationStorage>(value: Double(availableMemoryInBytes), unit: .bytes)
+                .converted(to: unit).value
         }
-        
-        /// The version of the system.
-        public static var systemVersion: SystemVersion {
-            
-            return SystemVersion.init(withVersion: _systemVersion)
+
+        // MARK: System
+
+        /// The OS version as an `OperatingSystemVersion` value.
+        ///
+        /// Use the `Comparable` extension to compare versions directly:
+        /// ```swift
+        /// let ios18 = OperatingSystemVersion(majorVersion: 18, minorVersion: 0, patchVersion: 0)
+        /// if Luminous.Hardware.systemVersion >= ios18 { ... }
+        /// ```
+        ///
+        /// - Note: Replaces the custom `SystemVersion` struct from v2.
+        ///   Use `OperatingSystemVersion` with `>=`, `<`, `==` directly.
+        public static var systemVersion: OperatingSystemVersion {
+            ProcessInfo.processInfo.operatingSystemVersion
         }
-        
-        /// The current boot time expressed in seconds.
-        public static var bootTime: TimeInterval {
-            
-            return ProcessInfo().systemUptime
+
+        /// The elapsed time since the device last booted, in seconds.
+        ///
+        /// - Note: Previously `bootTime` in v2 (the name was misleading).
+        public static var uptime: TimeInterval {
+            ProcessInfo.processInfo.systemUptime
         }
-        
-        @available(iOS 9.0,*)
-        /// Check if the low power mode is currently enabled (iOS 9 and above).
+
+        /// Whether Low Power Mode is currently enabled.
         public static var isLowPowerModeEnabled: Bool {
-            
-            return ProcessInfo().isLowPowerModeEnabled
+            ProcessInfo.processInfo.isLowPowerModeEnabled
         }
-        
-        
-        // MARK: Screen
-        
+
+        /// The current thermal state of the device.
+        ///
+        /// Use `ProcessInfo.ThermalState` cases (`.nominal`, `.fair`, `.serious`,
+        /// `.critical`) to react appropriately to thermal pressure.
+        public static var thermalState: ProcessInfo.ThermalState {
+            ProcessInfo.processInfo.thermalState
+        }
+
+        /// Whether the code is running in an iOS Simulator environment.
+        ///
+        /// Determined at compile time via `targetEnvironment(simulator)`.
+        /// Always `false` on physical devices.
+        public static var isSimulator: Bool {
+            #if targetEnvironment(simulator)
+            return true
+            #else
+            return false
+            #endif
+        }
+
+        /// The hardware model identifier string (e.g. `"iPhone16,1"`).
+        ///
+        /// Obtained via `uname(2)`. Returns an empty string on failure.
+        public static var modelIdentifier: String {
+            var info = utsname()
+            uname(&info)
+            return withUnsafeBytes(of: &info.machine) { rawBuffer in
+                let bytes = rawBuffer.bindMemory(to: CChar.self)
+                return String(cString: bytes.baseAddress!)
+            }
+        }
+
+
+        // MARK: - Screen
+
         /// Screen information.
+        ///
+        /// All properties are `@MainActor` and access the screen via the active
+        /// `UIWindowScene`. Properties return safe defaults (`.zero`, `1`, `false`)
+        /// when no foreground scene is available.
+        @MainActor
         public struct Screen {
-            
-            /// The current brightness
+
+            /// The primary `UIWindowScene` that is currently in the foreground.
+            ///
+            /// Returns `nil` if no foreground-active scene is found (e.g. during
+            /// background execution or before the first scene activation).
+            private static var currentWindowScene: UIWindowScene? {
+                UIApplication.shared.connectedScenes
+                    .compactMap { $0 as? UIWindowScene }
+                    .first { $0.activationState == .foregroundActive }
+            }
+
+            /// The current screen brightness (0.0–1.0).
+            ///
+            /// Returns `0` when called with no foreground-active scene (e.g. in background).
             public static var brightness: Float {
-                
-                return Float(UIScreen.main.brightness)
+                Float(currentWindowScene?.screen.brightness ?? 0)
             }
-            
-            /// Check if the screen is being mirrored.
+
+            /// Whether the screen is currently being mirrored to another display.
             public static var isScreenMirrored: Bool {
-                
-                if let _ = UIScreen.main.mirrored {
-                    return true
-                }
-                
-                return false
+                currentWindowScene?.screen.mirrored != nil
             }
-            
-            /// The bounding rectange of the physical screen measured in pixels.
+
+            /// The bounding rectangle of the physical screen, in pixels.
+            ///
+            /// Returns `.zero` when no foreground-active scene is available.
             public static var nativeBounds: CGRect {
-                
-                return UIScreen.main.nativeBounds
+                currentWindowScene?.screen.nativeBounds ?? .zero
             }
-            
-            /// The scale of the physical screen.
+
+            /// The scale factor of the physical screen.
+            ///
+            /// Returns `1` when no foreground-active scene is available.
             public static var nativeScale: Float {
-                
-                return Float(UIScreen.main.nativeScale)
+                Float(currentWindowScene?.screen.nativeScale ?? 1)
             }
-            
-            /// The bounds of the current main screen.
+
+            /// The logical bounds of the screen, in points.
+            ///
+            /// Returns `.zero` when no foreground-active scene is available.
             public static var bounds: CGRect {
-                
-                return UIScreen.main.bounds
+                currentWindowScene?.screen.bounds ?? .zero
             }
-            
-            /// The scale of the current main screen.
+
+            /// The logical scale factor of the screen (e.g. 2.0 on Retina displays).
+            ///
+            /// Returns `1` when no foreground-active scene is available.
             public static var scale: Float {
-                
-                return Float(UIScreen.main.scale)
+                Float(currentWindowScene?.screen.scale ?? 1)
             }
-            
-            /// The snapshot of the current view after all the updates are applied.
-            public static var snapshotOfCurrentView: UIView {
-                
-                return UIScreen.main.snapshotView(afterScreenUpdates: true)
+
+            /// The maximum refresh rate of the screen in frames per second.
+            ///
+            /// Returns `60` as a fallback when no foreground scene is available.
+            public static var maximumRefreshRate: Int {
+                currentWindowScene?.screen.maximumFramesPerSecond ?? 60
+            }
+
+            /// Whether Display Zoom is currently active.
+            ///
+            /// Display Zoom renders content at a lower logical resolution so that
+            /// elements appear larger. When active, `nativeScale` differs from
+            /// `scale` on the underlying `UIScreen`.
+            ///
+            /// Returns `false` when no foreground-active scene is available.
+            public static var isZoomed: Bool {
+                guard let screen = currentWindowScene?.screen else { return false }
+                return screen.nativeScale != screen.scale
             }
         }
-        
-        
-        // MARK: Device
-        
-        /// Device information
+
+
+        // MARK: - Device
+
+        /// Device information.
+        ///
+        /// All properties are `@MainActor` because they read from `UIDevice.current`.
+        @MainActor
         public struct Device {
-            
-            /// The identifier for vendor of the device
+
+            /// The vendor-assigned UUID string for this device.
+            ///
+            /// Returns `nil` when the device has been recently restarted and not
+            /// yet unlocked.
             public static var identifierForVendor: String? {
-                
-                return UIDevice.current.identifierForVendor?.uuidString
+                UIDevice.current.identifierForVendor?.uuidString
             }
-            
-            /// The current device orientation as UIDeviceOrientation
+
+            /// The current device orientation.
             public static var orientation: UIDeviceOrientation {
-                
-                return UIDevice.current.orientation
+                UIDevice.current.orientation
             }
-        }
-        
-        
-        // MARK: Accessory
-        
-        /// Accessory information
-        public struct Accessory {
-            
-            /// The number of connected accessories
-            public static var count: Int {
-                
-                return EAAccessoryManager.shared().connectedAccessories.count
+
+            /// The name of the operating system (e.g. `"iPhone OS"`).
+            ///
+            /// - Note: Previously `Hardware.systemName` in v2. Moved to
+            ///   `Hardware.Device.systemName` in v3.
+            public static var systemName: String {
+                UIDevice.current.systemName
             }
-            
-            /// The names of the attacched accessories. If no accessory is attached the array will be empty, but not nil
-            public static var connectedAccessoriesNames: [String] {
-                
-                var theNames: [String] = []
-                
-                for accessory in EAAccessoryManager.shared().connectedAccessories {
-                    
-                    theNames.append(accessory.name)
-                }
-                
-                return theNames
+
+            /// The name of the device as set by the user (e.g. `"Andrea's iPhone"`).
+            ///
+            /// Reads `UIDevice.current.name`. Useful for diagnostics and support screens.
+            public static var name: String {
+                UIDevice.current.name
             }
-            
-            /// The accessories connected and available to use for the app as EAAccessory objects
-            public static var connectedAccessories: [EAAccessory] {
-                
-                return EAAccessoryManager.shared().connectedAccessories
-            }
-            
-            /// Check if headphones are plugged in
-            public static var isHeadsetPluggedIn: Bool {
-                // !!!: Thanks to Antonio E., this code is coming from this SO answer : http://stackoverflow.com/a/21382748/588967 . I've only translated it in Swift
-                let route = AVAudioSession.sharedInstance().currentRoute
-                
-                for desc in route.outputs {
-                    if desc.portType == AVAudioSession.Port.headphones {
-                        return true
-                    }
-                }
-                return false
-            }
-        }
-        
-        
-        // MARK: Sensors
-        
-        /// Get info about the sensors
-        public struct Sensors {
-            
-            /// Check if the accelerometer is available
-            public static var isAccelerometerAvailable: Bool {
-                
-                return CMMotionManager.init().isAccelerometerAvailable
-            }
-            
-            /// Check if gyroscope is available
-            public static var isGyroAvailable: Bool {
-                
-                return CMMotionManager.init().isGyroAvailable
-            }
-            
-            /// Check if magnetometer is available
-            public static var isMagnetometerAvailable: Bool {
-                
-                return CMMotionManager.init().isMagnetometerAvailable
-            }
-            
-            /// Check if device motion is available
-            public static var isDeviceMotionAvailable: Bool {
-                
-                return CMMotionManager.init().isDeviceMotionAvailable
+
+            /// The current user interface style (light, dark, or unspecified).
+            public static var userInterfaceStyle: UIUserInterfaceStyle {
+                UITraitCollection.current.userInterfaceStyle
             }
         }
     }

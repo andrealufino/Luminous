@@ -8,80 +8,55 @@
 import Foundation
 
 
+// MARK: - Locale
+
 extension Luminous {
-    
-    
-    // MARK: Locale
-    
+
     /// Locale information.
-    public struct Locale {
-        
-        /// The current language of the system.
+    ///
+    /// All properties use the iOS 17 `Locale` API (`language`, `region`,
+    /// `currency`) instead of the deprecated `languageCode`, `regionCode`,
+    /// and `currencyCode` properties.
+    public struct Locale: Sendable {
+
+        /// The BCP 47 language code for the current locale (e.g. `"en"`, `"it"`).
         public static var currentLanguage: String? {
-            
-            if let languageCode = Foundation.Locale.current.languageCode {
-                return languageCode
-            }
-            
-            return nil
+            Foundation.Locale.current.language.languageCode?.identifier
         }
-        
-        /// The current Time Zone as TimeZone object.
+
+        /// The current time zone.
         public static var currentTimeZone: TimeZone {
-            
-            return TimeZone.current
+            TimeZone.current
         }
-        
-        /// The current Time Zone identifier.
+
+        /// The IANA identifier of the current time zone (e.g. `"Europe/Rome"`).
         public static var currentTimeZoneName: String {
-            
-            return TimeZone.current.identifier
+            TimeZone.current.identifier
         }
-        
-        /// The current country.
+
+        /// The ISO 3166-1 region identifier for the current locale (e.g. `"US"`, `"IT"`).
         public static var currentCountry: String? {
-            
-            if let regionCode = Foundation.Locale.current.regionCode {
-                return regionCode
-            }
-            
-            return nil
+            Foundation.Locale.current.region?.identifier
         }
-        
-        /// The current currency.
+
+        /// The ISO 4217 currency code for the current locale (e.g. `"USD"`, `"EUR"`).
         public static var currentCurrency: String? {
-             
-            if let currencyCode = Foundation.Locale.current.currencyCode {
-                return currencyCode
-            }
-            
-            return nil
+            Foundation.Locale.current.currency?.identifier
         }
-        
-        /// The current currency symbol.
+
+        /// The currency symbol for the current locale (e.g. `"$"`, `"€"`).
         public static var currentCurrencySymbol: String? {
-            
-            if let currencySymbol = Foundation.Locale.current.currencySymbol {
-                return currencySymbol
-            }
-            
-            return nil
+            Foundation.Locale.current.currencySymbol
         }
-        
-        /// Check if the system is using the metric system.
+
+        /// Whether the current locale uses the metric system.
         public static var usesMetricSystem: Bool {
-            
-            return Foundation.Locale.current.usesMetricSystem
+            Foundation.Locale.current.measurementSystem == .metric
         }
-        
-        /// The decimal separator
+
+        /// The decimal separator character for the current locale (e.g. `"."` or `","`).
         public static var decimalSeparator: String? {
-            
-            if let decimalSeparator = Foundation.Locale.current.decimalSeparator {
-                return decimalSeparator
-            }
-            
-            return nil
+            Foundation.Locale.current.decimalSeparator
         }
     }
 }

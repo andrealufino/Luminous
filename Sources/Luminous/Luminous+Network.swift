@@ -6,65 +6,104 @@
 //
 
 import Foundation
-import SystemConfiguration.CaptiveNetwork
+import Network
 
+
+// MARK: - Network
 
 extension Luminous {
-    
-    
-    // MARK: Network
-    
-    /// Network information.
-    public struct Network {
-        
-        /// Check if the device is connected to the WiFi network.
-        public static var isConnectedViaWiFi: Bool {
-            let reachability = Reachability()!
-            
-            if reachability.isReachableViaWiFi {
-                return true
-            } else {
-                return false
+
+    /// Network connectivity information.
+    ///
+    /// Backed by a shared `NWPathMonitor` that starts once on first access and
+    /// updates in the background. The initial path is delivered synchronously so
+    /// the first read always returns a valid value.
+    public struct Network: Sendable {
+
+        // MARK: Private
+
+        private static let monitor: PathMonitor = PathMonitor()
+
+        /// Thread-safe wrapper around `NWPathMonitor`.
+        ///
+        /// Marked `@unchecked Sendable` because thread-safety is enforced manually
+        /// through `NSLock`.
+        private final class PathMonitor: @unchecked Sendable {
+
+            private let nwMonitor = NWPathMonitor()
+            private let queue = DispatchQueue(label: "com.luminous.pathMonitor", qos: .utility)
+            private let lock = NSLock()
+            private var _currentPath: NWPath?
+
+            var currentPath: NWPath? {
+                lock.withLock { _currentPath }
             }
-        }
-        
-        /// Check if the device is connected to the cellular network.
-        public static var isConnectedViaCellular: Bool {
-            
-            return !isConnectedViaWiFi
-        }
-        
-        /// Check if the internet is available.
-        public static var isInternetAvailable: Bool {
-            
-            return Reachability()!.isReachable
-        }
-        
-        /// Get the network SSID (doesn't work in the Simulator). Empty string if not available.
-        /// This property is deprecated since version 2 of Luminous as iOS 13 does not allow access to
-        /// `CNCopySupportedInterfaces`.
-        @available(iOS, deprecated: 13.0, message: "It's no longer possible to get SSID info using CNCopySupportedInterfaces.")
-        public static var SSID: String {
-            
-            // Doesn't work in the Simulator
-            var currentSSID = ""
-            if let interfaces:CFArray = CNCopySupportedInterfaces() {
-                for i in 0..<CFArrayGetCount(interfaces){
-                    let interfaceName: UnsafeRawPointer = CFArrayGetValueAtIndex(interfaces, i)
-                    let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
-                    let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString)
-                    if unsafeInterfaceData != nil {
-                        let interfaceData = unsafeInterfaceData! as Dictionary?
-                        for dictData in interfaceData! {
-                            if dictData.key as! String == "SSID" {
-                                currentSSID = dictData.value as! String
-                            }
-                        }
+
+            init() {
+                let semaphore = DispatchSemaphore(value: 0)
+
+                nwMonitor.pathUpdateHandler = { [weak self] path in
+                    guard let self else { return }
+                    var shouldSignal = false
+                    self.lock.lock()
+                    if self._currentPath == nil {
+                        self._currentPath = path
+                        shouldSignal = true
+                    }
+                    self.lock.unlock()
+                    if shouldSignal {
+                        semaphore.signal()
                     }
                 }
+
+                nwMonitor.start(queue: queue)
+                semaphore.wait()
             }
-            
-            return currentSSID
+        }
+
+
+        // MARK: Connectivity
+
+        /// Whether the device is currently connected via Wi-Fi.
+        public static var isConnectedViaWiFi: Bool {
+            monitor.currentPath?.usesInterfaceType(.wifi) ?? false
+        }
+
+        /// Whether the device is currently connected via cellular.
+        public static var isConnectedViaCellular: Bool {
+            monitor.currentPath?.usesInterfaceType(.cellular) ?? false
+        }
+
+        /// Whether any satisfied network path is available.
+        public static var isInternetAvailable: Bool {
+            monitor.currentPath?.status == .satisfied
+        }
+
+        // MARK: Path Attributes
+
+        /// Whether the current network path is considered expensive (e.g. cellular
+        /// or a personal hotspot).
+        ///
+        /// Apps should reduce non-essential data usage when this is `true`.
+        public static var isExpensive: Bool {
+            monitor.currentPath?.isExpensive ?? false
+        }
+
+        /// Whether the current network path is constrained by Low Data Mode.
+        ///
+        /// Apps should defer discretionary transfers when this is `true`.
+        public static var isConstrained: Bool {
+            monitor.currentPath?.isConstrained ?? false
+        }
+
+        /// Whether the current network path supports IPv4.
+        public static var supportsIPv4: Bool {
+            monitor.currentPath?.supportsIPv4 ?? false
+        }
+
+        /// Whether the current network path supports IPv6.
+        public static var supportsIPv6: Bool {
+            monitor.currentPath?.supportsIPv6 ?? false
         }
     }
 }

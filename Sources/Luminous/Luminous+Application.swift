@@ -6,38 +6,52 @@
 //
 
 import Foundation
-import UIKit
 
+
+// MARK: - Application
 
 extension Luminous {
-    
-    // MARK: Application
-    
-    /// Application information.
-    public struct Application {
-        
-        /// The current app version.
+
+    /// Application bundle information.
+    public struct Application: Sendable {
+
+        /// The current app version string (e.g. "2.1.3").
+        ///
+        /// Returns an empty string if `CFBundleShortVersionString` is absent from
+        /// the bundle info dictionary (e.g. in test targets or frameworks without Info.plist).
         public static var version: String {
-            
-            return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+            Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         }
-        
-        /// The build number.
+
+        /// The current build number string (e.g. "343").
+        ///
+        /// Returns an empty string if `CFBundleVersion` is absent from the bundle
+        /// info dictionary.
         public static var build: String {
-            
-            return Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+            Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
         }
-        
-        /// The complete app version with build number (i.e. : "2.1.3 (343)").
+
+        /// The combined version and build string (e.g. "2.1.3 (343)").
         public static var completeAppVersion: String {
-            
-            return "\(Application.version) (\(Application.build))"
+            "\(version) (\(build))"
         }
-        
-        /// The current content of the clipboard (only string).
-        public static var clipboardString: String? {
-            
-            return UIPasteboard.general.string
+
+        /// The bundle identifier of the app (e.g. `"com.example.MyApp"`).
+        ///
+        /// Returns `nil` in test targets and frameworks that have no bundle
+        /// identifier in their Info.plist.
+        public static var bundleIdentifier: String? {
+            Bundle.main.bundleIdentifier
+        }
+
+        /// The user-visible display name of the app.
+        ///
+        /// Reads `CFBundleDisplayName` first, then falls back to `CFBundleName`.
+        /// Returns an empty string if neither key is present (e.g. in test targets).
+        public static var displayName: String {
+            Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
+                ?? Bundle.main.infoDictionary?["CFBundleName"] as? String
+                ?? ""
         }
     }
 }

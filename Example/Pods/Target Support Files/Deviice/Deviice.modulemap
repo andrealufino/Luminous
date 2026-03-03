@@ -1,6 +1,0 @@
-framework module Deviice {
-  umbrella header "Deviice-umbrella.h"
-
-  export *
-  module * { export * }
-}

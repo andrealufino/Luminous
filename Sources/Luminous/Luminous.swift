@@ -1,50 +1,36 @@
 //
 //  Luminous.swift
-//  Pods
+//  Luminous
 //
 //  Created by Andrea Mario Lufino on 20/10/16.
 //
-//
 
-import AVFoundation
-import CoreMotion
-import CoreTelephony
-import ExternalAccessory
 import Foundation
-import SystemConfiguration.CaptiveNetwork
+import UIKit
 
 
-// MARK: Luminous
+// MARK: - Luminous
 
-public struct Luminous {
-    
-    
-    // MARK: Types
-    
-    /// The battery state.
-    ///
-    /// - unknown:   State unknown.
-    /// - unplugged: Battery is not plugged in.
-    /// - charging:  Battery is charging.
-    /// - full:      Battery is full charged.
-    public enum BatteryState: Int {
-        case unknown
-        case unplugged
-        case charging
-        case full
-    }
-    
-    /// The size scale to decide how you want to obtain size information.
-    ///
-    /// - bytes:     In bytes.
-    /// - kilobytes: In kilobytes.
-    /// - megabytes: In megabytes.
-    /// - gigabytes: In gigabytes.
-    public enum MeasureUnit {
-        case bytes
-        case kilobytes
-        case megabytes
-        case gigabytes
-        case percentage
-    }
+/// Namespace for all system information utilities.
+///
+/// `Luminous` is an enum to prevent instantiation. All API is accessed through
+/// its nested structs, e.g. `Luminous.Network.isInternetAvailable`.
+public enum Luminous { }
+
+
+// MARK: - v2 Migration Typealiases
+
+extension Luminous {
+
+    /// Deprecated. Use `UIDevice.BatteryState` directly.
+    @available(*, deprecated, renamed: "UIDevice.BatteryState")
+    public typealias BatteryState = UIDevice.BatteryState
+
+    /// Deprecated. Use `UnitInformationStorage` from Foundation instead.
+    @available(*, deprecated, message: "Use UnitInformationStorage from Foundation instead.")
+    public typealias MeasureUnit = UnitInformationStorage
+
+    /// Deprecated. Use `OperatingSystemVersion` with the `Comparable` extension instead.
+    @available(*, deprecated, message: "Use OperatingSystemVersion with the Comparable extension instead.")
+    public typealias SystemVersion = OperatingSystemVersion
 }

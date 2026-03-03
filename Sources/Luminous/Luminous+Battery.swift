@@ -9,46 +9,54 @@ import Foundation
 import UIKit
 
 
+// MARK: - Battery
+
 extension Luminous {
-    
-    // MARK: Battery
-    
-    /// Battery information
+
+    /// Battery information.
+    ///
+    /// All properties are `@MainActor` because they read from `UIDevice.current`,
+    /// which must be accessed on the main thread.
+    @MainActor
     public struct Battery {
-        
-        private static var device: UIDevice {
-            get {
-                let device = UIDevice.current
-                device.isBatteryMonitoringEnabled = true
-                
-                return device
-            }
-        }
-        
-        /// The current level of the battery
+
+        /// Enables battery monitoring once and returns `UIDevice.current`.
+        ///
+        /// `isBatteryMonitoringEnabled` is set to `true` the first time a property
+        /// is accessed and stays enabled for the lifetime of the app.
+        private static let device: UIDevice = {
+            let d = UIDevice.current
+            d.isBatteryMonitoringEnabled = true
+            return d
+        }()
+
+        /// The current battery charge level as a percentage (0–100).
+        ///
+        /// Returns `nil` when the battery level is unavailable (e.g. on Simulator
+        /// or when monitoring is not yet active). The underlying `batteryLevel`
+        /// value of `-1.0` is treated as unavailable.
         public static var level: Float? {
-            
-            let batteryCharge = device.batteryLevel
-            if batteryCharge > 0 {
-                return batteryCharge * 100
-            } else {
-                return nil
-            }
+            let raw = device.batteryLevel
+            guard raw >= 0 else { return nil }
+            return raw * 100
         }
-        
-        /// The current battery state of the device
-        public static var state: BatteryState {
-            
-            switch device.batteryState {
-            case .unknown:
-                return BatteryState.unknown
-            case .unplugged:
-                return BatteryState.unplugged
-            case .charging:
-                return BatteryState.charging
-            case .full:
-                return BatteryState.full
-            }
+
+        /// The current battery state of the device.
+        ///
+        /// Returns `UIDevice.BatteryState` directly, including `.unknown` when
+        /// the state cannot be determined.
+        ///
+        /// - Note: Replaces the custom `BatteryState` enum from v2. Use
+        ///   `UIDevice.BatteryState` in switch statements.
+        public static var state: UIDevice.BatteryState {
+            device.batteryState
+        }
+
+        /// Whether the device is currently charging.
+        ///
+        /// Convenience shorthand for `state == .charging`.
+        public static var isCharging: Bool {
+            state == .charging
         }
     }
 }
